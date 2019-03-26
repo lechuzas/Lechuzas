@@ -61,25 +61,34 @@ CONSTRAINT "puntaje_u" UNIQUE(puntaje));
 
 -- Creación de las llaves foráneas -- 
 ALTER TABLE "tema" ADD CONSTRAINT "fk_correo"
-FOREIGN KEY (correo) REFERENCES "usuario"(correo);
+FOREIGN KEY (correo) REFERENCES "usuario"(correo)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE "tema" ADD CONSTRAINT "fk_color"
-FOREIGN KEY (id_color) REFERENCES "cat_color" (id_color);
+FOREIGN KEY (id_color) REFERENCES "cat_color" (id_color)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE "marcador" ADD CONSTRAINT "fk_tema"
-FOREIGN KEY (id_tema) REFERENCES "tema" (id_tema);
+FOREIGN KEY (id_tema) REFERENCES "tema" (id_tema)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE "marcador" ADD CONSTRAINT "fk_color"
-FOREIGN KEY (id_color) REFERENCES "tema" (id_color);
+FOREIGN KEY (id_color) REFERENCES "tema" (id_color)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE "comentario" ADD CONSTRAINT "fk_marcador"
-FOREIGN KEY (id_marcador) REFERENCES "marcador" (id_marcador);
+FOREIGN KEY (id_marcador) REFERENCES "marcador" (id_marcador)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE "comentario" ADD CONSTRAINT "fk_correo"
-FOREIGN KEY (correo) REFERENCES "usuario" (correo);
+FOREIGN KEY (correo) REFERENCES "usuario" (correo)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE "comentario" ADD CONSTRAINT "fk_calificacion"
-FOREIGN KEY (id_calificacion) REFERENCES "calificacion" (id_calificacion);
+FOREIGN KEY (id_calificacion) REFERENCES "calificacion" (id_calificacion)
+ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE "calificacion" ADD CONSTRAINT "fk_correo"
-FOREIGN KEY (correo) REFERENCES "usuario" (correo);
+FOREIGN KEY (correo) REFERENCES "usuario" (correo)
+ON DELETE CASCADE ON UPDATE CASCADE;
+
