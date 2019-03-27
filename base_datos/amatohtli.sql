@@ -8,8 +8,7 @@ nombre_usuario text NOT NULL,
 nombre text,
 paterno text,
 rol integer,
-CONSTRAINT "usuario_u" UNIQUE(correo),
-CONSTRAINT "usuario_pkey" PRIMARY KEY(correo));
+PRIMARY KEY(correo));
 
 -- Creación de la tabla Tema --
 CREATE TABLE "tema"(
