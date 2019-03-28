@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/03/2019 11:09:56 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Usuario" table="usuario" schema="public" optimistic-lock="version">
+        <id name="correo" type="string">
+            <column name="correo" />
+            <generator class="assigned" />
+        </id>
+        <property name="contrasenia" type="string">
+            <column name="contrasenia" not-null="true" />
+        </property>
+        <property name="nombreUsuario" type="string">
+            <column name="nombre_usuario" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" />
+        </property>
+        <property name="paterno" type="string">
+            <column name="paterno" />
+        </property>
+        <property name="rol" type="java.lang.Integer">
+            <column name="rol" />
+        </property>
+        <set name="temas" table="tema" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="correo" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Tema" />
+        </set>
+        <set name="comentarios" table="comentario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="correo" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Comentario" />
+        </set>
+        <set name="calificacions" table="calificacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="correo" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Calificacion" />
+        </set>
+    </class>
+</hibernate-mapping>
