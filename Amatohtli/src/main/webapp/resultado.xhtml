@@ -16,11 +16,11 @@ and open the template in the editor.
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         </h:head>
         <h:body>
-            <p:dataScroller value="#{buscaPorNombre.resultado}" var="resultado">
-                #{resultado.nombre} <br/>
-            
-            </p:dataScroller>
-                            
+
+            <p:dataScroller value="#{buscaUsuarioPorCorreo.resultado}" var="resultado">
+                #{resultado.correo} <br/>
+            </p:dataScroller>                
         </h:body>
+           
     </f:view>
-</html>
+</html> 
