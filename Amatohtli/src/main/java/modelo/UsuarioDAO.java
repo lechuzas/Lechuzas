@@ -6,6 +6,10 @@
 package modelo;
 
 import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -32,8 +36,29 @@ public class UsuarioDAO extends AbstractDAO<Usuario>{
       return super.find(Usuario.class, Id);
     }
     
-    public List<Usuario> finAll(){
+    public List<Usuario> findAll(){
       return super.findAll(Usuario.class);
     }
     
+    public Usuario buscaCorreo(String correo){
+        Usuario u =null;
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String hql = "From Usuario u where u.correo = :correo";
+            Query query = session.createQuery(hql);
+            query.setParameter("correo", correo);
+            u = (Usuario)query.uniqueResult();
+            tx.commit();
+        }catch(HibernateException e){
+            if(tx!=null){
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return u;
+    }
 }

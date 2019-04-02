@@ -5,14 +5,11 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <f:view>
-        <h:head>
-            <title>Amatohtli</title>
-            <h:outputStylesheet name="css/estilos.css"/>
-            <h:outputScript name="js/colores.js"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=">
-            </script>
-        </h:head>
+    <h:head>
+        <title>Eliminar Comentaristas</title>
+        <h:outputStylesheet name="resources/css/estilos.css"/>
+        
+    </h:head>
     <h:body>
         <div class="header">
             <h1>Amatohtli</h1>
@@ -22,25 +19,17 @@
             <a href="#" style="float:right">Contáctanos</a>
             <a href="#" style="float:right">FAQ</a>
         </div>
-        <h:form id="busqueda">
+        <div class="row">
+            <div class="column">
+                <h2>Mapa</h2>
+            </div>
+            <div class="column">
+                
+                <h:form id="busqueda">
                     <p:inputText type="search" id="search"  required="true" requiredMessage="No hay temas sin nombre"/>
                     <p:commandButton value="Busca un tema" update="busqueda" icon="ui-icon-search"/>
-        </h:form>
-        <main>
-            <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadores.simpleModel}"  draggable="false"  mapTypeControl="false">
-                <p:ajax event="overlaySelect" listener="#{verMarcadores.onMarkerSelect}"/>
-                <p:gmapInfoWindow id="ventanaInfo">
-                <p:outputPanel style="text-align: left; display: block; margin: auto">
-                    <!--<p:graphicImage name="/demo/images/antalya/{infoWindowView.marker.data}" height="150" />-->
-                    <!--<br />-->
-                <h:outputText value="#{verMarcadores.marker.title}" />
-                <br/>
-                <h:outputText value="#{verMarcadores.marker.data}"/>
-                </p:outputPanel>
-                </p:gmapInfoWindow>
-            </p:gmap>
-        </main>
-                           
+                    
+                </h:form>
                      <h2> Ingrese el correo electrónico del comentarista que desea eliminar </h2>  
                      <h:form>
                          <p:inputText id="correo" value="#{eliminarComentaristas.correo}" placeholder="Correo" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo" > 
@@ -51,16 +40,15 @@
                              <p:confirm header="Confirmación" message="¿Estás seguro? El comentarista se eliminará junto con sus comentarios" icon="ui-icon-alert" />
                          </p:commandButton>
                          <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                             <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update="messages"/>
+                             <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
                              <p:commandButton value="Sí, eliminar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="messages" />
                          </p:confirmDialog>
                      </h:form>
-                     <p:messages id="messages" showDetail="true" closable="true" severity="info,fatal" showSummary="true" >
+                     <p:messages id="messages" showDetail="true" closable="true" severity="info, fatal" showSummary="true" >
                          <p:autoUpdate />
                      </p:messages>
                      
-           
+            </div>
+        </div>
     </h:body>
-    </f:view>
 </html>
-
