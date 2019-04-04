@@ -6,6 +6,10 @@
 package modelo;
 
 import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -35,5 +39,53 @@ public class ComentarioDAO extends AbstractDAO<Comentario>{
     public List<Comentario> finAll(){
       return super.findAll(Comentario.class);
     }
+    
+    public Comentario buscaPorID(int idComentario){
+        Comentario comentario = null;
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String hql = "from Comentario where id_comentario = :idComentario";
+            Query query = session.createQuery(hql);
+            query.setParameter("idComentario", idComentario);
+            comentario = (Comentario)query.uniqueResult();
+            tx.commit();
+        }catch(HibernateException e){
+            if(tx!=null){
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return comentario;
+    }
+    
+    public Comentario buscaPorAtributos(int idMarcador, String correo, String descripcion, int idCalificacion){
+        Comentario comentario = null;
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String hql = "from Comentario where id_marcador = :idMarcador and correo = :correo and descripcion = :descripcion and id_calificacion = :idCalificacion";
+            Query query = session.createQuery(hql);
+            query.setParameter("idMarcador", idMarcador);
+            query.setParameter("correo", correo);
+            query.setParameter("descripcion", descripcion);
+            query.setParameter("idCalificacion", idCalificacion);
+            comentario = (Comentario)query.uniqueResult();
+            tx.commit();
+        }catch(HibernateException e){
+            if(tx!=null){
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return comentario;
+    }
+    
     
 }

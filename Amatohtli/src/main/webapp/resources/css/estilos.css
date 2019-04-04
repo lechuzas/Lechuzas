@@ -3,67 +3,139 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
-    Created on : 28/03/2019, 10:20:08 PM
-    Author     : ailyn
-*/
 
-* {
-  box-sizing: border-box;
+
+*{
+    padding: 0px;
+    margin: 0px;
 }
 
-body {
-  font-family: Arial;
-  padding: 10px;
-  background: #f1f1f1;
-}
-
-.column {
-  color: black;
-  float: left;
-  width: 50%;
-}
-.row:after {
-  color: black; 
-  content: "";
-  display: table;
-  clear: both;
-}
-
-
-.header {
-  padding: 30px;
-  text-align: center;
-  background: white;
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: #8A2BE2;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-@media screen and (max-width: 400px) {
-  .topnav a {
-    float: none;
+html,body{
     width: 100%;
-  }
+    height: 100%;
 }
 
+
+body *{
+    
+    box-sizing: border-box;
+    /*outline: 1px solid #abc;*/
+}
+body{
+    background-color: #c4d8ff;
+}
+
+header{
+    width: 100%;
+    height: 10%;
+    background-color: #5DADE2;
+    padding: 10px;
+    margin: 0px auto;
+}
+
+
+
+main{
+    width: 97%;
+    height: 87vh;
+    margin: 5px auto;
+    overflow:  hidden;
+    border-radius: 20px;
+    
+}
+
+#main{
+    width: 97%;
+    height: 40vh;
+    margin: 5px auto;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+}
+
+footer{
+    width: 97%;
+    background-color:#848484 ;
+    color: white;
+    margin: 5px auto;
+    border-radius: 10px;
+}
+
+#main>section{
+    width: 70%;
+    height: 100%;
+    float: left;
+    /*background-color: lavender;*/
+}
+
+#main>aside{
+    width: 30%;
+    height: 100%;
+    float: left;
+    /*background-color:  #f7cc09;*/
+    padding: 5px;
+
+}
+
+#colores{
+    width: 59px;
+    border: 1px solid black;
+    height: 10px;
+    margin: 5px auto;
+}
+
+.color{
+    width: 6.8px;
+    height: 6.6px;
+    border: 1px solid black;
+    float: left;
+    margin-top: 1px;
+    margin-left: 1.2px;
+    
+}
+
+#busqueda{
+    float: right;
+    
+}
+header>h1{
+    float: left;
+}
+
+
+#rojo{
+    background: #FF0000;
+}
+#naranja{
+    background: #FF8000;
+}
+#amarillo{
+    background:#FFFF00;
+}
+#verde{
+    background: #40FF00;
+}
+
+#azul{
+     background: #0000FF;
+}
+#anil{
+    background: #8000FF;
+}
+#violeta{
+    background:#FF00BF ;
+}
+
+.texto{
+    width: 100%;
+}
 #mapa{
     width: 100%;
     height: 100%;
+}
+#formulario{
+    margin:5px auto;
+    width: 90%;
+    
+    border-radius: 10px;
 }

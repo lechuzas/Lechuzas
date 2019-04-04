@@ -93,16 +93,21 @@ public class EliminarComentaristas {
         this.calificacions = calificacions;
     }
     
+    public String muestraVentana(){
+        return "/administrador/eliminarComentaristas?faces-redirect=true";
+    }
     
      public void eliminaComentarista(){
          UsuarioDAO udao = new UsuarioDAO();
-         Usuario comentarista = udao.buscaCorreo(correo);
+         Usuario comentarista = udao.buscaPorCorreo(correo);
          
-         if(comentarista != null && comentarista.getRol() == 2){
+         if(comentarista != null && comentarista.getRol() == 1){
              udao.delete(comentarista);
-             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Éxito", "Se ha eliminado correctamente el comentarista"));
+             Mensajes.info("Se ha eliminado correctamente el comentarista");
+             //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Éxito", "Se ha eliminado correctamente el comentarista"));
          }else if(comentarista == null){
-             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"No existe comentarista","El comentarista que usted desea eliminar no existe, favor de verificar el correo"));
+             Mensajes.fatal("El comentarista que usted desea eliminar no existe, favor de verificar el correo");
+             //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"No existe comentarista","El comentarista que usted desea eliminar no existe, favor de verificar el correo"));
          }
              
      }

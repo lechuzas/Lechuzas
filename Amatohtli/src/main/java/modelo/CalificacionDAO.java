@@ -6,6 +6,10 @@
 package modelo;
 
 import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -36,5 +40,25 @@ public class CalificacionDAO extends AbstractDAO<Calificacion>{
       return super.findAll(Calificacion.class);
     }
     
-    
+    public Calificacion buscaPorID(int idCalificacion){
+        Calificacion calificacion = null;
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String hql = "from Calificacion where id_calificacion = :idCalificacion";
+            Query query = session.createQuery(hql);
+            query.setParameter("idCalificacion", idCalificacion);
+            calificacion = (Calificacion)query.uniqueResult();
+            tx.commit();
+        }catch(HibernateException e){
+            if(tx!=null){
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return calificacion;
+    }
 }

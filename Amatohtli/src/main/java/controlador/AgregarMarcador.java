@@ -24,8 +24,8 @@ import org.primefaces.model.map.Marker;
  *
  * @author ailyn
  */
+
 @ManagedBean
-@ViewScoped
 public class AgregarMarcador {
     private int idMarcador;
     private Tema temaByIdColor;
@@ -37,7 +37,7 @@ public class AgregarMarcador {
     private Marker marcador;
     private MapModel simpleModel;
     
-     @PostConstruct
+    @PostConstruct
     public void init(){
         simpleModel = new DefaultMapModel();
         marcador = new Marker(new LatLng(23.382390, -102.291477),"Arrastrame");
@@ -126,6 +126,11 @@ public class AgregarMarcador {
         this.longitud = latlng.getLng();
         
     }
+    
+    public String muestraVentana(){
+        return "/informador/agregarMarcadores?faces-redirect=true";
+    }
+    
     
     public void agregaMarcador(){
         Marcador m = new Marcador();

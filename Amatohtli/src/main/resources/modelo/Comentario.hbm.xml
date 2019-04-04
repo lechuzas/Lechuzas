@@ -6,7 +6,7 @@
     <class name="modelo.Comentario" table="comentario" schema="public" optimistic-lock="version">
         <id name="idComentario" type="int">
             <column name="id_comentario" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="calificacion" class="modelo.Calificacion" fetch="select">
             <column name="id_calificacion" />
