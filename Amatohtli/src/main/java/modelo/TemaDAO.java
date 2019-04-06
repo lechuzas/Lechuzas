@@ -37,7 +37,7 @@ public class TemaDAO extends AbstractDAO<Tema>{
       return super.find(Tema.class, Id);
     }
     
-    public List<Tema> finAll(){
+    public List<Tema> findAll(){
       return super.findAll(Tema.class);
     }
     
@@ -61,6 +61,28 @@ public class TemaDAO extends AbstractDAO<Tema>{
             session.close();
         }
         return tema;
+    }
+    
+    public List<Tema> buscaTemas(String correo){
+         List<Tema> obj =null;
+        Session session = this.sessionFactory.getCurrentSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String hql = "From Tema where correo = :correo";
+            Query query = session.createQuery(hql);
+            obj = (List<Tema>)query.list();
+            tx.commit();
+            
+        }catch(HibernateException e){
+            if(tx!=null){
+                tx.rollback();
+            }
+        }finally{
+            session.close();
+        
+        }
+        return obj;
     }
     
 }

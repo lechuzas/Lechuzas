@@ -8,6 +8,7 @@ package controlador;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
 import org.primefaces.event.map.OverlaySelectEvent;
@@ -21,6 +22,7 @@ import org.primefaces.model.map.Marker;
  * @author ailyn
  */
 @ManagedBean
+@ViewScoped
 public class VerMarcadores {
     private MapModel simpleModel;
     private Marker marker;

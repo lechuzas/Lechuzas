@@ -47,6 +47,9 @@
                 </div>
                 <h2> Ingrese el correo electrónico del comentarista que desea eliminar </h2>  
                 <h:form>
+                    <p:messages id="messages" showDetail="true" closable="true" >
+                             <p:autoUpdate />
+                         </p:messages>
                     <p:inputText id="correo" value="#{eliminarComentaristas.correo}" placeholder="Correo" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
                         <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                         <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
@@ -54,13 +57,11 @@
                          <p:commandButton value="Eliminar"  action="#{eliminarComentaristas.eliminaComentarista()}">
                              <p:confirm header="Confirmación" message="¿Estás seguro? El comentarista se eliminará junto con sus comentarios" icon="ui-icon-alert" />
                          </p:commandButton>
-                         <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                          <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
                              <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
                              <p:commandButton value="Sí, eliminar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="messages" />
                          </p:confirmDialog>
-                         <p:messages id="messages" showDetail="true" closable="true" severity="info, fatal">
-                             <p:autoUpdate />
-                         </p:messages>
+                         
                 </h:form>
                 
             </main>

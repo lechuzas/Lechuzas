@@ -6,19 +6,28 @@
 package controlador;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.Tema;
+import modelo.TemaDAO;
+import modelo.Usuario;
+import modelo.UsuarioDAO;
 import org.primefaces.event.map.MarkerDragEvent;
 import org.primefaces.event.map.PointSelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
+import org.primefaces.model.menu.DefaultMenuItem;
+import org.primefaces.model.menu.DefaultMenuModel;
+import org.primefaces.model.menu.MenuModel;
+
 
 /**
  *
@@ -26,8 +35,11 @@ import org.primefaces.model.map.Marker;
  */
 
 @ManagedBean
+@ViewScoped
 public class AgregarMarcador {
     private int idMarcador;
+    private int idTema;
+    private String tema;
     private Tema temaByIdColor;
     private Tema temaByIdTema;
     private double latitud;
@@ -36,18 +48,50 @@ public class AgregarMarcador {
     private Set comentarios = new HashSet(0);
     private Marker marcador;
     private MapModel simpleModel;
+    private MenuModel menu = new DefaultMenuModel();
+
+    
     
     @PostConstruct
     public void init(){
         simpleModel = new DefaultMapModel();
         marcador = new Marker(new LatLng(23.382390, -102.291477),"Arrastrame");
         marcador.setDraggable(true);
-//        marcador.setClickable(true);
+        marcador.setClickable(true);
         simpleModel.addOverlay(marcador);
         this.latitud = marcador.getLatlng().getLat();
         this.longitud = marcador.getLatlng().getLng();
+        /*
+        UsuarioDAO udb = new UsuarioDAO();
+        TemaDAO tdao = new TemaDAO(); 
+        //ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        List<Tema> temas = tdao.buscaTemas("ailyn@gmail.com");
+        for(Tema t : temas){
+            DefaultMenuItem mi = new DefaultMenuItem(t.getNombreTema());
+            mi.setCommand("#{agregarMarcador.idTema}");
+            menu.addElement(mi);
+        }
+*/
+        
     }
+
+    public String getTema() {
+        return tema;
+    }
+
+    public void setTema(String tema) {
+        this.tema = tema;
+    }
+
     
+    
+    public int getIdTema() {
+        return idTema;
+    }
+
+    public void setIdTema(int idTema) {
+        this.idTema = idTema;
+    }
     public Marker getMarcador() {
         return marcador;
     }
@@ -130,17 +174,38 @@ public class AgregarMarcador {
     public String muestraVentana(){
         return "/informador/agregarMarcadores?faces-redirect=true";
     }
-    
+
+
     
     public void agregaMarcador(){
         Marcador m = new Marcador();
-        m.setLatitud(latitud);
-        m.setLongitud(longitud);
-        m.setDescripcion(descripcion);
-        m.setTemaByIdTema(temaByIdTema);
-        m.setTemaByIdColor(temaByIdColor);
         MarcadorDAO mdao = new MarcadorDAO();
-        mdao.save(m);
+        TemaDAO tdao = new TemaDAO();
+        //ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        List<Tema> lista_temas = tdao.findAll();
+        for(Tema t : lista_temas){
+            if(this.tema.equals(t.getNombreTema()) && t.getUsuario().getCorreo().equals("ailyn@gmail.com")){
+               this.temaByIdTema = t;
+               this.temaByIdColor = t;
+            }
+        }
+        if(this.temaByIdTema == null)
+            Mensajes.fatal("Éste tema no existe, favor de escribir otro tema");
+        else{
+            List<Marcador> lista_marcadores = mdao.findAll();
+            m.setLatitud(latitud);
+            m.setLongitud(longitud);
+            m.setDescripcion(descripcion);
+            m.setTemaByIdTema(temaByIdTema);
+            m.setTemaByIdColor(temaByIdColor);
+            for(Marcador marc : lista_marcadores){
+                if(marc.equals(m))
+                    Mensajes.error("El marcador no se pudo agregar correctamente. El marcador que quiere agregar ya existe");
+            }
+            Mensajes.info("Se ha agregado correctammente el marcador");
+        }
+        
+        
         
     }
 }

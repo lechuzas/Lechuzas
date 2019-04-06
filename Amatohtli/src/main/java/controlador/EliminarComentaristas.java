@@ -7,9 +7,8 @@ package controlador;
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ViewScoped;
 import modelo.Usuario;
 import modelo.UsuarioDAO;
 
@@ -18,6 +17,7 @@ import modelo.UsuarioDAO;
  * @author ailyn
  */
 @ManagedBean
+@ViewScoped
 public class EliminarComentaristas {
     private String correo;
      private String contrasenia;
@@ -104,10 +104,9 @@ public class EliminarComentaristas {
          if(comentarista != null && comentarista.getRol() == 1){
              udao.delete(comentarista);
              Mensajes.info("Se ha eliminado correctamente el comentarista");
-             //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Éxito", "Se ha eliminado correctamente el comentarista"));
-         }else if(comentarista == null){
+         }else if(comentarista != null && comentarista.getRol() != 1 || comentarista == null){
              Mensajes.fatal("El comentarista que usted desea eliminar no existe, favor de verificar el correo");
-             //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"No existe comentarista","El comentarista que usted desea eliminar no existe, favor de verificar el correo"));
+            
          }
              
      }
