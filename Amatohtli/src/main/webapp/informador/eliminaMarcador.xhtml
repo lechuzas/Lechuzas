@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      
+    <f:view>
+       
+	 <h:head>
+             <style>
+	       /* Set the size of the div element that contains the map */
+	      #map {
+	        height: 500px;  /* The height is 400 pixels */
+	        width: 50%;  /* The width is the width of the web page */
+                float: left;
+	       }
+	    </style>
+          <title>Elimina Marcador</title>
+            <h:outputStylesheet name="css/estilos.css"/>
+            <h:outputScript name="js/colores.js"/>
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
+        </h:head>
+        <h:body>
+             <header>
+                 <h1>Amatohtli</h1>
+                 <h:form id="logout" rendered="#{not empty user}">
+                     <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
+                </h:form>
+            </header>
+            <main>   
+                <div id="map">
+                    <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{agregarMarcador.simpleModel}">
+                        <p:ajax event="markerDrag" listener="#{agregarMarcador.onMarkerDrag}" update="form"/>
+                        <p:ajax event="pointSelect" listener="#{agregarMarcador.onPointSelect}" update="form mapa"/>
+                    </p:gmap> </div>
+                <h:form id="form">
+                    <p:messages id="messages" showDetail="true" closable="true" >
+                        <p:autoUpdate />
+                    </p:messages>
+                    <p:inputText id="tema" value="#{agregarMarcador.tema}" placeholder="Escribe un tema" required="true" requiredMessage="Favor de ingresar un tema"/> <br/>
+                    <p:inputTextarea id="descripcion" placeholder="Descripcion" value="${agregarMarcador.descripcion}"  required="true" requiredMessage="Favor de ingresar una descripción del marcador"/> <br/>
+                    <p:inputNumber  decimalPlaces="6" id="longitud" value="#{agregarMarcador.longitud}" placeholder="Longitud" required="true" disabled="true"/>
+                     <p:inputNumber id="latitud" decimalPlaces="6" value="#{agregarMarcador.latitud}" placeholder="Latitud" required="true" disabled="true"/> <br/>
+                     <p:commandButton value="Agregar" action="#{agregarMarcador.agregaMarcador()}"/>
+                    </h:form>
+            </main>
+            
+           
+            <footer>
+                <h3>
+                    Lorem ipsum dolor sit amet.
+                </h3>
+            </footer>
+            
+             
+           
+         
+            
+        </h:body>
+    </f:view>
+</html>
