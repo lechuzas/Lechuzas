@@ -36,7 +36,7 @@ public class UsuarioDAO extends AbstractDAO<Usuario>{
       return super.find(Usuario.class, Id);
     }
     
-    public List<Usuario> finAll(){
+    public List<Usuario> findAll(){
       return super.findAll(Usuario.class);
     }
     
@@ -86,5 +86,5 @@ public class UsuarioDAO extends AbstractDAO<Usuario>{
         }
         return u;
     }
-    
+
 }
