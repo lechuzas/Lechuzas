@@ -10,16 +10,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.Tema;
 import modelo.TemaDAO;
-import modelo.Usuario;
-import modelo.UsuarioDAO;
 import org.primefaces.event.map.MarkerDragEvent;
 import org.primefaces.event.map.PointSelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
@@ -180,12 +176,30 @@ public class AgregarMarcador implements Serializable {
         //ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
         String cadena = "alyn@gmail.com";
         List<Tema> lista_temas = tdao.findAll();
-        if(lista_temas != null){
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Sí existe el tema"));
-        }else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal", "No existen temas con ese correo"));
+        for(Tema t : lista_temas){
+            if(this.tema.equals(t.getNombreTema()) && t.getUsuario().getCorreo().equals("ailyn@gmail.com")){
+                this.temaByIdTema = t;
+                this.temaByIdColor = t;
+            }
         }
         
+        if(this.temaByIdTema == null || this.temaByIdColor == null){
+            Mensajes.error("El tema que usted escogió no existe, escriba otro");
+        }else if(this.temaByIdTema != null && this.temaByIdColor != null){
+            m.setLatitud(latitud);
+            m.setLongitud(longitud);
+            m.setTemaByIdColor(temaByIdColor);
+            m.setTemaByIdTema(temaByIdTema);
+            m.setDescripcion(descripcion);
+            Marcador marc = mdao.buscaMarcadorPorLatLng(latitud, longitud);
+            if(marc != null){
+                Mensajes.error("El marcador que desea agregar, ya existe");
+            }else{
+                mdao.save(m);
+                Mensajes.info("Se ha agregado correctamente su marcador");
+            }
+            
+        }
         
         
     }

@@ -69,7 +69,7 @@ public class TemaDAO extends AbstractDAO<Tema>{
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            String hql = "From Tema where correo = :correo";
+            String hql = "from Tema where correo = :correo";
             Query query = session.createQuery(hql);
             obj = (List<Tema>)query.list();
             tx.commit();

@@ -61,4 +61,30 @@ public class MarcadorDAO extends AbstractDAO<Marcador>{
         }
         return marcador;
     }
+    
+     public Marcador buscaMarcadorPorLatLng(double lat,double lng) {
+        Marcador m = null;
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String hql = "from Marcador where longitud = :lng and latitud = :lat";
+            Query query = session.createQuery(hql);
+            query.setParameter("lng", lng);
+            query.setParameter("lat", lat);
+            m = (Marcador)query.uniqueResult();
+            tx.commit();
+            
+        }catch(HibernateException e){
+            if(tx!=null){
+                tx.rollback();
+            }
+            e.printStackTrace();
+
+        }finally{
+            session.close();
+        }
+        return m;
+    
+    }
 }
