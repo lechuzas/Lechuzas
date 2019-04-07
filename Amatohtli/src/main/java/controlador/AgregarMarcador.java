@@ -193,7 +193,7 @@ public class AgregarMarcador implements Serializable {
             m.setDescripcion(descripcion);
             Marcador marc = mdao.buscaMarcadorPorLatLng(latitud, longitud);
             if(marc != null){
-                Mensajes.error("El marcador que desea agregar, ya existe");
+                Mensajes.error("El marcador no se pudo agregar correctamente. El marcador que desea agregar ya existe");
             }else{
                 mdao.save(m);
                 Mensajes.info("Se ha agregado correctamente su marcador");

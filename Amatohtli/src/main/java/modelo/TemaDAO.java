@@ -64,25 +64,49 @@ public class TemaDAO extends AbstractDAO<Tema>{
     }
     
     public List<Tema> buscaTemas(String correo){
-        List<Tema> obj =null;
+        List<Tema> t = null;
         Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            String hql = "from Tema where correo = :correo";
+            String hql = "from Tema t where t.usuario.correo = :correo";
             Query query = session.createQuery(hql);
-            obj = (List<Tema>)query.list();
+            query.setParameter("correo", correo);
+            t = (List<Tema>)query.list();
             tx.commit();
             
         }catch(HibernateException e){
             if(tx!=null){
                 tx.rollback();
             }
+            e.printStackTrace();
+
         }finally{
             session.close();
-        
         }
-        return obj;
+        return t;
     }
     
+    public Tema buscaPorNombre(String nombre){
+        Tema tema = null;
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String hql = "from Tema where nombreTema = :nombre";
+            Query query = session.createQuery(hql);
+            query.setParameter("nombre", nombre);
+            tema = (Tema)query.uniqueResult();
+            tx.commit();
+        }catch(HibernateException e){
+            if(tx!=null){
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return tema;
+        
+    }
 }
