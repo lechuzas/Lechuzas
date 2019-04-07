@@ -64,8 +64,8 @@ public class TemaDAO extends AbstractDAO<Tema>{
     }
     
     public List<Tema> buscaTemas(String correo){
-         List<Tema> obj =null;
-        Session session = this.sessionFactory.getCurrentSession();
+        List<Tema> obj =null;
+        Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();

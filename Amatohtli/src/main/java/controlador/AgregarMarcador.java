@@ -5,10 +5,12 @@
  */
 package controlador;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -24,9 +26,6 @@ import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
-import org.primefaces.model.menu.DefaultMenuItem;
-import org.primefaces.model.menu.DefaultMenuModel;
-import org.primefaces.model.menu.MenuModel;
 
 
 /**
@@ -36,7 +35,7 @@ import org.primefaces.model.menu.MenuModel;
 
 @ManagedBean
 @ViewScoped
-public class AgregarMarcador {
+public class AgregarMarcador implements Serializable {
     private int idMarcador;
     private int idTema;
     private String tema;
@@ -48,8 +47,7 @@ public class AgregarMarcador {
     private Set comentarios = new HashSet(0);
     private Marker marcador;
     private MapModel simpleModel;
-    private MenuModel menu = new DefaultMenuModel();
-
+    
     
     
     @PostConstruct
@@ -82,8 +80,6 @@ public class AgregarMarcador {
     public void setTema(String tema) {
         this.tema = tema;
     }
-
-    
     
     public int getIdTema() {
         return idTema;
@@ -182,27 +178,12 @@ public class AgregarMarcador {
         MarcadorDAO mdao = new MarcadorDAO();
         TemaDAO tdao = new TemaDAO();
         //ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        String cadena = "alyn@gmail.com";
         List<Tema> lista_temas = tdao.findAll();
-        for(Tema t : lista_temas){
-            if(this.tema.equals(t.getNombreTema()) && t.getUsuario().getCorreo().equals("ailyn@gmail.com")){
-               this.temaByIdTema = t;
-               this.temaByIdColor = t;
-            }
-        }
-        if(this.temaByIdTema == null)
-            Mensajes.fatal("Éste tema no existe, favor de escribir otro tema");
-        else{
-            List<Marcador> lista_marcadores = mdao.findAll();
-            m.setLatitud(latitud);
-            m.setLongitud(longitud);
-            m.setDescripcion(descripcion);
-            m.setTemaByIdTema(temaByIdTema);
-            m.setTemaByIdColor(temaByIdColor);
-            for(Marcador marc : lista_marcadores){
-                if(marc.equals(m))
-                    Mensajes.error("El marcador no se pudo agregar correctamente. El marcador que quiere agregar ya existe");
-            }
-            Mensajes.info("Se ha agregado correctammente el marcador");
+        if(lista_temas != null){
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Sí existe el tema"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal", "No existen temas con ese correo"));
         }
         
         
