@@ -21,11 +21,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author jonathan
+ * @author fermat
  */
 
-@WebFilter("/user/*")
-public class FilterSessionUser implements Filter {
+@WebFilter("/comentarista/*")
+public class FilterSessionComentarista implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -37,12 +37,12 @@ public class FilterSessionUser implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession(true);
-         if (session.getAttribute("user") == null) {
+         if (session.getAttribute("comentarista") == null) {
             res.sendRedirect(req.getContextPath() + "/index.xhtml"); // Si no se encuentra el usuario redire al index.
         }
         else {
-            ControladorSesion.UserLogged u = (ControladorSesion.UserLogged) session.getAttribute("user");
-            if(u.getRol()==1){
+            ControladorSesion.UserLogged u = (ControladorSesion.UserLogged) session.getAttribute("comentarista");
+            if(u.getRol()==2){
                 chain.doFilter(req, res); // esta logueado se continua con lo que se solicito.
             }else{
                 res.sendRedirect(req.getContextPath() + "/index.xhtml");

@@ -68,3 +68,12 @@
     margin-top: 290px;
     
 }
+
+#login_i{
+    position: relative;
+    height: 100px;  
+    width: 50%; 
+    margin-top: 300px;
+    margin-right: -610px;
+    float:right;
+}

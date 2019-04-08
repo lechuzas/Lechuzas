@@ -51,13 +51,13 @@ public class ControladorSesion implements Serializable{
                 context.getExternalContext().getSessionMap().put("informador", u);
                 return "/informador/perfiluser?faces-redirect=true";
             }else if(user.getRol()== 2){
-                context.getExternalContext().getSessionMap().put("user", u);
-                return "/user/perfiluser?faces-redirect=true";
+                context.getExternalContext().getSessionMap().put("comentarista", u);
+                return "/comentarista/perfiluser?faces-redirect=true";
             }else if(user.getRol()== 3){
-                context.getExternalContext().getSessionMap().put("user", u);
-                return "/superuser/perfilsuperuser?faces-redirect=true";
+                context.getExternalContext().getSessionMap().put("administrador", u);
+                return "/administrador/perfiluser?faces-redirect=true";
             }else{
-                Mensajes.error("Usuaario sin rol asignado "+this.correo);
+                Mensajes.error("Usuario sin rol asignado "+this.correo);
             }
         }
         Mensajes.error("NO hay usuarios con este correo "+this.correo);

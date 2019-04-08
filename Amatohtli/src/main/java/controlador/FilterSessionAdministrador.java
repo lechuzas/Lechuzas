@@ -19,10 +19,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author jonh
+ * @author Fermat
  */
-@WebFilter("/superuser/*")
-public class FilterSessionSuperuser implements Filter {
+@WebFilter("/administrador/*")
+public class FilterSessionAdministrador implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -34,11 +34,11 @@ public class FilterSessionSuperuser implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession(true);
-         if (session.getAttribute("user") == null) {
+         if (session.getAttribute("administrador") == null) {
             res.sendRedirect(req.getContextPath() + "/index.xhtml"); // Si no se encuentra el usuario redire al index.
         }
         else {
-            ControladorSesion.UserLogged u = (ControladorSesion.UserLogged) session.getAttribute("user");
+            ControladorSesion.UserLogged u = (ControladorSesion.UserLogged) session.getAttribute("administrador");
             if(u.getRol()==3){
                 chain.doFilter(req, res); // esta logueado se continua con lo que se solicito.
             }else{
