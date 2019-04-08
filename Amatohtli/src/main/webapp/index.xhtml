@@ -21,7 +21,7 @@
           <title>Inicio</title>
             <h:outputStylesheet name="css/estilos.css"/>
             <h:outputScript name="js/colores.js"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_CV-ykq13siKc1d-UiPH4vmp0RjlNroA"></script>            
         </h:head>
         <h:body>
              <header>
@@ -34,7 +34,7 @@
                              <p:autoUpdate />
                          </p:messages>
                      <p:inputText type="search" id="search" value="#{verMarcadoresTema.tema}" required="true" requiredMessage="Escriba el nombre del tema que quiera ver los marcadores"/>
-                    <p:commandButton action="#{verMarcadores.muestraMarcadores()}" value="Busca Tema" update="busqueda"/>
+                     <p:commandButton action="#{verMarcadoresTema.muestraVentana()}" value="Busca Tema" update="busqueda"/>
                 </h:form>
             </header>
             <main>   

@@ -65,7 +65,11 @@ public class VerMarcadores implements Serializable{
     public void setTema(String tema) {
         this.tema = tema;
     }
-    
+    /**
     public String muestraMarcadores(){
-         return "/verMarcadoresTema?faces-redirect=true";}
+        VerMarcadoresTema vmt = new VerMarcadoresTema();
+        System.out.println(this.tema);
+        vmt.setTema(this.tema);
+        System.out.println(vmt.getTema());
+         */
 }

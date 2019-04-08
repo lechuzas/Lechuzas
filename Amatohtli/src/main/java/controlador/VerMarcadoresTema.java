@@ -72,4 +72,8 @@ public class VerMarcadoresTema implements Serializable{
     public void setTema(String tema) {
         this.tema = tema;
     }
+    
+    public String muestraVentana(){
+        return "/verMarcadoresTema?faces-redirect=true";
+    }
 }
