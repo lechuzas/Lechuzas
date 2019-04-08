@@ -6,7 +6,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-      <f:view>
+         <f:view>
        
 	 <h:head>
           <title>Amatohtli</title>
@@ -20,22 +20,24 @@
              <header>
                 <img id="fondo" src="resources/img/base.jpg"/>
                 <img id="logo" src="resources/img/logo.png"/>   
-                <p:link outcome="/login.xhtml" id="iniciar_sesion" value="Iniciar Sesión"/>
+                <p:link outcome="/index.xhtml" id="iniciar_sesion" value="Continuar como invitado"/>
                 <p:link outcome="/index.xhtml" id="faq" value="FAQ"/>
                 <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/>
             </header>
             
                     
-                    <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadores.simpleModel}"  draggable="false"  mapTypeControl="false">
-                        <p:ajax event="overlaySelect" listener="#{verMarcadores.onMarkerSelect}"/>
-                        <p:gmapInfoWindow id="ventanaInfo">
-                             <p:outputPanel style="text-align: left; display: block; margin: auto">
-                                    <h:outputText value="#{verMarcadores.marker.title}" />
-                                    <br/>
-                                    <h:outputText value="#{verMarcadores.marker.data}"/>
-                            </p:outputPanel>
-                        </p:gmapInfoWindow>
-                    </p:gmap> 
+                     <h:form id="login_i">
+
+                        <p:inputText class="texto" id="email" value="#{controladorSesion.correo}" placeholder="Correo" required="true" requiredMessage="Por favor ingresa tu correo" validatorMessage="Debe ser un correo valido">
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                            <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                        </p:inputText> <br/>
+                        <p:message for="email"/>
+                        <p:password class="texto" id="password" value="#{controladorSesion.contrasenia}" placeholder="Contrasenia"  required="true" requiredMessage="Por favor ingresa tu contrasenia"/> <br/>
+                        <p:message for="password"/>
+                        <p:commandButton class="texto" action="#{controladorSesion.login()}" value="login" update="login_i" />
+                        
+                    </h:form>
             
                     <p:commandLink  action="#{mensajes.info()}">
                         <h:graphicImage id="boton_registrar" value="resources/img/registrar_boton.png"/>
@@ -50,5 +52,3 @@
     </f:view>
 
 </html>
-
-

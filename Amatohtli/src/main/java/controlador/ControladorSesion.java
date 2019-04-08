@@ -47,14 +47,17 @@ public class ControladorSesion implements Serializable{
         FacesContext context = FacesContext.getCurrentInstance();
         if(user !=null){
             UserLogged u = new UserLogged(user.getNombre(),user.getCorreo(),user.getRol());
-            if(true){
-                
-                context.getExternalContext().getSessionMap().put("user", u);
-                return "/user/perfiluser?faces-redirect=true";
+            if(user.getRol()== 1){
+                context.getExternalContext().getSessionMap().put("informador", u);
+                return "/informador/perfiluser?faces-redirect=true";
+            }else if(user.getRol()== 2){
+                context.getExternalContext().getSessionMap().put("comentarista", u);
+                return "/comentarista/perfiluser?faces-redirect=true";
+            }else if(user.getRol()== 3){
+                context.getExternalContext().getSessionMap().put("administrador", u);
+                return "/administrador/perfiluser?faces-redirect=true";
             }else{
-                
-                context.getExternalContext().getSessionMap().put("user", u);
-                return "/superuser/perfilsuperuser?faces-redirect=true";
+                Mensajes.error("Usuario sin rol asignado "+this.correo);
             }
         }
         Mensajes.error("NO hay usuarios con este correo "+this.correo);
