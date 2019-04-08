@@ -24,7 +24,6 @@ and open the template in the editor.
                 <h:form id="logout">
                     <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
                 </h:form>
-                <h1>Hola #{user.nombre} #{user.rol}</h1>
             </header>
             <main>
                 <section>
@@ -34,8 +33,10 @@ and open the template in the editor.
                     </p:gmap>
                 </section>
                 <aside>
-                    <h3>Agrega un marcador</h3> 
-                    
+                    <h1>Hola #{user.nombre} #{user.rol}</h1><br/><h3>Agrega un marcador</h3> 
+                    <c:if test="#{user.rol eq 'USER'}">
+                        HOLA #{user.rol}
+                    </c:if>
                     <h:form id="form">
                         <p:messages id="messages" showDetail="true" closable="true">
                             <p:autoUpdate />
@@ -43,12 +44,8 @@ and open the template in the editor.
                         <p:inputNumber  decimalPlaces="6" id="longitud" value="#{agregaMarcador.longitud}" disabled="true"/>
                         <p:inputNumber id="latitud" decimalPlaces="6" value="#{agregaMarcador.latitud}" disabled="true"/>
                         <p:inputTextarea id="descripcion" placeholder="Descripcion" value="${agregaMarcador.descripcion}"  required="true"/>
-                        <p:commandButton id="agregaMarcador" value="Agrega Marcador" action="#{agregaMarcador.agregaMarcador()}" update="form"/>
+                        <p:commandButton id="agregaMarcador" value="Agrega Marcador" action="#{agregaMarcador.agregaMarcador()}"/>
                     </h:form>
-                    <br/>
-                    <p:link outcome="/superuser/eliminaMarcadores" value="Elimina Marcadores" />
-                    
-                    
                 </aside>
             </main>
             <footer>

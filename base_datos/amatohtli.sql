@@ -13,7 +13,7 @@ rol integer);
 -- Creación de la tabla calificación --
 CREATE TABLE calificacion(
 id_calificacion serial NOT NULL PRIMARY KEY,
-puntaje integer NOT NULL UNIQUE,
+puntaje integer NOT NULL,
 correo text NOT NULL,
 FOREIGN KEY (correo) REFERENCES usuario(correo));
 
