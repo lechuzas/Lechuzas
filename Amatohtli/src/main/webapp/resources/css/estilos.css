@@ -87,6 +87,14 @@
 }
 
 
+#form{
+    position: relative;
+    margin-top: 90px;
+    margin-right: 90px;
+    float: right;
+}
+
+
 #form_agreinfo{
     position: relative;
     margin-top: 300px;

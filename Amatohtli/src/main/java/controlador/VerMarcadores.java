@@ -12,8 +12,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
-import modelo.Tema;
-import modelo.TemaDAO;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -65,11 +63,5 @@ public class VerMarcadores implements Serializable{
     public void setTema(String tema) {
         this.tema = tema;
     }
-    /**
-    public String muestraMarcadores(){
-        VerMarcadoresTema vmt = new VerMarcadoresTema();
-        System.out.println(this.tema);
-        vmt.setTema(this.tema);
-        System.out.println(vmt.getTema());
-         */
+    
 }

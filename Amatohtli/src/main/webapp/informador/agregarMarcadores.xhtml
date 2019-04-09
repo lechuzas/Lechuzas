@@ -23,14 +23,19 @@ and open the template in the editor.
         <h:body>
             <header> 
                 
+                <img id="fondo" src="../resources/img/base.jpg"/>
+                <img id="logo" src="../resources/img/logo.png"/>  
                 <p:link outcome="/index.xhtml" id="faq" value="FAQ"/>
-                <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/> <br/>
+                <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/>
+                 <h:form id="logout">
+                    <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
+                </h:form>
                 
             </header>
             
-            <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{agregarMarcador.simpleModel}">
+            <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa2" model="#{agregarMarcador.simpleModel}">
                 <p:ajax event="markerDrag" listener="#{agregarMarcador.onMarkerDrag}" update="form"/>
-                <p:ajax event="pointSelect" listener="#{agregarMarcador.onPointSelect}" update="form mapa"/>
+                <p:ajax event="pointSelect" listener="#{agregarMarcador.onPointSelect}" update="form mapa2"/>
             </p:gmap> 
             
             <aside>

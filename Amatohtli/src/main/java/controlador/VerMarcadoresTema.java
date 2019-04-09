@@ -5,12 +5,10 @@
  */
 package controlador;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.Tema;
@@ -27,41 +25,35 @@ import org.primefaces.model.map.Marker;
  */
 @ManagedBean
 @ViewScoped
-public class VerMarcadoresTema implements Serializable{
-    private String tema;
+public class VerMarcadoresTema {
     private MapModel simpleModel;
     private Marker marker;
+    private String tema;
     
     @PostConstruct
-    public void VerMarcadoresTemas(){
-        System.out.println(tema);
+    public void verMarcadoresTema(){
         simpleModel = new DefaultMapModel();
-        /**
+        System.out.println(tema);
         TemaDAO tdao = new TemaDAO();
-        MarcadorDAO mdao = new MarcadorDAO();
-        Tema t = tdao.buscaPorNombre(tema);
-        if(t == null){
-            Mensajes.error("Éste tema no existe, por lo que no hay marcadores");
-        }else{
-            List<Marcador> marcadores = mdao.buscaPorTema(tema);
-            for(Marcador m :marcadores){
-                LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-                Marker marcador = new Marker(cord,m.getDescripcion());
-                simpleModel.addOverlay(marcador);
+        MarcadorDAO mdb = new MarcadorDAO();
+        List<Marcador> marcadores = mdb.findAll();
+        List<Tema> temas = tdao.findAll();
+        for(Tema t : temas){
+            if(t.getNombreTema().equals(tema)){
+                System.out.println(tema);
+                for(Marcador m :marcadores){
+                    if(m.getTemaByIdTema().equals(t)){
+                         LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
+                         Marker marcador = new Marker(cord,m.getDescripcion());
+                         simpleModel.addOverlay(marcador);
+                        }
+                }
             }
         }
-        */
-        MarcadorDAO mdao = new MarcadorDAO();
-       List<Marcador> marcadores = mdao.buscaPorTema(tema);
-       for(Marcador m :marcadores){
-            LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-            Marker marcador = new Marker(cord,m.getDescripcion());
-            simpleModel.addOverlay(marcador);
-           
-        }
+       
     }
-    
-     public MapModel getSimpleModel() {
+
+    public MapModel getSimpleModel() {
         return simpleModel;
     }
     
@@ -81,7 +73,6 @@ public class VerMarcadoresTema implements Serializable{
     public void setTema(String tema) {
         this.tema = tema;
     }
-    
     public String muestraVentana(){
         return "/verMarcadoresTema?faces-redirect=true";
     }

@@ -87,8 +87,6 @@ public class VerMarcadorC implements Serializable{
     }
     
     public String muestraVentana(){
-        VerMarcadoresTema vmt = new VerMarcadoresTema();
-        vmt.setTema(this.tema);
         return "/verMarcadoresTema?faces-redirect=true";
     }
     

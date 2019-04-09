@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -17,7 +17,6 @@ and open the template in the editor.
           <title>Amatohtli</title>
             <h:outputStylesheet name="css/estilos.css"/>
             <h:outputScript name="js/colores.js"/>
-
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
         </h:head>
        
@@ -34,7 +33,8 @@ and open the template in the editor.
                 
             </header>
             
-                    <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadoresTema.simpleModel}"  draggable="true"  mapTypeControl="false">
+                    
+            <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa2" model="#{verMarcadoresTema.simpleModel}"  draggable="true"  mapTypeControl="false">
                         <p:ajax event="overlaySelect" listener="#{verMarcadoresTema.onMarkerSelect}"/>
                         <p:gmapInfoWindow id="ventanaInfo">
                              <p:outputPanel style="text-align: left; display: block; margin: auto">
@@ -46,17 +46,10 @@ and open the template in the editor.
                     </p:gmap> 
             
             
-                    <p:commandLink  action="#{mensajes.info()}">
-                        <h:graphicImage id="boton_registrar" value="resources/img/registrar_boton.png"/>
-                    </p:commandLink>
-            
-                    <p:commandLink  action="#{mensajes.info()}">
-                        <h:graphicImage id="texto_nosotros" value="resources/img/nosotros.png"/>
-                    </p:commandLink>
-            
-            
         </h:body>
         
     </f:view>
 
 </html>
+
+
