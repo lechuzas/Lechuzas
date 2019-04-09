@@ -9,8 +9,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
+import modelo.Tema;
 import modelo.TemaDAO;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.map.OverlaySelectEvent;
@@ -28,23 +30,8 @@ import org.primefaces.model.map.Marker;
 public class EliminarMarcador {
      private double lat;
      private double lng;
-     private MapModel simpleModel;
      private Marker marcador;
      
-    @PostConstruct
-    public void EliminarMarcador(){
-        simpleModel = new DefaultMapModel();
-        MarcadorDAO mdb = new MarcadorDAO();
-        List<Marcador> marcadores = mdb.findAll();
-        for(Marcador m :marcadores){
-            LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-            Marker marcador = new Marker(cord,m.getDescripcion());
-            simpleModel.addOverlay(marcador);
-            TemaDAO tdao = new TemaDAO();
-        }
-    }
-
-
      public double getLat() {
         return lat;
     }
@@ -61,9 +48,6 @@ public class EliminarMarcador {
         this.lng = lng; 
     }
     
-     public MapModel getSimpleModel() {
-        return simpleModel;
-    }
 
     public void onMarkerSelect(OverlaySelectEvent event) {
         marcador =(Marker) event.getOverlay();
