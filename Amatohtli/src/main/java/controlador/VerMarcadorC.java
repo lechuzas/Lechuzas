@@ -10,10 +10,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
-import modelo.Tema;
 import modelo.TemaDAO;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
@@ -27,46 +25,36 @@ import org.primefaces.model.map.Marker;
  */
 @ManagedBean
 @ViewScoped
-public class VerMarcadoresTema implements Serializable{
-    private String tema;
+public class VerMarcadorC implements Serializable{
     private MapModel simpleModel;
     private Marker marker;
-    
+    private double latitud;
+    private double longitud;
+    private String tema;
+     
     @PostConstruct
-    public void VerMarcadoresTemas(){
-        System.out.println(tema);
+    public void verMarcadoresC(){
         simpleModel = new DefaultMapModel();
-        /**
-        TemaDAO tdao = new TemaDAO();
-        MarcadorDAO mdao = new MarcadorDAO();
-        Tema t = tdao.buscaPorNombre(tema);
-        if(t == null){
-            Mensajes.error("Éste tema no existe, por lo que no hay marcadores");
-        }else{
-            List<Marcador> marcadores = mdao.buscaPorTema(tema);
-            for(Marcador m :marcadores){
-                LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-                Marker marcador = new Marker(cord,m.getDescripcion());
-                simpleModel.addOverlay(marcador);
-            }
-        }
-        */
-        MarcadorDAO mdao = new MarcadorDAO();
-       List<Marcador> marcadores = mdao.buscaPorTema(tema);
-       for(Marcador m :marcadores){
+        MarcadorDAO mdb = new MarcadorDAO();
+        List<Marcador> marcadores = mdb.findAll();
+        for(Marcador m :marcadores){
             LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
             Marker marcador = new Marker(cord,m.getDescripcion());
             simpleModel.addOverlay(marcador);
-           
+            TemaDAO tdao = new TemaDAO();
         }
     }
-    
-     public MapModel getSimpleModel() {
+
+    public MapModel getSimpleModel() {
         return simpleModel;
     }
     
     public void onMarkerSelect(OverlaySelectEvent event) {
        marker =(Marker) event.getOverlay();
+       this.latitud = marker.getLatlng().getLat();
+       this.longitud = marker.getLatlng().getLng();
+       System.out.println(this.latitud);
+       System.out.println(this.longitud);
        
     }
 
@@ -81,8 +69,28 @@ public class VerMarcadoresTema implements Serializable{
     public void setTema(String tema) {
         this.tema = tema;
     }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
     
     public String muestraVentana(){
+        VerMarcadoresTema vmt = new VerMarcadoresTema();
+        vmt.setTema(this.tema);
         return "/verMarcadoresTema?faces-redirect=true";
     }
+    
+    
 }
