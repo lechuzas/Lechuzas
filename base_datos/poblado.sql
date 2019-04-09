@@ -15,6 +15,7 @@ insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) 
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('pletherburyd@eepurl.com', 'n8PpiHWE', 'pletherburyd', 'Phillis', 'Letherbury', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('daizikove@engadget.com', 'vdbf2ZJIF', 'daizikove', 'Domingo', 'Aizikov', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('ailyn@gmail.com', 'ailyn12051998', 'ailynrp12', 'Ailyn', 'Rebollar', 2);
+insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('luna@gmail.com', '123', 'luna97', 'Luna', 'Felipe', 2);
 
 --------------------- CAT COLOR ------------------------
 insert into cat_color (descripcion) values ('#69dc00');
@@ -37,13 +38,18 @@ insert into cat_color (descripcion) values ('#4E5FCE');
 ------------------------------------------------------- TEMA ------------------------------------------------------------
 
 insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Villas Navideñas', 2);
+insert into tema (correo,nombre_tema,id_color) values('luna@gmail.com', 'Parques', 3);
 
 
 ------------------------------------------------------------- MARCADOR -----------------------------------------------------------------------
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,23.382390,-102.291477,'Villa iluminada de Atlixco, Puebla');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,20.672087,-103.414486,'La Luz de la Navidad, Zapopan');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,32.545175,-115.345638,'Villa Navideña, Mexicali');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,19.267831,-90.252865,'Gran Feria Navideña Sobre Hielo, Campeche');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2,23.382390,-102.291477,'Villa iluminada de Atlixco, Puebla');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2,20.672087,-103.414486,'La Luz de la Navidad, Zapopan');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2,32.545175,-115.345638,'Villa Navideña, Mexicali');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2,19.267831,-90.252865,'Gran Feria Navideña Sobre Hielo, Campeche');
+
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,3,19.357115,-99.270035,'Parque a la mexicana, CDMX');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,3,19.468877,-99.197005,'Parque bicentenario, CDMX');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,3,19.352431,-99.142202,'Parque masayoshi ohira, CDMX');
 
 
 
@@ -72,11 +78,11 @@ insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (4
 insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (5,'belwood4@ft.com','comentario_5',5);
 insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (6,'glemmens5@sourceforge.net','comentario_6',6);
 insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (7,'hterlinden6@archive.org','comentario_7',7);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (8,'stredgold7@google.ru','comentario_8',8);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (9,'jhadingham8@indiatimes.com','comentario_9',9);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (10,'ored9@stanford.edu','comentario_10',10);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (11,'ainklea@rambler.ru','comentario_11',11);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (12,'dmephanb@businessinsider.com','comentario_12',12);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (13,'vnowlandc@addthis.com','comentario_13',13);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (14,'pletherburyd@eepurl.com','comentario_14',14);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (15,'daizikove@engadget.com','comentario_15',15);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (1,'stredgold7@google.ru','comentario_8',8);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (1,'jhadingham8@indiatimes.com','comentario_9',9);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (2,'ored9@stanford.edu','comentario_10',10);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (3,'ainklea@rambler.ru','comentario_11',11);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (4,'dmephanb@businessinsider.com','comentario_12',12);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (5,'vnowlandc@addthis.com','comentario_13',13);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (6,'pletherburyd@eepurl.com','comentario_14',14);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (7,'daizikove@engadget.com','comentario_15',15);
