@@ -13,7 +13,7 @@ and open the template in the editor.
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <f:view>
         <h:head>
-            <title>Inicio</title>
+            <title>Inicio </title>
             <h:outputStylesheet name="css/estilos.css"/>
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=TU-APIKEY">
             </script>
@@ -23,6 +23,7 @@ and open the template in the editor.
             <header>
                 <h:form id="logout">
                     <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
+                    <p:commandButton action="#{eliminarComentaristas.muestraVentana()}" value="Elimina Comentarista"/>
                 </h:form>
             </header>
             <main>

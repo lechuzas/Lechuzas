@@ -14,6 +14,7 @@ insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) 
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('vnowlandc@addthis.com', 'flloRzp7JrxL', 'vnowlandc', 'Vilhelmina', 'Nowland', 2);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('pletherburyd@eepurl.com', 'n8PpiHWE', 'pletherburyd', 'Phillis', 'Letherbury', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('daizikove@engadget.com', 'vdbf2ZJIF', 'daizikove', 'Domingo', 'Aizikov', 1);
+insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('ailyn@gmail.com', 'ailyn12051998', 'ailynrp12', 'Ailyn', 'Rebollar', 2);
 
 --------------------- CAT COLOR ------------------------
 insert into cat_color (descripcion) values ('#69dc00');
@@ -31,41 +32,19 @@ insert into cat_color (descripcion) values ('#d4eb2c');
 insert into cat_color (descripcion) values ('#7c1529');
 insert into cat_color (descripcion) values ('#6cf45f');
 insert into cat_color (descripcion) values ('#fa36bc');
+insert into cat_color (descripcion) values ('#4E5FCE');
 
 ------------------------------------------------------- TEMA ------------------------------------------------------------
-insert into tema (correo,nombre_tema,id_color) values ('pwharin0@nps.gov','Restaurantes',2);
-insert into tema (correo,nombre_tema,id_color) values ('tpadginton1@foxnews.com','Diversión',3);
-insert into tema (correo,nombre_tema,id_color) values ('nkerry2@princeton.edu','Deporte',4);
-insert into tema (correo,nombre_tema,id_color) values ('gwallington3@webmd.com','Areas verdes',5);
-insert into tema (correo,nombre_tema,id_color) values ('belwood4@ft.com','Juegos',6);
-insert into tema (correo,nombre_tema,id_color) values ('glemmens5@sourceforge.net','Palyas',7);
-insert into tema (correo,nombre_tema,id_color) values ('hterlinden6@archive.org','Universidades',8);
-insert into tema (correo,nombre_tema,id_color) values ('stredgold7@google.ru','Empresas',9);
-insert into tema (correo,nombre_tema,id_color) values ('jhadingham8@indiatimes.com','Turismo',10);
-insert into tema (correo,nombre_tema,id_color) values ('ored9@stanford.edu','Museos',11);
-insert into tema (correo,nombre_tema,id_color) values ('ainklea@rambler.ru','Plazas comerciales',12);
-insert into tema (correo,nombre_tema,id_color) values ('dmephanb@businessinsider.com','Tiendas de ropa',13);
-insert into tema (correo,nombre_tema,id_color) values ('vnowlandc@addthis.com','Tiendas de electronica',14);
-insert into tema (correo,nombre_tema,id_color) values ('pletherburyd@eepurl.com','Antros',15);
-insert into tema (correo,nombre_tema,id_color) values ('daizikove@engadget.com','Baile',1);
+
+insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Villas Navideñas', 2);
 
 
 ------------------------------------------------------------- MARCADOR -----------------------------------------------------------------------
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,1,15.77511,15.77511,'Senior Housing Properties Trust');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,37.3716902,37.3716902,'Ashford Hospitality Trust Inc');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (3,3,28.246367,28.246367,'Take-Two Interactive Software, Inc.');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,-1.658501,-1.658501,'Liberty Media Corporation');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (5,5,-11.5576676,-11.5576676,'SilverSun Technologies, Inc.');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (6,6,-23.2245912,-23.2245912,'Kimball International, Inc.');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (7,7,28.048158,28.048158,'Benchmark Electronics, Inc.');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (8,8,38.7052727,38.7052727,'Gulf Resources, Inc.');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (9,9,-37.786693,-37.786693,'Walt Disney Company');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (10,10,39.1714266,39.1714266,'Oncobiologics, Inc.');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (11,11,36.7027082,36.7027082,'Formula Systems (1985) Ltd.');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (12,12,34.9645166,34.9645166,'Summer Infant, Inc.');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (13,13,57.9887927,57.9887927,'ICICI Bank Limited');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (14,14,-16.0047799,-16.0047799,'Express Scripts Holding Company');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (15,15,8.1142739,8.1142739,'Microsoft Company');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,23.382390,-102.291477,'Villa iluminada de Atlixco, Puebla');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,20.672087,-103.414486,'La Luz de la Navidad, Zapopan');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,32.545175,-115.345638,'Villa Navideña, Mexicali');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,19.267831,-90.252865,'Gran Feria Navideña Sobre Hielo, Campeche');
+
 
 
 ------------------ CALIFICACION -------------------------

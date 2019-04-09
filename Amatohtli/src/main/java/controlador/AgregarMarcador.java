@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.Tema;
@@ -173,11 +174,10 @@ public class AgregarMarcador implements Serializable {
         Marcador m = new Marcador();
         MarcadorDAO mdao = new MarcadorDAO();
         TemaDAO tdao = new TemaDAO();
-        //ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-        String cadena = "alyn@gmail.com";
+        ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
         List<Tema> lista_temas = tdao.findAll();
         for(Tema t : lista_temas){
-            if(this.tema.equals(t.getNombreTema()) && t.getUsuario().getCorreo().equals("ailyn@gmail.com")){
+            if(this.tema.equals(t.getNombreTema()) && t.getUsuario().getCorreo().equals(us.getCorreo())){
                 this.temaByIdTema = t;
                 this.temaByIdColor = t;
             }

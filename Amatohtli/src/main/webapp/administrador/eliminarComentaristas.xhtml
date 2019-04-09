@@ -9,14 +9,6 @@
    <f:view>
        
 	 <h:head>
-             <style>
-	       /* Set the size of the div element that contains the map */
-	      #map {
-	        height: 500px;  /* The height is 400 pixels */
-	        width: 50%;  /* The width is the width of the web page */
-                float: left;
-	       }
-	    </style>
           <title>Eliminar Comentaristas</title>
             <h:outputStylesheet name="css/estilos.css"/>
             <h:outputScript name="js/colores.js"/>
@@ -24,7 +16,7 @@
         </h:head>
         <h:body>
              <header>
-                 <h1>Amatohtli</h1>
+                 
                  <h:form id="logout" rendered="#{not empty user}">
                      <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
                 </h:form>
@@ -65,11 +57,6 @@
                 </h:form>
                 
             </main>
-            <footer>
-                <h3>
-                    Lorem ipsum dolor sit amet.
-                </h3>
-            </footer>
             
              
            
