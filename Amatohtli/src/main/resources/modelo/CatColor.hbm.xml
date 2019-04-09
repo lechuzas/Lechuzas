@@ -6,7 +6,7 @@
     <class name="modelo.CatColor" table="cat_color" schema="public" optimistic-lock="version">
         <id name="idColor" type="int">
             <column name="id_color" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="descripcion" type="string">
             <column name="descripcion" not-null="true" />

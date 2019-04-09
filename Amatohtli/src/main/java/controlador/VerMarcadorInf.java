@@ -37,13 +37,13 @@ public class VerMarcadorInf {
         List<Marcador> marcadores = mdao.findAll();
         if(lista_temas != null){
             for(Tema t : lista_temas){
-                System.out.println(t.getNombreTema());
                 ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
                 if(t.getUsuario().getCorreo().equals(us.getCorreo())){
                     for(Marcador m : marcadores){
                         LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
                         Marker marc = new Marker(cord,m.getDescripcion());
                         simpleModel.addOverlay(marc);
+
                     }
                 }
             }

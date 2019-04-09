@@ -47,8 +47,15 @@ and open the template in the editor.
                             </p:outputPanel>
                         </p:gmapInfoWindow>
                     </p:gmap> 
-            
-            
+             <aside>
+                <h:form id="form">
+                    <p:panelMenu style="width:300px">
+                        <p:submenu  label="Cerrar sesión" >
+                            <p:menuitem value="Cerrar sesión" action="#{controladorSesion.logout()}"/>
+                    </p:submenu>
+                    </p:panelMenu>
+                </h:form>
+            </aside>
                    
             
         </h:body>
