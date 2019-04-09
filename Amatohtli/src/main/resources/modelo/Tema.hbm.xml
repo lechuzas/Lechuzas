@@ -6,7 +6,7 @@
     <class name="modelo.Tema" table="tema" schema="public" optimistic-lock="version">
         <id name="idTema" type="int">
             <column name="id_tema" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="catColor" class="modelo.CatColor" fetch="select">
             <column name="id_color" unique="true" />
