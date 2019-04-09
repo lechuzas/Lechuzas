@@ -5,7 +5,9 @@
  */
 package modelo;
 
+import controlador.ControladorSesion;
 import java.util.List;
+import javax.faces.context.FacesContext;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -88,14 +90,25 @@ public class MarcadorDAO extends AbstractDAO<Marcador>{
     
     }
      public List<Marcador> buscaPorTema(String tema){
+        TemaDAO tdao = new TemaDAO();
         List<Marcador> m = null;
+        ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
+        List<Tema> lista_temas = tdao.findAll();
+        Tema principal = null;
+        for(Tema t : lista_temas){
+            if(tema.equals(t.getNombreTema()) && t.getUsuario().getCorreo().equals(us.getCorreo())){
+                principal = t;
+            }
+               
+        }
+        int t_id = principal.getIdTema();
         Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            String hql = "from Marcador m where m.temaByIdTema.nombreTema = :tema";
+            String hql = "from Marcador m where m.temaByIdTema = :t_id";
             Query query = session.createQuery(hql);
-            query.setParameter("tema", tema);
+            query.setParameter("temaByIdTema", t_id);
             m = (List<Marcador>)query.list();
             tx.commit();
             

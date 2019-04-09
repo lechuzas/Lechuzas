@@ -101,7 +101,7 @@ public class EliminarComentaristas {
          UsuarioDAO udao = new UsuarioDAO();
          Usuario comentarista = udao.buscaPorCorreo(correo);
          
-         if(comentarista != null && comentarista.getRol() == 1){
+         if(comentarista != null && comentarista.getRol() == 2){
              udao.delete(comentarista);
              Mensajes.info("Se ha eliminado correctamente el comentarista");
          }else if(comentarista != null && comentarista.getRol() != 1 || comentarista == null){
