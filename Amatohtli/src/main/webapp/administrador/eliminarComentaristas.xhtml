@@ -10,35 +10,35 @@
        
 	 <h:head>
           <title>Eliminar Comentaristas</title>
-            <h:outputStylesheet name="css/estilos.css"/>
+            <h:outputStylesheet name="/css/estilos.css"/>
             <h:outputScript name="js/colores.js"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_CV-ykq13siKc1d-UiPH4vmp0RjlNroA"></script>            
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
         </h:head>
         <h:body>
              <header>
                  
+                <img id="fondo" src="../resources/img/base.jpg"/>
+                <img id="logo" src="../resources/img/logo.png"/>   
+                <p:link outcome="/index.xhtml" id="iniciar_sesion" value="Continuar como invitado"/>
+                <p:link outcome="/index.xhtml" id="faq" value="FAQ"/>
+                <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/>
                  <h:form id="logout" rendered="#{not empty user}">
                      <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
                 </h:form>
             </header>
-            <main>   
-                <div id="map">
-                    <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadores.simpleModel}"  draggable="false"  mapTypeControl="false">
-                        <p:ajax event="overlaySelect" listener="#{verMarcadores.onMarkerSelect}"/>
+            
+             <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa2" model="#{verMarcadorC.simpleModel}"  draggable="true"  mapTypeControl="false">
+                        <p:ajax event="overlaySelect" listener="#{verMarcadorC.onMarkerSelect}"/>
                         <p:gmapInfoWindow id="ventanaInfo">
                              <p:outputPanel style="text-align: left; display: block; margin: auto">
- 
-                                    <!--<p:graphicImage name="/demo/images/antalya/{infoWindowView.marker.data}" height="150" />-->
-                                    <!--<br />-->
-                                    <h:outputText value="#{verMarcadores.marker.title}" />
+                                    <h:outputText value="#{verMarcadorC.marker.title}" />
                                     <br/>
-                                    <h:outputText value="#{verMarcadores.marker.data}"/>
+                                    <h:outputText value="#{verMarcadorC.marker.data}"/>
                             </p:outputPanel>
                         </p:gmapInfoWindow>
                     </p:gmap> 
-                </div>
-                <h2> Ingrese el correo electrónico del comentarista que desea eliminar </h2>  
-                <h:form>
+               
+                    <h:form id="form">
                     <p:messages id="messages" showDetail="true" closable="true" >
                              <p:autoUpdate />
                          </p:messages>
@@ -56,7 +56,7 @@
                          
                 </h:form>
                 
-            </main>
+            
             
              
            
