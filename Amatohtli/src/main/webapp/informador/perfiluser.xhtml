@@ -47,9 +47,12 @@ and open the template in the editor.
             <aside>
                 <h:form id="form">
                     <p:panelMenu style="width:300px">
-                        <p:submenu label="Marcadores" icon="pi pi-map-marker">
+                        <p:submenu label="Marcadores">
                             <p:menuitem value="Agregar"  action="#{agregarMarcador.muestraVentana()}" />
                             <p:menuitem value="Eliminar" action="#{eliminarMarcador.muestraVentana()}"  />
+                        </p:submenu>
+                        <p:submenu label="Temas">
+                            <p:menuitem value="Agregar" action="#{agregarTema.muestraVentana()}"/>
                         </p:submenu>
                         <p:submenu  label="Cerrar sesión" >
                             <p:menuitem value="Cerrar sesión" action="#{controladorSesion.logout()}"/>
