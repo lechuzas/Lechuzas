@@ -1,3 +1,13 @@
+#mapa2{
+    position: relative;
+    height: 450px;  
+    width: 50%; 
+    margin-top: 190px;
+     margin-left: 50px;
+    float: left;
+}
+
+
 #mapa{
     position: relative;
     height: 500px;  
@@ -77,3 +87,12 @@
     margin-right: -610px;
     float:right;
 }
+
+
+#form_agreinfo{
+    position: relative;
+    margin-top: 300px;
+    margin-right: -310px;
+    float:right;
+}
+
