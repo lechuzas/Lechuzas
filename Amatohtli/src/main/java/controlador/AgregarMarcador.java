@@ -56,17 +56,7 @@ public class AgregarMarcador implements Serializable {
         simpleModel.addOverlay(marcador);
         this.latitud = marcador.getLatlng().getLat();
         this.longitud = marcador.getLatlng().getLng();
-        /*
-        UsuarioDAO udb = new UsuarioDAO();
-        TemaDAO tdao = new TemaDAO(); 
-        //ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-        List<Tema> temas = tdao.buscaTemas("ailyn@gmail.com");
-        for(Tema t : temas){
-            DefaultMenuItem mi = new DefaultMenuItem(t.getNombreTema());
-            mi.setCommand("#{agregarMarcador.idTema}");
-            menu.addElement(mi);
-        }
-*/
+        
         
     }
 

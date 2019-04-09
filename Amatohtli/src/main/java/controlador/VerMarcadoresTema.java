@@ -5,13 +5,14 @@
  */
 package controlador;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
+import modelo.Tema;
+import modelo.TemaDAO;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -24,23 +25,32 @@ import org.primefaces.model.map.Marker;
  */
 @ManagedBean
 @ViewScoped
-public class VerMarcadores implements Serializable{
+public class VerMarcadoresTema {
     private MapModel simpleModel;
     private Marker marker;
     private String tema;
     
     @PostConstruct
-    public void verMarcadores(){
+    public void verMarcadoresTema(){
         simpleModel = new DefaultMapModel();
-        
+        System.out.println(tema);
+        TemaDAO tdao = new TemaDAO();
         MarcadorDAO mdb = new MarcadorDAO();
         List<Marcador> marcadores = mdb.findAll();
-        for(Marcador m :marcadores){
-            LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-            Marker marcador = new Marker(cord,m.getDescripcion());
-            simpleModel.addOverlay(marcador);
-           
+        List<Tema> temas = tdao.findAll();
+        for(Tema t : temas){
+            if(t.getNombreTema().equals(tema)){
+                System.out.println(tema);
+                for(Marcador m :marcadores){
+                    if(m.getTemaByIdTema().equals(t)){
+                         LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
+                         Marker marcador = new Marker(cord,m.getDescripcion());
+                         simpleModel.addOverlay(marcador);
+                        }
+                }
+            }
         }
+       
     }
 
     public MapModel getSimpleModel() {
@@ -63,5 +73,7 @@ public class VerMarcadores implements Serializable{
     public void setTema(String tema) {
         this.tema = tema;
     }
-    
+    public String muestraVentana(){
+        return "/verMarcadoresTema?faces-redirect=true";
+    }
 }
