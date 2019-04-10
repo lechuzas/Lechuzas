@@ -53,6 +53,7 @@ insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,20.672087,-103.414486,'La Luz de la Navidad, Zapopan');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,32.545175,-115.345638,'Villa Navideña, Mexicali');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,19.267831,-90.252865,'Gran Feria Navideña Sobre Hielo, Campeche');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,19.848484,-115.55151,'Feria navideña, Puebla');
 
 
 --------------------------- MARCADOR (Fernando) -----------------------------------------------------------------------
