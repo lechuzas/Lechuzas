@@ -15,6 +15,8 @@ insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) 
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('pletherburyd@eepurl.com', 'n8PpiHWE', 'pletherburyd', 'Phillis', 'Letherbury', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('daizikove@engadget.com', 'vdbf2ZJIF', 'daizikove', 'Domingo', 'Aizikov', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('ailyn@gmail.com', 'ailyn12051998', 'ailynrp12', 'Ailyn', 'Rebollar', 1);
+insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('fernando@vexi.mx', '16011601', 'fernando1601', 'Fernando', 'Bernal', 1);
+insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('fluna@gmail.com', 'aluna798', 'Aluna23', 'Felipe', 'Luna', 1);
 
 --------------------- CAT COLOR ------------------------
 insert into cat_color (descripcion) values ('#69dc00');
@@ -38,6 +40,13 @@ insert into cat_color (descripcion) values ('#4E5FCE');
 
 insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Villas Navideñas', 2);
 
+----Tema:  Fernando----
+insert into tema (correo,nombre_tema,id_color) values('fernando@vexi.mx', 'Pueblos mágicos', 3);
+
+----Tema:  Felipe----
+insert into tema (correo,nombre_tema,id_color) values('fluna@gmail.com', 'Playas mexicanas', 4);
+
+
 
 ------------------------------------------------------------- MARCADOR -----------------------------------------------------------------------
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,23.382390,-102.291477,'Villa iluminada de Atlixco, Puebla');
@@ -45,6 +54,27 @@ insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,32.545175,-115.345638,'Villa Navideña, Mexicali');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,2,19.267831,-90.252865,'Gran Feria Navideña Sobre Hielo, Campeche');
 
+
+--------------------------- MARCADOR (Fernando) -----------------------------------------------------------------------
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (3,3,16.918273, -96.361418,'Mitla, OAXACA');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (3,3,19.811388, -97.511312,'Tlatlauquitepec, PUEBLA');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (3,3,18.674851, -88.393988,'Bacalar, Quintana Roo');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (3,3,19.5124692,-101.6112934,'Pátzcuaro, Michoacan');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (3,3,21.1571086,-100.9463213,'Dolores Hidalgo, Guanajato');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (3,3,18.987323,-99.1101053,'Tepoztlán, Morelos.');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (3,3,20.2038618,-98.5847642,'Huasca de Ocampo, Hidalgo');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (3,3,20.7385123,-99.9481284,'Bernal, Querétaro.');
+
+
+--------------------------- MARCADOR (Felipe) -----------------------------------------------------------------------
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,20.6539376,-87.1419091,'Del Carmen');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,21.1213284,-86.919446,'Cancún');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,20.6408575,-105.2947369,'Puerto Vallarta');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,20.2096191,-87.4894285,'Tulum');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,19.8305579,-90.6150296,'San Felipe');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.6504452,-91.8335075,'Del C');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.1342154,-94.4980524,13,'Coatzacoalcos');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.2465024,-94.6472769,'Playa linda');
 
 
 ------------------ CALIFICACION -------------------------
