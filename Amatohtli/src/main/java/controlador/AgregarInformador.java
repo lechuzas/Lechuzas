@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import modelo.Usuario;
+import modelo.UsuarioDAO;
 
 /**
  *
@@ -75,6 +76,7 @@ public class AgregarInformador {
     
     public void agregaInfo(){
             Usuario usr= new Usuario();
+            UsuarioDAO dao=new UsuarioDAO();
             usr.setContrasenia(nombreUsuario);
             usr.setPaterno(paterno);
             usr.setNombreUsuario(nombreUsuario);
@@ -82,8 +84,10 @@ public class AgregarInformador {
             usr.setNombre(nombre);
             usr.setRol(1);
             String subject="Bienvenido a Amatohlti "+nombre;
-            String mensaje= "Tu usuario es "+nombreUsuario + " y contrasenia es: "+contrasenia;
+            String mensaje= "Tu usuario es "+nombreUsuario + " y contrasenia es: "+nombreUsuario;
+            dao.save(usr);
             Mail.sendMail(subject, mensaje, correo);
+            Mensajes.info("Se ha agregado correctamente el informador");
 
         
       
