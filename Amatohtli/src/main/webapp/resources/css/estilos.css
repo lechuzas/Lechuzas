@@ -87,14 +87,6 @@
 }
 
 
-#form{
-    position: relative;
-    margin-top: 90px;
-    margin-right: 90px;
-    float: right;
-}
-
-
 #form_agreinfo{
     position: relative;
     margin-top: 300px;
@@ -102,3 +94,38 @@
     float:right;
 }
 
+
+#agrega_comentario{
+    position: relative;
+    margin-right: 15%;
+    margin-top: 10%;
+    float:right;
+}
+
+
+#cerrar_sesion{
+    position: relative;
+    margin-top: 60px;
+    margin-right: 50px;
+    float: right;
+    color: #589DE1;
+    font-weight: bolder;
+}
+
+#boton_agregar_coment{
+    position: relative;
+    margin-top: 0.5%;
+    margin-right: 15%;
+    float: right;
+    color: #589DE1;
+    
+}
+
+#muestra_comentarios{
+    
+    position: relative;
+    margin-top: 0.10%;
+    margin-right: 15%;
+    float: right;
+    color: #589DE1;
+}

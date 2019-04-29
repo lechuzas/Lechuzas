@@ -10,9 +10,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import modelo.CalificacionDAO;
+import modelo.Comentario;
+import modelo.ComentarioDAO;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.TemaDAO;
+import modelo.UsuarioDAO;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -31,9 +36,16 @@ public class VerMarcadorC implements Serializable{
     private double latitud;
     private double longitud;
     private String tema;
+    private int idMarcador;
+    private String correo;
+    private String descripcion;
+    private int idCalificacion;
+    private Marcador select;
+    
      
     @PostConstruct
     public void verMarcadoresC(){
+        
         simpleModel = new DefaultMapModel();
         MarcadorDAO mdb = new MarcadorDAO();
         List<Marcador> marcadores = mdb.findAll();
@@ -53,11 +65,14 @@ public class VerMarcadorC implements Serializable{
        marker =(Marker) event.getOverlay();
        this.latitud = marker.getLatlng().getLat();
        this.longitud = marker.getLatlng().getLng();
-       System.out.println(this.latitud);
-       System.out.println(this.longitud);
-       
+       MarcadorDAO marcadorDAO = new MarcadorDAO();
+       select = marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud);
     }
 
+    public Marcador getSelect() {
+        return select;
+    }
+    
     public Marker getMarker() {
         return marker;
     }
@@ -90,5 +105,66 @@ public class VerMarcadorC implements Serializable{
         return "/verMarcadoresTema?faces-redirect=true";
     }
     
+    public int getIdMarcador() {
+        return idMarcador;
+    }
+
+    public void setIdMarcador(int idMarcador) {
+        this.idMarcador = idMarcador;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public int getIdCalificacion() {
+        return idCalificacion;
+    }
+
+    public void setIdCalificacion(int idCalificacion) {
+        this.idCalificacion = idCalificacion;
+    }
+    
+    public void agregarComentario(){
+        ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("comentarista");
+     
+        Comentario comentario = new Comentario();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        MarcadorDAO marcadorDAO = new MarcadorDAO();
+        comentario.setMarcador(marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud));
+        comentario.setUsuario(usuarioDAO.buscaPorCorreo(us.getCorreo()));
+        comentario.setDescripcion(descripcion); 
+        comentario.setIdComentario(100);
+        ComentarioDAO udb = new ComentarioDAO();
+        udb.save(comentario);
+        this.descripcion="";
+    }
+    
+    public void editarComentario(){
+        ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("comentarista");
+     
+        Comentario comentario = new Comentario();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        MarcadorDAO marcadorDAO = new MarcadorDAO();
+        comentario.setMarcador(marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud));
+        comentario.setUsuario(usuarioDAO.buscaPorCorreo(us.getCorreo()));
+        comentario.setDescripcion(descripcion); 
+        comentario.setIdComentario(100);
+        ComentarioDAO udb = new ComentarioDAO();
+        udb.update(comentario);
+        this.descripcion="";
+    }
     
 }
