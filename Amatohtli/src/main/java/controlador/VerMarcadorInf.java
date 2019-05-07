@@ -40,9 +40,12 @@ public class VerMarcadorInf {
                 ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
                 if(t.getUsuario().getCorreo().equals(us.getCorreo())){
                     for(Marcador m : marcadores){
-                        LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-                        Marker marc = new Marker(cord,m.getDescripcion());
-                        simpleModel.addOverlay(marc);
+                        if(m.getTemaByIdTema().getIdTema() == t.getIdTema()){
+                             LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
+                             Marker marc = new Marker(cord,m.getDescripcion());
+                             simpleModel.addOverlay(marc);
+
+                        }
 
                     }
                 }
