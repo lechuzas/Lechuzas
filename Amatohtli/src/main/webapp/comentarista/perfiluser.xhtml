@@ -16,8 +16,6 @@ and open the template in the editor.
 	 <h:head>
           <title>Amatohtli</title>
             <h:outputStylesheet name="css/estilos.css"/>
-            <h:outputScript name="js/colores.js"/>
-
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
         </h:head>
        
@@ -30,15 +28,15 @@ and open the template in the editor.
                 <img id="logo" src="../resources/img/logo.png"/>  
                 <p:link outcome="/index.xhtml" id="faq" value="FAQ"/>
                 <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/>
-                 <h:form id="logout">
-                    <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
-                </h:form>
+                <p:commandLink id="cerrar_sesion" action="#{controladorSesion.logout()}">
+                        <h:outputText value="Cerrar Sesión" />
+                </p:commandLink>
                 
             </header>
             
                     
                     <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa2" model="#{verMarcadorC.simpleModel}"  draggable="true"  mapTypeControl="false">
-                        <p:ajax event="overlaySelect" listener="#{verMarcadorC.onMarkerSelect}"/>
+                        <p:ajax event="overlaySelect" listener="#{verMarcadorC.onMarkerSelect}" update="agrega_comentario"/>
                         <p:gmapInfoWindow id="ventanaInfo">
                              <p:outputPanel style="text-align: left; display: block; margin: auto">
                                     <h:outputText value="#{verMarcadorC.marker.title}" />
@@ -46,15 +44,43 @@ and open the template in the editor.
                                     <h:outputText value="#{verMarcadorC.marker.data}"/>
                             </p:outputPanel>
                         </p:gmapInfoWindow>
-                    </p:gmap> 
+                    </p:gmap>
+            
              <aside>
-                <h:form id="form">
-                    <p:panelMenu style="width:300px">
-                        <p:submenu  label="Cerrar sesión" >
-                            <p:menuitem value="Cerrar sesión" action="#{controladorSesion.logout()}"/>
-                    </p:submenu>
-                    </p:panelMenu>
-                </h:form>
+                 
+                 <h:form id="agrega_comentario">
+                 
+                     <p:panelGrid columns="2" id="form_agrecoment" >
+                     
+                        <h:inputText value="Nombre marcador:" disabled="True"/>
+                        <h:inputText id="nombre" value="#{verMarcadorC.select.descripcion}" disabled="True" maxlength="60"/>
+                     
+                        <h:outputText value="Latitud:" />
+                        <h:outputText id="latitud" value="#{verMarcadorC.latitud}"/> 
+                        
+                        <h:outputText value="Longitud:" />
+                        <h:outputText id="longitud" value="#{verMarcadorC.longitud}"/>
+                     
+                     </p:panelGrid>
+                     
+                     <p:inputTextarea rows="5" value="#{verMarcadorC.descripcion}" cols="30" maxlength="200" autoResize="false" placeholder="#{verMarcadorC.select.descripcion}" />
+                     
+                 </h:form>
+                    
+                 <p:commandButton value="Agergar" id="boton_agregar_coment"  action="#{verMarcadorC.agregarComentario()}" update="agrega_comentario muestra_comentarios"/>
+                 
+                 <h:form id="muestra_comentarios">
+                     <p:dataTable id="lista_comentarios" value="#{comentarioBean.lista}" var="comentario" scrollable="true" scrollHeight="150">
+                         <p:column headerText="Descripcion" filterBy="#{comentario.descripcion}" filterMatchMode="contains">
+                             <p:outputLabel value="#{comentario.descripcion}"/>
+                         </p:column>
+                     
+                     </p:dataTable>
+                     
+                 </h:form>
+                 
+                 
+                 
             </aside>
                    
             

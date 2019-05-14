@@ -6,6 +6,7 @@
 package controlador;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import modelo.CalificacionDAO;
 import modelo.Comentario;
 import modelo.ComentarioDAO;
@@ -58,6 +59,15 @@ public class AgregarComentario {
     }
     
     public void agregarComentario(){
+        
+        ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("comentarista");
+        
+        System.out.println(idCalificacion);
+        System.out.println(idMarcador);
+        System.out.println(idMarcador);
+        System.out.println(us.getCorreo());
+        
+        /*
         Comentario comentario = new Comentario();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         MarcadorDAO marcadorDAO = new MarcadorDAO();
@@ -69,5 +79,6 @@ public class AgregarComentario {
         comentario.setDescripcion(descripcion); 
         ComentarioDAO udb = new ComentarioDAO();
         udb.save(comentario);
+        */
     }
 }

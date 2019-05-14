@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -25,37 +26,67 @@ import org.primefaces.model.map.Marker;
  */
 @ManagedBean
 @ViewScoped
-public class VerMarcadorInf {
+public class BuscarTemasInf implements Serializable {
     private MapModel simpleModel;
+    private List<Tema> lista_temas;
+    private List<String> temas;
+    private Tema tema;
     
     @PostConstruct
-    public void VerMarcadorInf(){
+    public void BuscarTemasInf(){
         simpleModel = new DefaultMapModel();
         MarcadorDAO mdao = new MarcadorDAO();
         TemaDAO tdao = new TemaDAO();
-        List<Tema> lista_temas = tdao.findAll();
-        List<Marcador> marcadores = mdao.findAll();
+        lista_temas = tdao.findAll();
         if(lista_temas != null){
             for(Tema t : lista_temas){
                 ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
                 if(t.getUsuario().getCorreo().equals(us.getCorreo())){
-                    for(Marcador m : marcadores){
-                        if(m.getTemaByIdTema().getIdTema() == t.getIdTema()){
-                             LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-                             Marker marc = new Marker(cord,m.getDescripcion());
-                             simpleModel.addOverlay(marc);
-
-                        }
-                          
-                    }
+                    temas.add(t.getNombreTema());
+                }else{
+                    lista_temas.remove(t);
                 }
             }
         }
     }
-    
-    
+
     public MapModel getSimpleModel() {
         return simpleModel;
     }
+
+    public void setSimpleModel(MapModel simpleModel) {
+        this.simpleModel = simpleModel;
+    }
+
+    public List<String> getTemas() {
+        return temas;
+    }
+
+    public void setTemas(List<String> temas) {
+        this.temas = temas;
+    }
+
+    public Tema getTema() {
+        return tema;
+    }
+
+    public void setTema(Tema tema) {
+        this.tema = tema;
+    }
+
+    public List<Tema> getLista_temas() {
+        return lista_temas;
+    }
+
+    public void setLista_temas(List<Tema> lista_temas) {
+        this.lista_temas = lista_temas;
+    }
+        
     
-}
+    public String muestraVentana(){
+        return "/informador/buscarTemasInf?faces-redirect=true";
+    }
+    
+    
+    }
+    

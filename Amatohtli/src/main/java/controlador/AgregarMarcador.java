@@ -8,6 +8,7 @@ package controlador;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -158,6 +159,7 @@ public class AgregarMarcador implements Serializable {
         this.longitud = latlng.getLng();
         
     }
+
     
     public String muestraVentana(){
         return "/informador/agregarMarcadores?faces-redirect=true";
@@ -186,6 +188,8 @@ public class AgregarMarcador implements Serializable {
             m.setTemaByIdColor(temaByIdColor);
             m.setTemaByIdTema(temaByIdTema);
             m.setDescripcion(descripcion);
+            
+            
             Marcador marc = mdao.buscaMarcadorPorLatLng(latitud, longitud);
             
             if(marc != null){
@@ -217,7 +221,7 @@ public class AgregarMarcador implements Serializable {
         
         try {
              ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-            String destino = (servletContext.getRealPath("/"))+"resources/images/";
+            String destino = (servletContext.getRealPath("/"))+"resources/img/";
             System.out.println(destino);
             FileOutputStream fileOut = new FileOutputStream(new File(destino + color+".svg"));
             OutputStreamWriter osOut = new OutputStreamWriter(fileOut);
