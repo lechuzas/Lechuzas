@@ -6,56 +6,62 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-      <f:view>
+   <f:view>
        
 	 <h:head>
-          <title>Amatohtli</title>
+          <title>AgregarAdmin</title>
             <h:outputStylesheet name="/css/estilos.css"/>
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_CV-ykq13siKc1d-UiPH4vmp0RjlNroA"></script>
         </h:head>
-       
-	<h:body>
-                        
-            
+        <h:body>
              <header>
+                 
                 <img id="fondo" src="../resources/img/base.jpg"/>
                 <img id="logo" src="../resources/img/logo.png"/>   
+                <p:link outcome="/index.xhtml" id="iniciar_sesion" value="Continuar como invitado"/>
                 <p:link outcome="/index.xhtml" id="faq" value="FAQ"/>
                 <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/>
-             
-                   
-             </header>
+                 <h:form id="logout" rendered="#{not empty user}">
+                     <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
+                </h:form>
+            </header>
             
-                    
-                    <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa2" model="#{verMarcadores.simpleModel}"  draggable="false"  mapTypeControl="false">
-                        <p:ajax event="overlaySelect" listener="#{verMarcadores.onMarkerSelect}"/>
+             <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa2" model="#{verMarcadorC.simpleModel}"  draggable="true"  mapTypeControl="false">
+                        <p:ajax event="overlaySelect" listener="#{verMarcadorC.onMarkerSelect}"/>
                         <p:gmapInfoWindow id="ventanaInfo">
                              <p:outputPanel style="text-align: left; display: block; margin: auto">
-                                    <h:outputText value="#{verMarcadores.marker.title}" />
+                                    <h:outputText value="#{verMarcadorC.marker.title}" />
                                     <br/>
-                                    <h:outputText value="#{verMarcadores.marker.data}"/>
+                                    <h:outputText value="#{verMarcadorC.marker.data}"/>
                             </p:outputPanel>
                         </p:gmapInfoWindow>
                     </p:gmap> 
-            
-            
-                    
-                   
-                
-                   <h:form id='form_agreinfo'>
-                       <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
-                    
-                       
-                        <p:inputText  id="correo_info" value="#{agregaMarcador.longitud}" placeholder="Escribe correo" required="true" requiredMessage="Favor de ingresar un tema"/>
-                        <p:inputText id="usuario_info"  value="#{agregaMarcador.latitud}" placeholder="Escribe nombre usuario" required="true" requiredMessage="Favor de ingresar un tema"/>
-                        <p:commandButton id="agregaInfo" value="Agrega Informador" action="#{agregaMarcador.agregaMarcador()}"/>
-                    </h:form>
-            
-        </h:body>
-        
+               
+                    <h:form id="form">
+                    <p:messages id="messages" showDetail="true" closable="true" >
+                             <p:autoUpdate />
+                         </p:messages>
+                        <p:inputText id="paterno" value="#{agregarInformador.paterno}" placeholder="Paterno" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
+                         </p:inputText> <br/>
+                        <p:inputText id="nombre" value="#{agregarInformador.nombre}" placeholder="Nombre" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
+                         </p:inputText> <br/>
+                        <p:inputText id="nombreU" value="#{agregarInformador.nombreUsuario}" placeholder="Usuario" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
+                         </p:inputText> <br/>
+                        <p:inputText id="correo" value="#{agregarInformador.correo}" placeholder="Correo" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
+                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                         </p:inputText> <br/>
+                         <p:commandButton value="Agregar"  action="#{agregarInformador.agregaInfo()}">
+                             <p:confirm header="Confirmación" message="¿Estás seguro? Se enviara correo" icon="ui-icon-alert" />
+                         </p:commandButton>
+                          <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                             <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                             <p:commandButton value="Sí, eliminar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="messages" />
+                         </p:confirmDialog>
+                         
+                </h:form>
+
+       </h:body>
     </f:view>
-
 </html>
-
-
 

@@ -13,6 +13,7 @@ public class CatColor  implements java.io.Serializable {
 
      private int idColor;
      private String descripcion;
+     private String imagen;
      private Set temas = new HashSet(0);
 
     public CatColor() {
@@ -51,7 +52,15 @@ public class CatColor  implements java.io.Serializable {
         this.temas = temas;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
 
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
+    
 
 
 }
