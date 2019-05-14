@@ -6,6 +6,7 @@
 package controlador;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -29,7 +30,7 @@ import org.primefaces.model.map.Marker;
 public class BuscarTemasInf implements Serializable {
     private MapModel simpleModel;
     private List<Tema> lista_temas;
-    private List<String> temas;
+    private ArrayList<String> temas;
     private Tema tema;
     
     @PostConstruct
@@ -42,7 +43,7 @@ public class BuscarTemasInf implements Serializable {
             for(Tema t : lista_temas){
                 ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
                 if(t.getUsuario().getCorreo().equals(us.getCorreo())){
-                    temas.add(t.getNombreTema());
+                    //temas.add(t.getNombreTema());
                 }else{
                     lista_temas.remove(t);
                 }
@@ -58,11 +59,11 @@ public class BuscarTemasInf implements Serializable {
         this.simpleModel = simpleModel;
     }
 
-    public List<String> getTemas() {
+    public ArrayList<String> getTemas() {
         return temas;
     }
 
-    public void setTemas(List<String> temas) {
+    public void setTemas(ArrayList<String> temas) {
         this.temas = temas;
     }
 
