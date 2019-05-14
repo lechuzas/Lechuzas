@@ -39,9 +39,9 @@ and open the template in the editor.
             
                 <h:form id="form">
                     <p:outputLabel for="tema" value="Temas: " />
-                    <p:selectOneMenu id="tema" value="#{buscarTemasInf.tema}" effect="fold" editable="true">
+                    <p:selectOneMenu id="tema" value="#{buscarTemasInf.tema_elegido}" effect="fold" editable="true">
                         <f:selectItem itemLabel="Selecciona uno de tus temas" itemValue="" />
-                        <f:selectItems value="#{buscarTemasInf.temas}" />
+                        <f:selectItems value="#{buscarTemasInf.temas}"/>
                     </p:selectOneMenu>
                 </h:form>
             
