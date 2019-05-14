@@ -39,8 +39,7 @@ public class MarcadorDAO extends AbstractDAO<Marcador>{
     
     public List<Marcador> findAll(){
       return super.findAll(Marcador.class);
-    }
-    
+    }    
     
     public Marcador buscaPorID(int idMarcador){
         Marcador marcador = null;
@@ -89,7 +88,7 @@ public class MarcadorDAO extends AbstractDAO<Marcador>{
         return m;
     
     }
-     public List<Marcador> buscaPorTema(String tema){
+    public List<Marcador> buscaPorTema(String tema){
         TemaDAO tdao = new TemaDAO();
         List<Marcador> m = null;
         ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
@@ -123,4 +122,6 @@ public class MarcadorDAO extends AbstractDAO<Marcador>{
         }
         return m;
     }
+     
+     
 }

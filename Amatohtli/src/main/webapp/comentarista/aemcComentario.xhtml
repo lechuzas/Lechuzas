@@ -10,7 +10,7 @@
        
 	 <h:head>
           <title>Amatohtli</title>
-            <h:outputStylesheet name="/css/perfiluser_comentarista.css"/>
+            <h:outputStylesheet name="/css/aemc_comentario.css"/>
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_CV-ykq13siKc1d-UiPH4vmp0RjlNroA"></script>            
         </h:head>
        
@@ -43,18 +43,7 @@
             
             <body>
                  
-                <h:form id="menu_comentarista" style="margin-top: 6.5%">
-                    <p:panelMenu>
-                        <p:submenu label="Comentarios">
-                            <p:menuitem value="Agregar" action="#{verMarcadorC.muestraVentanaAgregar()}" />
-                        </p:submenu>
-                    </p:panelMenu>
-                </h:form>
-                 
                 <h:form id="agrega_comentario">
-                     <p:messages id="messages" showDetail="true" closable="true" >
-                         <p:autoUpdate />
-                     </p:messages>
                      <p:panelGrid columns="2" id="form_agrecoment" >
                      
                         <h:inputText value="Nombre marcador:" disabled="True"/>
@@ -65,20 +54,55 @@
                         
                         <h:outputText value="Longitud:" />
                         <h:outputText id="longitud" value="#{verMarcadorC.longitud}"/>
-                        
                      </p:panelGrid>
+                     
+                    <p:inputTextarea rows="5" value="#{verMarcadorC.descripcion}" cols="30" maxlength="200" autoResize="false" placeholder="Comentario..." style="margin-top: 3%" />
+                    <p:commandButton value="Agergar" action="#{verMarcadorC.agregarComentario()}" update="agrega_comentario muestra_comentarios" style="margin-top: -3%; margin-left: 6%"/>
+                                     
                 </h:form>
+                
                  
                 <h:form id="muestra_comentarios">
-                    <p:dataTable value="#{comentarioBean.lista}" var="comentario" scrollable="true" scrollHeight="140">
-                         <f:facet name="header">
+                    <p:messages id="mes" showDetail="true" closable="true" >
+                         <p:autoUpdate />
+                    </p:messages>
+
+                    <p:dataTable value="#{comentarioBean.lista}" var="comentario" scrollable="true" scrollHeight="140" editable="True">
+                        <f:facet name="header">
                             Comentarios
-                         </f:facet>
-                         <p:column headerText="Descripcion" filterBy="#{comentario.descripcion}" filterMatchMode="contains">
-                             <p:outputLabel value="#{comentario.descripcion}"/>
-                         </p:column>
-                     </p:dataTable>
+                        </f:facet>
+                         
+                        <p:ajax event="rowEdit" listener="#{comentarioBean.onRowEdit}"/>
+
+                        <p:column headerText="Descripcion" filterBy="#{comentario.descripcion}" filterMatchMode="contains">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{comentario.descripcion}"/></f:facet>
+                                <f:facet name="input"><p:inputText id="modelInput" value="#{comentario.descripcion}"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        
+                        <p:column headerText="" style="width:35px">
+                            <p:commandButton icon="fa fa-fw fa-star" type="image" style="border: none; background: none"/>
+                        </p:column>
+                        
+                        <p:column headerText="" style="width:35px">
+                            <p:commandButton icon="fa fa-fw fa-times" type="image" style="border: none; background: none" action="#{verMarcadorC.eliminarComentario(comentario)}" update="muestra_comentarios">
+                                <p:confirm header="Confirmación" message="¿Estás seguro? El comentario se eliminará junto con sus me gusta" icon="ui-icon-alert" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                                <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                                <p:commandButton value="Sí, eliminar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                            </p:confirmDialog>
+                        </p:column>
+         
+                        <p:column style="width:35px">
+                            <p:rowEditor />
+                        </p:column>
+                     
+                    </p:dataTable>
                 </h:form>
+                
+                
                 
             </body>
             
