@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:view>
+       
+	 <h:head>
+          <title>Amatohtli</title>
+            <h:outputStylesheet name="css/estilos.css"/>
+
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
+        </h:head>
+       
+	<h:body>
+            
+             <header>
+
+                 
+                <img id="fondo" src="../resources/img/base.jpg"/>
+                <img id="logo" src="../resources/img/logo.png"/>  
+                <p:link outcome="/index.xhtml" id="faq" value="FAQ"/>
+                <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/>
+                
+            </header>
+            
+            
+            <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa2" model="#{buscarTemasInf.simpleModel}"  draggable="true"  mapTypeControl="false">
+                    </p:gmap> 
+                
+            
+                <h:form id="form">
+                    <p:outputLabel for="tema" value="Temas: " />
+                    <p:selectOneMenu id="tema" value="#{buscarTemasInf.tema}" effect="fold" editable="true">
+                        <f:selectItem itemLabel="Selecciona uno de tus temas" itemValue="" />
+                        <f:selectItems value="#{buscarTemasInf.temas}" />
+                    </p:selectOneMenu>
+                </h:form>
+            
+            
+            
+                   
+            
+        </h:body>
+        
+    </f:view>
+
+</html>

@@ -20,7 +20,8 @@ FOREIGN KEY (correo) REFERENCES usuario(correo));
 -- Creación del catálogo color --
 CREATE TABLE cat_color(
 id_color serial NOT NULL PRIMARY KEY,
-descripcion text NOT NULL);
+descripcion text NOT NULL UNIQUE,
+imagen text NOT NULL);
 
 -- Creación de la tabla Tema --
 CREATE TABLE tema(

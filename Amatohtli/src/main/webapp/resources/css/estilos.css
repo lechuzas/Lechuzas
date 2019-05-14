@@ -129,3 +129,11 @@
     float: right;
     color: #589DE1;
 }
+
+#form{
+    position: relative;
+    margin-top: 300px;
+    margin-right: -100px;
+    float:right;
+    
+}
