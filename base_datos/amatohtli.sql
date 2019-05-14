@@ -50,6 +50,7 @@ id_marcador integer NOT NULL,
 correo text NOT NULL,
 descripcion text NOT NULL,
 id_calificacion integer,
+num_calificaciones integer,
 FOREIGN KEY (id_marcador) REFERENCES marcador(id_marcador),
 FOREIGN KEY (correo) REFERENCES usuario(correo),
 FOREIGN KEY (id_calificacion) REFERENCES calificacion(id_calificacion));

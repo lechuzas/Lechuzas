@@ -58,6 +58,11 @@ public class AgregarComentario {
         this.idCalificacion = idCalificacion;
     }
     
+    
+    public String muestraVentana(){
+        return "/informador/agregarMarcadores?faces-redirect=true";
+    }
+    
     public void agregarComentario(){
         
         ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("comentarista");

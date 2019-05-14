@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import bean.ComentarioBean;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -18,6 +19,7 @@ import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.TemaDAO;
 import modelo.UsuarioDAO;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -40,7 +42,8 @@ public class VerMarcadorC implements Serializable{
     private String correo;
     private String descripcion;
     private int idCalificacion;
-    private Marcador select;
+    public static Marcador select;
+    private List<Comentario> listacom;
     
      
     @PostConstruct
@@ -67,6 +70,7 @@ public class VerMarcadorC implements Serializable{
        this.longitud = marker.getLatlng().getLng();
        MarcadorDAO marcadorDAO = new MarcadorDAO();
        select = marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud);
+       ComentarioBean.update();
     }
 
     public Marcador getSelect() {
@@ -101,8 +105,8 @@ public class VerMarcadorC implements Serializable{
         this.longitud = longitud;
     }
     
-    public String muestraVentana(){
-        return "/verMarcadoresTema?faces-redirect=true";
+    public String muestraVentanaAgregar(){
+        return "/comentarista/aemcComentario?faces-redirect=true";
     }
     
     public int getIdMarcador() {
@@ -139,32 +143,40 @@ public class VerMarcadorC implements Serializable{
     
     public void agregarComentario(){
         ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("comentarista");
-     
         Comentario comentario = new Comentario();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         MarcadorDAO marcadorDAO = new MarcadorDAO();
-        comentario.setMarcador(marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud));
-        comentario.setUsuario(usuarioDAO.buscaPorCorreo(us.getCorreo()));
-        comentario.setDescripcion(descripcion); 
-        comentario.setIdComentario(100);
-        ComentarioDAO udb = new ComentarioDAO();
-        udb.save(comentario);
-        this.descripcion="";
+        Marcador m = marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud);
+        if(this.descripcion != null && m != null){
+            comentario.setMarcador(m);
+            comentario.setUsuario(usuarioDAO.buscaPorCorreo(us.getCorreo()));
+            comentario.setDescripcion(descripcion); 
+            comentario.setIdComentario(100);
+            ComentarioDAO udb = new ComentarioDAO();
+            udb.save(comentario);
+            this.descripcion="";
+            ComentarioBean.update();
+            Mensajes.info("Su comentario se agregó correctamente");
+        }else{
+            Mensajes.error("Elija un marcador");
+        }
     }
     
-    public void editarComentario(){
-        ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("comentarista");
-     
-        Comentario comentario = new Comentario();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        MarcadorDAO marcadorDAO = new MarcadorDAO();
-        comentario.setMarcador(marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud));
-        comentario.setUsuario(usuarioDAO.buscaPorCorreo(us.getCorreo()));
-        comentario.setDescripcion(descripcion); 
-        comentario.setIdComentario(100);
-        ComentarioDAO udb = new ComentarioDAO();
-        udb.update(comentario);
-        this.descripcion="";
+    
+    public void eliminarComentario(Comentario c){
+        try{
+            System.out.println(c.getDescripcion());
+            ComentarioDAO udb = new ComentarioDAO();
+            udb.delete(c);
+            this.descripcion="";
+            ComentarioBean.update();
+            Mensajes.info("Su comentario se eliminó correctamente");
+        }catch(Exception e){
+            Mensajes.error("Elija un marcador");
+        }
+        
+        
     }
+    
     
 }

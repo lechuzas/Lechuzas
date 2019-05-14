@@ -1,12 +1,18 @@
 package bean;
 
+import controlador.Mensajes;
+import controlador.VerMarcadorC;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import modelo.Comentario;
 import modelo.ComentarioDAO;
+import org.primefaces.event.RowEditEvent;
+
+
 
 /**
  *
@@ -14,24 +20,46 @@ import modelo.ComentarioDAO;
  */
 @ManagedBean
 @RequestScoped
+@ViewScoped
 
-public class ComentarioBean {
-    
+public class ComentarioBean implements Serializable {
+
+    public Comentario selectC;
     private static List<Comentario> lista = new ArrayList();
 
+    public Comentario getSelectC() {
+        return selectC;
+    }
+
+    public void setSelectC(Comentario selectC) {
+        this.selectC = selectC;
+    }
+   
     public List<Comentario> getLista() {
         return lista;
     }
 
-    public void setLista(List<Comentario> lista) {
-        this.lista = lista;
+    public static void setLista(List<Comentario> lista) {
+        ComentarioBean.lista = lista;
     }
     
-    @PostConstruct
-    public void listar(){
-        ComentarioDAO cdao = new ComentarioDAO();
-        this.lista = cdao.finAll();
+    public static void update(){
+        ComentarioDAO comentarioDAO = new ComentarioDAO();
+        ComentarioBean.lista = comentarioDAO.buscaPorMarcador(VerMarcadorC.select.getIdMarcador());
     }
-        
+    
+    
+    public void onRowEdit(RowEditEvent event) {
+        try{
+            this.selectC = (Comentario) event.getObject();
+            ComentarioDAO cDAO = new ComentarioDAO();
+            cDAO.update(this.selectC);
+            Mensajes.info("El comentario se editó correctamente");
+        }catch(Exception e){
+            Mensajes.error("Ocurrió un error al editar en comentario");
+        }
+    }
+    
+    
     
 }
