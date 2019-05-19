@@ -46,6 +46,7 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/amatohtli</property>
     <property name="hibernate.connection.username">amatohtli</property>
     <property name="hibernate.connection.password">amatohtli</property>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <mapping resource="modelo/Comentario.hbm.xml"/>
     <mapping resource="modelo/Tema.hbm.xml"/>
     <mapping resource="modelo/CatColor.hbm.xml"/>

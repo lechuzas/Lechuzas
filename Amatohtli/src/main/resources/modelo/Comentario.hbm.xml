@@ -20,5 +20,8 @@
         <property name="descripcion" type="string">
             <column name="descripcion" not-null="true" />
         </property>
+        <property name="numCalificaciones" type="int">
+            <column name="num_calificaciones" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

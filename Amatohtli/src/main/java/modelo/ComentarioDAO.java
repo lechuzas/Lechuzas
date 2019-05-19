@@ -89,7 +89,6 @@ public class ComentarioDAO extends AbstractDAO<Comentario>{
     
     
     public List<Comentario> buscaPorMarcador(int idMarcador){
-        System.out.println(idMarcador);
         List<Comentario> listacom = null;
         Session session = this.sessionFactory.openSession();
         Transaction tx = null;
