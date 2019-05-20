@@ -55,13 +55,14 @@ public class AgregarTema implements Serializable {
      @PostConstruct
     public void init(){
          DefaultMapModel simpleModel = new DefaultMapModel();
-         marcador = new Marker(new LatLng(23.382390, -102.291477),"Arrastrame");
+         marcador = new Marker(new LatLng(23.382390, -102.291477),"Arrástrame");
          marcador.setDraggable(true);
          marcador.setClickable(true);
          simpleModel.addOverlay(marcador);
          this.latitud = marcador.getLatlng().getLat();
          this.longitud = marcador.getLatlng().getLng();
          this.catColor = new CatColor();
+         this.nombreTema = "";
         
     }
     
@@ -133,6 +134,9 @@ public class AgregarTema implements Serializable {
     
     
     public void agregarTema(){
+        if(nombreTema.equals(""))
+            Mensajes.error("No ha escrito un tema, favor de insertar uno");
+        
         TemaDAO tdao = new TemaDAO();
         Tema aux = tdao.buscaPorNombre(nombreTema); 
         if(aux != null){
@@ -154,6 +158,8 @@ public class AgregarTema implements Serializable {
              this.temaByIdColor = t;
              tdao.save(t);
              this.agregarMarcador();
+             this.nombreTema = "";
+             this.descripcion = "";
              
             
         }

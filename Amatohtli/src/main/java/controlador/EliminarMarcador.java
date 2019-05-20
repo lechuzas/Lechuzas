@@ -28,9 +28,10 @@ import org.primefaces.model.map.Marker;
 @ManagedBean
 @ViewScoped
 public class EliminarMarcador {
-     private double lat;
-     private double lng;
-     private Marker marcador;
+    private MapModel simpleModel;
+    private double lat;
+    private double lng;
+    private Marker marcador;
      
      public double getLat() {
         return lat;
@@ -60,12 +61,34 @@ public class EliminarMarcador {
     
     public void eliminaMarcador(){
         MarcadorDAO mdao = new MarcadorDAO();
+        EliminarComentario ec = new EliminarComentario();
+        
         Marcador m = mdao.buscaMarcadorPorLatLng(lat, lng);
         if(m != null){
             mdao.delete(m);
             Mensajes.info("Se ha eliminado correctamente el marcador");
         }else{
             Mensajes.error("El marcador que desea eliminar no existe");
+        }
+        simpleModel = new DefaultMapModel();
+        TemaDAO tdao = new TemaDAO();
+        List<Tema> lista_temas = tdao.findAll();
+        List<Marcador> marcadores = mdao.findAll();
+        if(lista_temas != null){
+            for(Tema t : lista_temas){
+                ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
+                if(t.getUsuario().getCorreo().equals(us.getCorreo())){
+                    for(Marcador mm : marcadores){
+                        if(mm.getTemaByIdTema().getIdTema() == t.getIdTema()){
+                             LatLng cord = new LatLng(mm.getLatitud(),mm.getLongitud());
+                             Marker marc = new Marker(cord,mm.getDescripcion());
+                             simpleModel.addOverlay(marc);
+
+                        }
+                          
+                    }
+                }
+            }
         }
     }
     

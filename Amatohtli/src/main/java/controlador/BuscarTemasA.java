@@ -15,7 +15,6 @@ import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.Tema;
 import modelo.TemaDAO;
-import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
@@ -27,53 +26,33 @@ import org.primefaces.model.map.Marker;
  */
 @ManagedBean
 @ViewScoped
-public class VerMarcadores implements Serializable{
+public class BuscarTemasA implements Serializable {
     private MapModel simpleModel;
-    private Marker marker;
-    private Tema tema;
     private List<Tema> lista_temas;
     private ArrayList<String> temas;
+    private Tema tema;
     private String tema_elegido;
     
     @PostConstruct
-    public void verMarcadores(){
+    public void BuscarTemasA(){
         simpleModel = new DefaultMapModel();
         TemaDAO tdao = new TemaDAO();
         lista_temas = tdao.findAll();
         temas = new ArrayList();
         for(Tema t : lista_temas){
             temas.add(t.getNombreTema());
+            
         }
         tema_elegido = "";
-        MarcadorDAO mdb = new MarcadorDAO();
-        List<Marcador> marcadores = mdb.findAll();
-        for(Marcador m :marcadores){
-            LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-            Marker marcador = new Marker(cord,m.getDescripcion());
-            simpleModel.addOverlay(marcador);
-           
-        }
+        
     }
 
     public MapModel getSimpleModel() {
         return simpleModel;
     }
-    
-    public void onMarkerSelect(OverlaySelectEvent event) {
-       marker =(Marker) event.getOverlay();
-       
-    }
 
-    public Marker getMarker() {
-        return marker;
-    }
-
-    public Tema getTema() {
-        return tema;
-    }
-
-    public void setTema(Tema tema) {
-        this.tema = tema;
+    public void setSimpleModel(MapModel simpleModel) {
+        this.simpleModel = simpleModel;
     }
 
     public List<Tema> getLista_temas() {
@@ -92,6 +71,14 @@ public class VerMarcadores implements Serializable{
         this.temas = temas;
     }
 
+    public Tema getTema() {
+        return tema;
+    }
+
+    public void setTema(Tema tema) {
+        this.tema = tema;
+    }
+
     public String getTema_elegido() {
         return tema_elegido;
     }
@@ -106,9 +93,8 @@ public class VerMarcadores implements Serializable{
             MarcadorDAO mdao = new MarcadorDAO();
             List<Marcador> marcadores = mdao.findAll();
             for (Tema tem : lista_temas){
-                if(this.tema_elegido.equals(tem.getNombreTema())){
+                if(this.tema_elegido.equals(tem.getNombreTema()))
                     tema = tem;
-                }
             }
             for(Marcador m : marcadores){
                 if(tema.getIdTema() == m.getTemaByIdTema().getIdTema()){
@@ -122,5 +108,11 @@ public class VerMarcadores implements Serializable{
             Mensajes.error("No se ha elegido un tema, favor de seleccionar uno");
             
         }
+        
     }
+    
+    public String muestraVentana(){
+        return "/administrador/buscarTemasA?faces-redirect=true";
+    }
+    
 }
