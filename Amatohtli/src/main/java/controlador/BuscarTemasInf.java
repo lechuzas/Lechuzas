@@ -41,6 +41,7 @@ public class BuscarTemasInf implements Serializable {
         TemaDAO tdao = new TemaDAO();
         lista_temas = tdao.findAll();
         temas = new ArrayList();
+        tema_elegido = "";
         if(lista_temas != null){
             for(Tema t : lista_temas){
                 ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
@@ -54,18 +55,28 @@ public class BuscarTemasInf implements Serializable {
     }
     
     public void muestraMarcadores(){
-        MarcadorDAO mdao = new MarcadorDAO();
-        List<Marcador> marcadores = mdao.findAll();
-        for(Marcador m : marcadores){
-            if(m.getTemaByIdTema().getNombreTema().equals(this.tema_elegido)){
-                LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-                Marker marc = new Marker(cord,m.getDescripcion());
-                simpleModel.addOverlay(marc);
-                
+        if(!this.tema_elegido.equals("")){
+             simpleModel = new DefaultMapModel();
+             MarcadorDAO mdao = new MarcadorDAO();
+             List<Marcador> marcadores = mdao.findAll();
+             for (Tema tem : lista_temas){
+                 if(this.tema_elegido.equals(tem.getNombreTema()))
+                     tema = tem;
             }
+            for(Marcador m : marcadores){
+                if(tema.getIdTema() == m.getTemaByIdTema().getIdTema()){
+                    LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
+                    Marker marc = new Marker(cord,m.getDescripcion());
+                    simpleModel.addOverlay(marc);
+                }    
+            }
+            this.tema_elegido = "";
+        }else{
+            Mensajes.error("No se ha elegido un tema, favor de seleccionar uno");
         }
-        
+       
     }
+     
 
     public MapModel getSimpleModel() {
         return simpleModel;
@@ -106,6 +117,7 @@ public class BuscarTemasInf implements Serializable {
     public void setTema_elegido(String tema_elegido) {
         this.tema_elegido = tema_elegido;
     }
+    
     
     
         
