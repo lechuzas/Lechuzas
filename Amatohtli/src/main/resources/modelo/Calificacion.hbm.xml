@@ -3,12 +3,12 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 28/03/2019 11:09:56 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="modelo.Calificacion" table="calificacion" schema="public" optimistic-lock="version">
+    <class name="modelo.Calificacion" table="calificacion" schema="public" optimistic-lock="version" >
         <id name="idCalificacion" type="int">
-            <column name="id_calificacion" />
+            <column name="id_calificacion"/>
             <generator class="identity" />
         </id>
-        <many-to-one name="usuario" class="modelo.Usuario" fetch="select">
+        <many-to-one name="usuario" class="modelo.Usuario" fetch="select" >
             <column name="correo" not-null="true" />
         </many-to-one>
         <property name="puntaje" type="int">
@@ -18,7 +18,7 @@
             <key>
                 <column name="id_calificacion" />
             </key>
-            <one-to-many class="modelo.Comentario" />
+            <one-to-many class="modelo.Comentario"/>
         </set>
     </class>
 </hibernate-mapping>
