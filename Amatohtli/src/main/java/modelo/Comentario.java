@@ -16,16 +16,17 @@ public class Comentario  implements java.io.Serializable {
 
              
     public Comentario() {
+
     }
 
-	
+    /*
     public Comentario(int idComentario, Marcador marcador, Usuario usuario, String descripcion, int numCalificaciones) {
         this.idComentario = idComentario;
         this.marcador = marcador;
         this.usuario = usuario;
         this.descripcion = descripcion;
         this.numCalificaciones = numCalificaciones;
-    }
+    }*/
    
     
     public int getNumCalificaciones() {
@@ -45,7 +46,13 @@ public class Comentario  implements java.io.Serializable {
         this.idComentario = idComentario;
     }
     public Calificacion getCalificacion() {
-        return this.calificacion;
+        if(this.calificacion == null){
+            Calificacion calf = new Calificacion();
+            return calf;
+        }else{
+            return this.calificacion;
+        }
+        
     }
     
     public void setCalificacion(Calificacion calificacion) {

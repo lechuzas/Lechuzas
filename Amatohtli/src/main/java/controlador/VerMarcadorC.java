@@ -19,6 +19,7 @@ import modelo.ComentarioDAO;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.TemaDAO;
+import modelo.Usuario;
 import modelo.UsuarioDAO;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.RateEvent;
@@ -34,6 +35,7 @@ import org.primefaces.model.map.Marker;
  */
 @ManagedBean
 @ViewScoped
+
 public class VerMarcadorC implements Serializable{
     private MapModel simpleModel;
     private Marker marker;
@@ -146,14 +148,21 @@ public class VerMarcadorC implements Serializable{
     public void agregarComentario(){
         ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("comentarista");
         Comentario comentario = new Comentario();
+        Calificacion calificacion = new Calificacion();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         MarcadorDAO marcadorDAO = new MarcadorDAO();
         Marcador m = marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud);
         if(this.descripcion != null && m != null){
+            Usuario usuario = usuarioDAO.buscaPorCorreo(us.getCorreo());
+            CalificacionDAO udbc = new CalificacionDAO();
+            calificacion.setUsuario(usuario);
+            calificacion.setPuntaje(0);
+            udbc.save(calificacion);
+            comentario.setCalificacion(calificacion);
             comentario.setMarcador(m);
-            comentario.setUsuario(usuarioDAO.buscaPorCorreo(us.getCorreo()));
+            comentario.setUsuario(usuario);
             comentario.setDescripcion(descripcion); 
-            comentario.setIdComentario(100);
+            //comentario.setIdComentario(100);
             ComentarioDAO udb = new ComentarioDAO();
             udb.save(comentario);
             this.descripcion="";
