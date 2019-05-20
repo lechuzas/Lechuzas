@@ -61,6 +61,8 @@ public class EliminarMarcador {
     
     public void eliminaMarcador(){
         MarcadorDAO mdao = new MarcadorDAO();
+        EliminarComentario ec = new EliminarComentario();
+        
         Marcador m = mdao.buscaMarcadorPorLatLng(lat, lng);
         if(m != null){
             mdao.delete(m);

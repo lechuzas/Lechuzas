@@ -21,9 +21,16 @@
                 <img id="fondo" src="resources/img/base.jpg"/>
                 <img id="logo" src="resources/img/logo.png"/> 
                 
-                <p:link outcome="/login.xhtml" id="iniciar_sesion" value="Iniciar Sesión"/>
-                <p:link outcome="/index.xhtml" id="faq" value="FAQ"/>
-                <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/>
+                <h:form id="iniciar_sesion">
+                <p:link outcome="/login.xhtml" value="Iniciar Sesión"/>
+                </h:form>
+                <h:form id ="faq">
+                <p:link outcome="/index.xhtml" value="FAQ"/>
+                </h:form>
+                <h:form id="contacto">
+                <p:link outcome="/index.xhtml" value="Contáctanos"/>
+                </h:form>
+                
               
                 <h:form id="f">
                     <p:messages id="messages" showDetail="true" closable="true" >
@@ -49,14 +56,16 @@
                         </p:gmapInfoWindow>
                     </p:gmap> 
             
-            
+                    <h:form id="boton_registrar">    
                     <p:commandLink  action="#{mensajes.info()}">
-                        <h:graphicImage id="boton_registrar" value="resources/img/registrar_boton.png"/>
+                        <h:graphicImage value="resources/img/registrar_boton.png"/>
                     </p:commandLink>
-            
+                    </h:form>
+            <h:form id="texto_nosotros">
                     <p:commandLink  action="#{mensajes.info()}">
-                        <h:graphicImage id="texto_nosotros" value="resources/img/nosotros.png"/>
+                        <h:graphicImage value="resources/img/nosotros.png"/>
                     </p:commandLink>
+            </h:form>
             
             
         </h:body>
