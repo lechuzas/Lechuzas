@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import modelo.Calificacion;
 import modelo.CalificacionDAO;
 import modelo.Comentario;
 import modelo.ComentarioDAO;
@@ -20,6 +21,7 @@ import modelo.MarcadorDAO;
 import modelo.TemaDAO;
 import modelo.UsuarioDAO;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.RateEvent;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -165,7 +167,6 @@ public class VerMarcadorC implements Serializable{
     
     public void eliminarComentario(Comentario c){
         try{
-            System.out.println(c.getDescripcion());
             ComentarioDAO udb = new ComentarioDAO();
             udb.delete(c);
             this.descripcion="";
@@ -173,8 +174,40 @@ public class VerMarcadorC implements Serializable{
             Mensajes.info("Su comentario se eliminó correctamente");
         }catch(Exception e){
             Mensajes.error("Elija un marcador");
-        }
+        }   
+    }
+    
+    public void onrate(RateEvent rateEvent) {
+            
+            Comentario c = (Comentario) rateEvent.getComponent().getAttributes().get("com");   
+            int estrellas = ((Integer) rateEvent.getRating()).intValue();
+            Calificacion calf = c.getCalificacion();
+            calf.setPuntaje(estrellas);
+            c.setCalificacion(calf);
+            c.setNumCalificaciones(c.getNumCalificaciones() + 1);
+            ComentarioDAO udb = new ComentarioDAO();
+            udb.update(c);
+            CalificacionDAO udbc = new CalificacionDAO();
+            udbc.update(calf);
+            this.descripcion="";
+            ComentarioBean.update();
+            Mensajes.info("Calificaste el comentario con puntaje: " + estrellas);
         
+    }
+    
+    public void oncancel(Comentario c) {
+            
+            Calificacion calf = c.getCalificacion();
+            calf.setPuntaje(0);
+            c.setCalificacion(calf);
+            c.setNumCalificaciones(c.getNumCalificaciones() - 1);
+            ComentarioDAO udb = new ComentarioDAO();
+            udb.update(c);
+            CalificacionDAO udbc = new CalificacionDAO();
+            udbc.update(calf);
+            this.descripcion="";
+            ComentarioBean.update();
+            Mensajes.info("Quitaste la calificaición del comentario");
         
     }
     

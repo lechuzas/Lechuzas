@@ -81,8 +81,16 @@
                             </p:cellEditor>
                         </p:column>
                         
-                        <p:column headerText="" style="width:35px">
-                            <p:commandButton icon="fa fa-fw fa-star" type="image" style="border: none; background: none"/>
+                        <p:column headerText="Calf" style="width:55px">
+                            <p:inputNumber value="#{comentario.numCalificaciones}" decimalPlaces="0"/>
+                        </p:column>
+                        
+                        <p:column headerText="" style="width:115px">
+                            <p:rating value="#{comentario.calificacion.puntaje}">
+                                <f:attribute name="com" value="#{comentario}" />
+                                <p:ajax event="rate" listener="#{verMarcadorC.onrate}" update="muestra_comentarios" />
+                                <p:ajax event="cancel" listener="#{verMarcadorC.oncancel(comentario)}" update="muestra_comentarios" />
+                            </p:rating>
                         </p:column>
                         
                         <p:column headerText="" style="width:35px">
@@ -91,9 +99,10 @@
                             </p:commandButton>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
                                 <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
-                                <p:commandButton value="Sí, eliminar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                                <p:commandButton value="Sí, eliminar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="muestra_comentarios" action="#{comentarioBean.update}"/>
                             </p:confirmDialog>
                         </p:column>
+                        
          
                         <p:column style="width:35px">
                             <p:rowEditor />
