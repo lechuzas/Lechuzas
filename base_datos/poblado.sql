@@ -17,7 +17,7 @@ insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) 
 
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('ailyn@gmail.com', 'ailyn12051998', 'ailynrp12', 'Ailyn', 'Rebollar', 2);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('luna@gmail.com', '123', 'luna97', 'Luna', 'Felipe', 2);
-insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('ailyn@gmail.com', 'ailyn12051998', 'ailynrp12', 'Ailyn', 'Rebollar', 1);
+insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('ailynrp@gmail.com', 'ailyn12051998', 'ailynrp12', 'Ailyn', 'Rebollar', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('fernando@vexi.mx', '16011601', 'fernando1601', 'Fernando', 'Bernal', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('fluna@gmail.com', 'aluna798', 'Aluna23', 'Felipe', 'Luna', 1);
 
@@ -42,8 +42,8 @@ insert into cat_color (descripcion) values ('#4E5FCE');
 
 ------------------------------------------------------- TEMA ------------------------------------------------------------
 
-insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Villas Navideñas', 2);
-insert into tema (correo,nombre_tema,id_color) values('luna@gmail.com', 'Parques', 3);
+insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Villas Navideñas', 1);
+insert into tema (correo,nombre_tema,id_color) values('luna@gmail.com', 'Parques', 2);
 
 ----Tema:  Fernando----
 insert into tema (correo,nombre_tema,id_color) values('fernando@vexi.mx', 'Pueblos mágicos', 3);

@@ -11,7 +11,7 @@
 	 <h:head>
           <title>Amatohtli</title>
             <h:outputStylesheet name="css/estilos.css"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_CV-ykq13siKc1d-UiPH4vmp0RjlNroA"></script>            
 
         </h:head>
        
@@ -56,16 +56,13 @@
                         </p:gmapInfoWindow>
                     </p:gmap> 
             
-                    <h:form id="boton_registrar">    
-                    <p:commandLink  action="#{mensajes.info()}">
-                        <h:graphicImage value="resources/img/registrar_boton.png"/>
+                        
+                    <p:commandLink action="#{mensajes.info()}">
+                        <h:graphicImage id="boton_registrar" value="resources/img/registrar_boton.png"/>
                     </p:commandLink>
-                    </h:form>
-            <h:form id="texto_nosotros">
                     <p:commandLink  action="#{mensajes.info()}">
-                        <h:graphicImage value="resources/img/nosotros.png"/>
+                        <h:graphicImage id="texto_nosotros" value="resources/img/nosotros.png"/>
                     </p:commandLink>
-            </h:form>
             
             
         </h:body>

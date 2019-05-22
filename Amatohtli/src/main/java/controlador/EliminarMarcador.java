@@ -10,6 +10,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import modelo.Comentario;
+import modelo.ComentarioDAO;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.Tema;
@@ -61,10 +63,19 @@ public class EliminarMarcador {
     
     public void eliminaMarcador(){
         MarcadorDAO mdao = new MarcadorDAO();
-        EliminarComentario ec = new EliminarComentario();
-        
+        ComentarioDAO cdao = new ComentarioDAO();
+        int ec = 0;
         Marcador m = mdao.buscaMarcadorPorLatLng(lat, lng);
+        List<Comentario> comentarios = cdao.finAll();
         if(m != null){
+            if(!comentarios.isEmpty()){
+                
+            }
+            ec = m.getIdMarcador();
+            for(Comentario c : comentarios){
+                if(c.getMarcador().getIdMarcador() == ec)
+                    cdao.delete(c);
+            }
             mdao.delete(m);
             Mensajes.info("Se ha eliminado correctamente el marcador");
         }else{
