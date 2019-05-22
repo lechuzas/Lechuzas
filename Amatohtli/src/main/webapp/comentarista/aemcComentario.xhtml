@@ -57,7 +57,11 @@
                      </p:panelGrid>
                      
                     <p:inputTextarea rows="5" value="#{verMarcadorC.descripcion}" cols="30" maxlength="200" autoResize="false" placeholder="Comentario..." style="margin-top: 3%" />
-                    <p:commandButton value="Agergar" action="#{verMarcadorC.agregarComentario()}" update="agrega_comentario muestra_comentarios" style="margin-top: -3%; margin-left: 6%"/>
+                    <p:commandButton value="Agergar" action="#{verMarcadorC.agregarComentario()}" update="agrega_comentario muestra_comentarios" style="margin-top: -3%; margin-left: 6%">
+                        <f:actionListener binding="#{comentarioBean.update()}"/>
+                    </p:commandButton>
+                                     
+                                   
                                      
                 </h:form>
                 
@@ -88,7 +92,7 @@
                         <p:column headerText="" style="width:115px">
                             <p:rating value="#{comentario.calificacion.puntaje}">
                                 <f:attribute name="com" value="#{comentario}" />
-                                <p:ajax event="rate" listener="#{verMarcadorC.onrate}" update="muestra_comentarios" />
+                                <p:ajax event="rate" listener="#{verMarcadorC.onrate}" update="muestra_comentarios"/>
                                 <p:ajax event="cancel" listener="#{verMarcadorC.oncancel(comentario)}" update="muestra_comentarios" />
                             </p:rating>
                         </p:column>
@@ -99,7 +103,7 @@
                             </p:commandButton>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
                                 <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
-                                <p:commandButton value="Sí, eliminar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="muestra_comentarios" action="#{comentarioBean.update}"/>
+                                <p:commandButton value="Sí, eliminar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{comentarioBean.update}"/>
                             </p:confirmDialog>
                         </p:column>
                         

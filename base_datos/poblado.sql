@@ -14,8 +14,6 @@ insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) 
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('vnowlandc@addthis.com', 'flloRzp7JrxL', 'vnowlandc', 'Vilhelmina', 'Nowland', 2);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('pletherburyd@eepurl.com', 'n8PpiHWE', 'pletherburyd', 'Phillis', 'Letherbury', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('daizikove@engadget.com', 'vdbf2ZJIF', 'daizikove', 'Domingo', 'Aizikov', 1);
-
-insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('ailyn@gmail.com', 'ailyn12051998', 'ailynrp12', 'Ailyn', 'Rebollar', 2);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('luna@gmail.com', '123', 'luna97', 'Luna', 'Felipe', 2);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('ailynrp@gmail.com', 'ailyn12051998', 'ailynrp12', 'Ailyn', 'Rebollar', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('fernando@vexi.mx', '16011601', 'fernando1601', 'Fernando', 'Bernal', 1);
@@ -40,18 +38,12 @@ insert into cat_color (descripcion) values ('#6cf45f');
 insert into cat_color (descripcion) values ('#fa36bc');
 insert into cat_color (descripcion) values ('#4E5FCE');
 
-------------------------------------------------------- TEMA ------------------------------------------------------------
+------------------------------------------------------- TEMA -----------------------------------------------------------
 
 insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Villas Navideñas', 1);
 insert into tema (correo,nombre_tema,id_color) values('luna@gmail.com', 'Parques', 2);
-
-----Tema:  Fernando----
 insert into tema (correo,nombre_tema,id_color) values('fernando@vexi.mx', 'Pueblos mágicos', 3);
-
-----Tema:  Felipe----
 insert into tema (correo,nombre_tema,id_color) values('fluna@gmail.com', 'Playas mexicanas', 4);
-
-
 
 ------------------------------------------------------------- MARCADOR -----------------------------------------------------------------------
 
@@ -59,7 +51,6 @@ insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2,20.672087,-103.414486,'La Luz de la Navidad, Zapopan');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2,32.545175,-115.345638,'Villa Navideña, Mexicali');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2,19.267831,-90.252865,'Gran Feria Navideña Sobre Hielo, Campeche');
-
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,3,19.357115,-99.270035,'Parque a la mexicana, CDMX');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,3,19.468877,-99.197005,'Parque bicentenario, CDMX');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,3,19.352431,-99.142202,'Parque masayoshi ohira, CDMX');
@@ -83,7 +74,7 @@ insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,20.2096191,-87.4894285,'Tulum');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,19.8305579,-90.6150296,'San Felipe');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.6504452,-91.8335075,'Del C');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.1342154,-94.4980524,13,'Coatzacoalcos');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.1342154,-94.4980524,'Coatzacoalcos');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.2465024,-94.6472769,'Playa linda');
 
 
