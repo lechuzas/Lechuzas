@@ -38,7 +38,7 @@
                     </p:gmap> 
                
                     <h:form id="form">
-                    <p:messages id="messages" showDetail="true" closable="true" >
+                        <p:messages id="messages" showDetail="true" closable="true" >
                              <p:autoUpdate />
                          </p:messages>
                         <p:inputText id="paterno" value="#{agregarInformador.paterno}" placeholder="Paterno" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
@@ -51,12 +51,12 @@
                         <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
                         <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                          </p:inputText> <br/>   
-                         <p:commandButton value="Agregar"  action="#{agregarInformador.agregaInfo()}">
+                         <p:commandButton value="Agregar"  action="#{agregarInformador.agregaInfo()}" ajax='false'>
                              <p:confirm header="Confirmación" message="¿Estás seguro? Se enviara correo" icon="ui-icon-alert" />
                          </p:commandButton>
                           <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
                              <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
-                             <p:commandButton value="Sí, eliminar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="messages" />
+                             <p:commandButton value="Sí, Enviar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="messages" />
                          </p:confirmDialog>
                          
                 </h:form>
