@@ -16,7 +16,7 @@
 
 #logo{
     position: absolute;
-    margin-top: -1200px;
+    margin-top: -1250px;
     margin-left: 71px;
     float: left;
     width: 120px;
@@ -26,7 +26,7 @@
 
 #iniciar_sesion{
     position: absolute;
-    margin-top: -1150px;
+    margin-top: -1210px;
     margin-left: 1260px;
     float: right;
     color: #589DE1;
@@ -35,7 +35,7 @@
 
 #faq{
    position: absolute;
-   margin-top: -1150px;
+   margin-top: -1210px;
    margin-left: 1500px;
    float: right;
    color: #48C9B0;
@@ -44,7 +44,7 @@
 
 #contacto{
    position: absolute;
-   margin-top: -1150px;
+   margin-top: -1210px;
    margin-left: 1660px;
    float: right;
    color: #48C9B0;
@@ -64,13 +64,27 @@
     position: absolute;
     height: 220px;  
     width: 390px;
-    margin-left: -180px;
-    margin-top: 290px;
+    margin-left: 110px;
+    margin-top: -890px;
     
 }
 
 #f{
     position: absolute;
-    margin-left: 880px;
-    margin-top: 120px;
+    margin-left: 830px;
+    margin-top: -1100px;
 }
+
+#buscar_btn{
+    position: absolute;
+    margin-left: 1130px;
+    margin-top: -1100px;
+}
+
+
+#boton_registrar{
+    position: absolute;
+    margin-left: 130px;
+    margin-top: -600px;
+}
+
