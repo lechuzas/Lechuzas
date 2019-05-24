@@ -37,20 +37,21 @@
                         </p:inputText> <br/>
                         <p:password class="texto" id="password" value="#{controladorSesion.contrasenia}" placeholder="Contrasenia"  required="true" requiredMessage="Por favor ingresa tu contrasenia"/> <br/>
                         <p:message for="password"/>
-                        <p:commandButton class="texto" action="#{controladorSesion.login()}" value="login" update="login_i" />
+                        <p:commandButton class="texto" action="#{controladorSesion.login()}" value="Entrar" update="login_i" />
                         
                     </h:form>
             
-                           <h:form id="boton_registrar">    
-                    <p:commandLink  action="#{mensajes.info()}">
-                        <h:graphicImage value="resources/img/registrar_boton.png"/>
-                    </p:commandLink>
+                    <h:form id="boton_registrar">    
+                        <p:commandLink  action="#{comentarioBean.lista}">
+                            <h:graphicImage value="resources/img/registrar_boton.png"/>
+                        </p:commandLink>
                     </h:form>
-            <h:form id="texto_nosotros">
-                    <p:commandLink  action="#{mensajes.info()}">
-                        <h:graphicImage value="resources/img/nosotros.png"/>
-                    </p:commandLink>
-            </h:form>
+                    
+                    <h:form id="texto_nosotros">
+                        <p:commandLink  action="#{comentarioBean.lista}">    
+                                <h:graphicImage value="resources/img/nosotros.png"/>
+                            </p:commandLink>
+                    </h:form>
             
         </h:body>
         

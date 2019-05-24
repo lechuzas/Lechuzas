@@ -33,15 +33,17 @@
                 
               
                 <h:form id="f">
-                    <p:messages id="messages" showDetail="true" closable="true" >
-                        <p:autoUpdate />
-                    </p:messages>
-                    <p:commandButton id="buscar" action="#{verMarcadores.muestraMarcadores()}" value="Buscar" update="mapa" />
+                    <p:messages id="messages" showDetail="true" closable="true" />
                     <p:selectOneMenu id="tema" value="#{verMarcadores.tema_elegido}" effect="fold" editable="true">
                         <f:selectItem itemLabel="Selecciona uno de tus temas" itemValue="" />
                         <f:selectItems value="#{verMarcadores.temas}"/>
                     </p:selectOneMenu>
                 </h:form>
+                
+                <h:form id="buscar_btn">
+                    <p:commandButton action="#{verMarcadores.muestraMarcadores()}" value="Buscar" update="mapa" />
+                </h:form>
+                
                 
             </header>
             
@@ -56,20 +58,18 @@
                         </p:gmapInfoWindow>
                     </p:gmap> 
             
-            
-                    
-            
-
                     <h:form id="boton_registrar">    
                     <p:commandLink  action="#{mensajes.info()}">
                         <h:graphicImage value="resources/img/registrar_boton.png"/>
                     </p:commandLink>
                     </h:form>
-            <h:form id="texto_nosotros">
-                    <p:commandLink  action="#{mensajes.info()}">
-                        <h:graphicImage value="resources/img/nosotros.png"/>
-                    </p:commandLink>
-            </h:form>
+                    
+            
+                    <h:form id="texto_nosotros">
+                            <p:commandLink  action="#{mensajes.info()}">
+                                <h:graphicImage value="resources/img/nosotros.png"/>
+                            </p:commandLink>
+                    </h:form>
             
             
         </h:body>

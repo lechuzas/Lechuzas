@@ -1,23 +1,13 @@
-#mapa2{
+#fondo{
     position: relative;
-    height: 450px;  
-    width: 50%; 
-    margin-top: 190px;
-     margin-left: 50px;
-    float: left;
-}
-#mapa{
-    position: relative;
-    height: 500px;  
-    width: 50%; 
-    margin-top: 200px;
-    margin-right: -410px;
-    float: right;
+    width: 110%;
+    height: 110%;  
+    margin-top: -100px;
 }
 
 #logo{
     position: absolute;
-    margin-top: 20px;
+    margin-top: -1180px;
     margin-left: 71px;
     float: left;
     width: 120px;
@@ -25,17 +15,12 @@
     
 }
 
-#fondo{
-    position: absolute;
-    width: 100%;
-    height: 110%;  
-    margin-top: -10px;
-}
+
 
 #iniciar_sesion{
     position: relative;
-    margin-top: 60px;
-    margin-right: 50px;
+    margin-top: -1150px;
+    margin-right: 500px;
     float: right;
     color: #589DE1;
     font-weight: bolder;
@@ -43,7 +28,7 @@
 
 #faq{
    position: relative;
-   margin-top: 60px;
+   margin-top: -1150px;
    margin-right: 70px;
    float: right;
    color: #48C9B0;
@@ -52,8 +37,8 @@
 
 #contacto{
    position: relative;
-   margin-top: 60px;
-   margin-right: 90px;
+   margin-top: -1150px;
+   margin-right: 250px;
    float: right;
    color: #48C9B0;
    font-weight: bolder;   
@@ -63,8 +48,8 @@
     position: relative;
     height: 90px;  
     width: 190px;
-    margin-left: 110px;
-    margin-top: 500px;
+    margin-left: 190px;
+    margin-top: -560px;
     
 }
 
@@ -72,8 +57,8 @@
     position: absolute;
     height: 220px;  
     width: 390px;
-    margin-left: -180px;
-    margin-top: 290px;
+    margin-left: 150px;
+    margin-top: -380px;
     
 }
 
@@ -89,8 +74,8 @@
     position: relative;
     height: 100px;  
     width: 50%; 
-    margin-top: 300px;
-    margin-right: -610px;
+    margin-top: -800px;
+    margin-right: -50px;
     float:right;
 }
 
