@@ -20,7 +20,7 @@
              <header>
                 <img id="fondo" src="resources/img/base.jpg"/>
                 <img id="logo" src="resources/img/logo.png"/>   
-                <p:link outcome="/index.xhtml" id="iniciar_sesion" value="Continuar como invitado"/>
+                <p:link outcome="/login.xhtml" id="iniciar_sesion" value="Iniciar sesión"/>
                 <p:link outcome="/index.xhtml" id="faq" value="FAQ"/>
                 <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/>
             </header>
@@ -51,15 +51,18 @@
                         
                         
                         
-                        <p:commandButton class="texto" action="#{agregarInformador.agregaComentarista()}" value="registrarme" update="login_i" />
+                        <p:commandButton class="texto" action="#{agregarInformador.agregaComentarista()}" value="registrarme" ajax='false' />
                         
                     </h:form>
             
                     
             
+                   
+            <h:form id="texto_nosotros">
                     <p:commandLink  action="#{mensajes.info()}">
-                        <h:graphicImage id="texto_nosotros" value="resources/img/nosotros.png"/>
+                        <h:graphicImage value="resources/img/nosotros.png"/>
                     </p:commandLink>
+            </h:form>
             
         </h:body>
         

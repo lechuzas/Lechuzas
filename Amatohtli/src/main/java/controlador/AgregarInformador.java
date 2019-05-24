@@ -82,11 +82,17 @@ public class AgregarInformador {
             usr.setCorreo(correo);
             usr.setNombre(nombre);
             usr.setRol(1);
+            
             String subject="Bienvenido a Amatohlti "+nombre;
             String mensaje= "Tu usuario es "+nombreUsuario  + " y contrasenia es: "+nombreUsuario;
-            dao.save(usr);
-            Mail.sendMail(subject, mensaje, correo);
-            Mensajes.info("Se ha agregado correctamente el informador");   
+            if (dao.buscaPorCorreo(correo) == null){
+                dao.save(usr);
+                Mail.sendMail(subject, mensaje, correo);
+                Mensajes.info("Se ha agregado correctamente el Informador");    
+            }else{
+                Mensajes.error("El correo ya esta registrado");
+            }
+
     }
     
     public void agregaComentarista(){
@@ -103,7 +109,7 @@ public class AgregarInformador {
             if (dao.buscaPorCorreo(correo) == null){
                 dao.save(usr);
                 Mail.sendMail(subject, mensaje, correo);
-                Mensajes.info("Se ha agregado correctamente el comentarista");    
+                Mensajes.info("Se te ha enviado un correo, gracias :D ");    
             }else{
                 Mensajes.error("El correo ya esta registrado");
             }
