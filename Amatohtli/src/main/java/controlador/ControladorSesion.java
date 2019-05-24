@@ -60,7 +60,7 @@ public class ControladorSesion implements Serializable{
                 Mensajes.error("Usuario sin rol asignado "+this.correo);
             }
         }
-        Mensajes.error("NO hay usuarios con este correo "+this.correo);
+        Mensajes.error("Correo o contraseña incorrectos "+this.correo);
         return "";
     }
     

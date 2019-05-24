@@ -43,7 +43,7 @@ public class BuscarTemasInf implements Serializable {
         temas = new ArrayList();
         tema_elegido = "";
         if(lista_temas != null){
-            for(Tema t : lista_temas){
+            for(Tema t : tdao.findAll()){
                 ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
                 if(t.getUsuario().getCorreo().equals(us.getCorreo())){
                        temas.add(t.getNombreTema());
