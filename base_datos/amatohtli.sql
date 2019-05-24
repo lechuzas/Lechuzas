@@ -1,4 +1,3 @@
-
 -- Creación de la tabla usuario --
 CREATE TABLE usuario(
 correo text NOT NULL PRIMARY KEY,
@@ -7,8 +6,6 @@ nombre_usuario text NOT NULL,
 nombre text,
 paterno text,
 rol integer);
-
-
 
 -- Creación de la tabla calificación --
 CREATE TABLE calificacion(
@@ -21,7 +18,7 @@ FOREIGN KEY (correo) REFERENCES usuario(correo));
 CREATE TABLE cat_color(
 id_color serial NOT NULL PRIMARY KEY,
 descripcion text NOT NULL UNIQUE,
-imagen text NOT NULL);
+imagen text);
 
 -- Creación de la tabla Tema --
 CREATE TABLE tema(
@@ -50,8 +47,7 @@ id_marcador integer NOT NULL,
 correo text NOT NULL,
 descripcion text NOT NULL,
 id_calificacion integer,
+num_calificaciones integer,
 FOREIGN KEY (id_marcador) REFERENCES marcador(id_marcador),
 FOREIGN KEY (correo) REFERENCES usuario(correo),
 FOREIGN KEY (id_calificacion) REFERENCES calificacion(id_calificacion));
-
-

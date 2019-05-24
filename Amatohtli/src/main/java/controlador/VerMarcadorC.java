@@ -1,23 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
+import bean.ComentarioBean;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import modelo.Calificacion;
 import modelo.CalificacionDAO;
 import modelo.Comentario;
 import modelo.ComentarioDAO;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.TemaDAO;
+import modelo.Usuario;
 import modelo.UsuarioDAO;
+import org.primefaces.event.RateEvent;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -30,6 +29,7 @@ import org.primefaces.model.map.Marker;
  */
 @ManagedBean
 @ViewScoped
+
 public class VerMarcadorC implements Serializable{
     private MapModel simpleModel;
     private Marker marker;
@@ -40,7 +40,8 @@ public class VerMarcadorC implements Serializable{
     private String correo;
     private String descripcion;
     private int idCalificacion;
-    private Marcador select;
+    public static Marcador select;
+    private List<Comentario> listacom;
     
      
     @PostConstruct
@@ -67,6 +68,7 @@ public class VerMarcadorC implements Serializable{
        this.longitud = marker.getLatlng().getLng();
        MarcadorDAO marcadorDAO = new MarcadorDAO();
        select = marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud);
+       ComentarioBean.update();
     }
 
     public Marcador getSelect() {
@@ -101,8 +103,8 @@ public class VerMarcadorC implements Serializable{
         this.longitud = longitud;
     }
     
-    public String muestraVentana(){
-        return "/verMarcadoresTema?faces-redirect=true";
+    public String muestraVentanaAgregar(){
+        return "/comentarista/aemcComentario?faces-redirect=true";
     }
     
     public int getIdMarcador() {
@@ -139,32 +141,79 @@ public class VerMarcadorC implements Serializable{
     
     public void agregarComentario(){
         ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("comentarista");
-     
         Comentario comentario = new Comentario();
+        Calificacion calificacion = new Calificacion();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         MarcadorDAO marcadorDAO = new MarcadorDAO();
-        comentario.setMarcador(marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud));
-        comentario.setUsuario(usuarioDAO.buscaPorCorreo(us.getCorreo()));
-        comentario.setDescripcion(descripcion); 
-        comentario.setIdComentario(100);
-        ComentarioDAO udb = new ComentarioDAO();
-        udb.save(comentario);
-        this.descripcion="";
+        Marcador m = marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud);
+        if(this.descripcion != null && m != null){
+            if(!this.descripcion.equals("")){
+                Usuario usuario = usuarioDAO.buscaPorCorreo(us.getCorreo());
+                CalificacionDAO udbc = new CalificacionDAO();
+                calificacion.setUsuario(usuario);
+                calificacion.setPuntaje(0);
+                udbc.save(calificacion);
+                comentario.setCalificacion(calificacion);
+                comentario.setMarcador(m);
+                comentario.setUsuario(usuario);
+                comentario.setDescripcion(descripcion); 
+                ComentarioDAO udb = new ComentarioDAO();
+                udb.save(comentario);
+                this.descripcion="";
+                ComentarioBean.update();
+                Mensajes.info("Su comentario se agregó correctamente");
+            }else{
+                Mensajes.error("Por favor escribe algún comentario");
+            }
+        }else{
+            Mensajes.error("Elija un marcador");
+        }
     }
     
-    public void editarComentario(){
-        ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("comentarista");
-     
-        Comentario comentario = new Comentario();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        MarcadorDAO marcadorDAO = new MarcadorDAO();
-        comentario.setMarcador(marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud));
-        comentario.setUsuario(usuarioDAO.buscaPorCorreo(us.getCorreo()));
-        comentario.setDescripcion(descripcion); 
-        comentario.setIdComentario(100);
-        ComentarioDAO udb = new ComentarioDAO();
-        udb.update(comentario);
-        this.descripcion="";
+    
+    public void eliminarComentario(Comentario c){
+        try{
+            ComentarioDAO udb = new ComentarioDAO();
+            udb.delete(c);
+            this.descripcion="";
+            ComentarioBean.update();
+            Mensajes.info("Su comentario se eliminó correctamente");
+        }catch(Exception e){
+            Mensajes.error("Elija un marcador");
+        }   
     }
+    
+    public void onrate(RateEvent rateEvent) {
+            
+            Comentario c = (Comentario) rateEvent.getComponent().getAttributes().get("com");   
+            int estrellas = ((Integer) rateEvent.getRating()).intValue();
+            Calificacion calf = c.getCalificacion();
+            calf.setPuntaje(estrellas);
+            c.setCalificacion(calf);
+            c.setNumCalificaciones(c.getNumCalificaciones() + 1);
+            ComentarioDAO udb = new ComentarioDAO();
+            udb.update(c);
+            CalificacionDAO udbc = new CalificacionDAO();
+            udbc.update(calf);
+            this.descripcion="";
+            ComentarioBean.update();
+            Mensajes.info("Calificaste el comentario con puntaje: " + estrellas);
+        
+    }
+    
+    public void oncancel(Comentario c) {
+            Calificacion calf = c.getCalificacion();
+            calf.setPuntaje(0);
+            c.setCalificacion(calf);
+            c.setNumCalificaciones(c.getNumCalificaciones() - 1);
+            ComentarioDAO udb = new ComentarioDAO();
+            udb.update(c);
+            CalificacionDAO udbc = new CalificacionDAO();
+            udbc.update(calf);
+            this.descripcion="";
+            ComentarioBean.update();
+            Mensajes.info("Quitaste la calificaición del comentario");
+    }
+    
     
 }

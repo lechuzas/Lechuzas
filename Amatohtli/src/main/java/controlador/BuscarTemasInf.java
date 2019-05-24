@@ -32,6 +32,7 @@ public class BuscarTemasInf implements Serializable {
     private List<Tema> lista_temas;
     private ArrayList<String> temas;
     private Tema tema;
+    private String tema_elegido;
     
     @PostConstruct
     public void BuscarTemasInf(){
@@ -39,17 +40,43 @@ public class BuscarTemasInf implements Serializable {
         MarcadorDAO mdao = new MarcadorDAO();
         TemaDAO tdao = new TemaDAO();
         lista_temas = tdao.findAll();
+        temas = new ArrayList();
+        tema_elegido = "";
         if(lista_temas != null){
             for(Tema t : tdao.findAll()){
                 ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
                 if(t.getUsuario().getCorreo().equals(us.getCorreo())){
-                    //temas.add(t.getNombreTema());
+                       temas.add(t.getNombreTema());
                 }else{
                     lista_temas.remove(t);
                 }
             }
         }
     }
+    
+    public void muestraMarcadores(){
+        if(!this.tema_elegido.equals("")){
+             simpleModel = new DefaultMapModel();
+             MarcadorDAO mdao = new MarcadorDAO();
+             List<Marcador> marcadores = mdao.findAll();
+             for (Tema tem : lista_temas){
+                 if(this.tema_elegido.equals(tem.getNombreTema()))
+                     tema = tem;
+            }
+            for(Marcador m : marcadores){
+                if(tema.getIdTema() == m.getTemaByIdTema().getIdTema()){
+                    LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
+                    Marker marc = new Marker(cord,m.getDescripcion());
+                    simpleModel.addOverlay(marc);
+                }    
+            }
+            this.tema_elegido = "";
+        }else{
+            Mensajes.error("No se ha elegido un tema, favor de seleccionar uno");
+        }
+       
+    }
+     
 
     public MapModel getSimpleModel() {
         return simpleModel;
@@ -82,6 +109,17 @@ public class BuscarTemasInf implements Serializable {
     public void setLista_temas(List<Tema> lista_temas) {
         this.lista_temas = lista_temas;
     }
+
+    public String getTema_elegido() {
+        return tema_elegido;
+    }
+
+    public void setTema_elegido(String tema_elegido) {
+        this.tema_elegido = tema_elegido;
+    }
+    
+    
+    
         
     
     public String muestraVentana(){

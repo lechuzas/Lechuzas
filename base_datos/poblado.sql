@@ -14,8 +14,6 @@ insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) 
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('vnowlandc@addthis.com', 'flloRzp7JrxL', 'vnowlandc', 'Vilhelmina', 'Nowland', 2);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('pletherburyd@eepurl.com', 'n8PpiHWE', 'pletherburyd', 'Phillis', 'Letherbury', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('daizikove@engadget.com', 'vdbf2ZJIF', 'daizikove', 'Domingo', 'Aizikov', 1);
-
-insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('ailyn@gmail.com', 'ailyn12051998', 'ailynrp12', 'Ailyn', 'Rebollar', 2);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('luna@gmail.com', '123', 'luna97', 'Luna', 'Felipe', 2);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('ailyn@gmail.com', 'ailyn12051998', 'ailynrp12', 'Ailyn', 'Rebollar', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('fernando@vexi.mx', '16011601', 'fernando1601', 'Fernando', 'Bernal', 1);
@@ -41,17 +39,10 @@ insert into cat_color (descripcion) values ('#fa36bc');
 insert into cat_color (descripcion) values ('#4E5FCE');
 
 ------------------------------------------------------- TEMA ------------------------------------------------------------
-
-insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Villas Navideñas', 2);
-insert into tema (correo,nombre_tema,id_color) values('luna@gmail.com', 'Parques', 3);
-
-----Tema:  Fernando----
+insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Villas Navideñas', 1);
+insert into tema (correo,nombre_tema,id_color) values('luna@gmail.com', 'Parques', 2);
 insert into tema (correo,nombre_tema,id_color) values('fernando@vexi.mx', 'Pueblos mágicos', 3);
-
-----Tema:  Felipe----
 insert into tema (correo,nombre_tema,id_color) values('fluna@gmail.com', 'Playas mexicanas', 4);
-
-
 
 ------------------------------------------------------------- MARCADOR -----------------------------------------------------------------------
 
@@ -59,7 +50,6 @@ insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2,20.672087,-103.414486,'La Luz de la Navidad, Zapopan');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2,32.545175,-115.345638,'Villa Navideña, Mexicali');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2,19.267831,-90.252865,'Gran Feria Navideña Sobre Hielo, Campeche');
-
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,3,19.357115,-99.270035,'Parque a la mexicana, CDMX');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,3,19.468877,-99.197005,'Parque bicentenario, CDMX');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (2,3,19.352431,-99.142202,'Parque masayoshi ohira, CDMX');
@@ -83,7 +73,7 @@ insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,20.2096191,-87.4894285,'Tulum');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,19.8305579,-90.6150296,'San Felipe');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.6504452,-91.8335075,'Del C');
-insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.1342154,-94.4980524,13,'Coatzacoalcos');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.1342154,-94.4980524,'Coatzacoalcos');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.2465024,-94.6472769,'Playa linda');
 
 
@@ -105,18 +95,18 @@ insert into calificacion (puntaje,correo) values (4,'pletherburyd@eepurl.com');
 insert into calificacion (puntaje,correo) values (5,'daizikove@engadget.com');
 
 ---------------------------------------------------------- COMENTARIO --------------------------------------------------------------------------
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (1,'pwharin0@nps.gov','comentario_1',1);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (2,'tpadginton1@foxnews.com','comentario_2',2);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (3,'nkerry2@princeton.edu','comentario_3',3);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (4,'gwallington3@webmd.com','comentario_4',4);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (5,'belwood4@ft.com','comentario_5',5);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (6,'glemmens5@sourceforge.net','comentario_6',6);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (7,'hterlinden6@archive.org','comentario_7',7);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (1,'stredgold7@google.ru','comentario_8',8);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (1,'jhadingham8@indiatimes.com','comentario_9',9);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (2,'ored9@stanford.edu','comentario_10',10);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (3,'ainklea@rambler.ru','comentario_11',11);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (4,'dmephanb@businessinsider.com','comentario_12',12);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (5,'vnowlandc@addthis.com','comentario_13',13);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (6,'pletherburyd@eepurl.com','comentario_14',14);
-insert into comentario(id_marcador,correo,descripcion,id_calificacion) values (7,'daizikove@engadget.com','comentario_15',15);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (1,'pwharin0@nps.gov','comentario_1',1,1234);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (2,'tpadginton1@foxnews.com','comentario_2',2,1232);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (3,'nkerry2@princeton.edu','comentario_3',3,3494);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (4,'gwallington3@webmd.com','comentario_4',4,8498);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (5,'belwood4@ft.com','comentario_5',5,405);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (6,'glemmens5@sourceforge.net','comentario_6',6,8475);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (7,'hterlinden6@archive.org','comentario_7',7,9586);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (1,'stredgold7@google.ru','comentario_8',8,9596);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (1,'jhadingham8@indiatimes.com','comentario_9',9,94575);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (2,'ored9@stanford.edu','comentario_10',10,948);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (3,'ainklea@rambler.ru','comentario_11',11,945);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (4,'dmephanb@businessinsider.com','comentario_12',12,95);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (5,'vnowlandc@addthis.com','comentario_13',13,73);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (6,'pletherburyd@eepurl.com','comentario_14',14,948);
+insert into comentario(id_marcador,correo,descripcion,id_calificacion,num_calificaciones) values (7,'daizikove@engadget.com','comentario_15',15,958);

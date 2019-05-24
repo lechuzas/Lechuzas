@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      <f:view>
+       
+	 <h:head>
+          <title>Amatohtli</title>
+            <h:outputStylesheet name="/css/aemc_comentario.css"/>
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
+        </h:head>
+       
+	<h:body>
+            
+             <header>             
+                <img id="fondo" src="../resources/img/base.jpg"/>
+                <img id="logo" src="../resources/img/logo.png"/>  
+                <p:link outcome="/index.xhtml" id="faq" value="FAQ"/>
+                <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/>
+                <h:form id="cerrar_sesion">
+                <p:commandLink action="#{controladorSesion.logout()}">
+                <h:outputText value="Cerrar Sesión" />
+                </p:commandLink>
+               </h:form>
+            </header>
+            
+            <aside>
+                <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa2" model="#{verMarcadorC.simpleModel}"  draggable="true"  mapTypeControl="false">
+                    <p:ajax event="overlaySelect" listener="#{verMarcadorC.onMarkerSelect}" update="agrega_comentario muestra_comentarios"/>
+                    <p:gmapInfoWindow id="ventanaInfo">
+                         <p:outputPanel style="text-align: left; display: block; margin: auto">
+                                <h:outputText value="#{verMarcadorC.marker.title}" />
+                                <br/>
+                                <h:outputText value="#{verMarcadorC.marker.data}"/>
+                        </p:outputPanel>
+                    </p:gmapInfoWindow>
+                </p:gmap>
+            </aside>
+            
+            <body>
+                 
+                <h:form id="agrega_comentario">
+                     <p:panelGrid columns="2" id="form_agrecoment" >
+                     
+                        <h:inputText value="Nombre marcador:" disabled="True"/>
+                        <h:inputText id="nombre" value="#{verMarcadorC.select.descripcion}" disabled="True" maxlength="60"/>
+                     
+                        <h:outputText value="Latitud:" />
+                        <h:outputText id="latitud" value="#{verMarcadorC.latitud}"/> 
+                        
+                        <h:outputText value="Longitud:" />
+                        <h:outputText id="longitud" value="#{verMarcadorC.longitud}"/>
+                     </p:panelGrid>
+                     
+                    <p:inputTextarea rows="5" value="#{verMarcadorC.descripcion}" cols="30" maxlength="200" autoResize="false" placeholder="Comentario..." style="margin-top: 3%" />
+                    <p:commandButton value="Agergar" action="#{verMarcadorC.agregarComentario()}" update="agrega_comentario muestra_comentarios" style="margin-top: -3%; margin-left: 6%">
+                        <f:actionListener binding="#{comentarioBean.update()}"/>
+                    </p:commandButton>
+                                     
+                                   
+                                     
+                </h:form>
+                
+                 
+                <h:form id="muestra_comentarios">
+                    <p:messages id="mes" showDetail="true" closable="true" >
+                         <p:autoUpdate />
+                    </p:messages>
+
+                    <p:dataTable value="#{comentarioBean.lista}" var="comentario" scrollable="true" scrollHeight="140" editable="True">
+                        <f:facet name="header">
+                            Comentarios
+                        </f:facet>
+                         
+                        <p:ajax event="rowEdit" listener="#{comentarioBean.onRowEdit}"/>
+
+                        <p:column headerText="Descripcion" filterBy="#{comentario.descripcion}" filterMatchMode="contains">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{comentario.descripcion}"/></f:facet>
+                                <f:facet name="input"><p:inputText id="modelInput" value="#{comentario.descripcion}"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        
+                        <p:column headerText="Calf" style="width:55px">
+                            <p:inputNumber value="#{comentario.numCalificaciones}" decimalPlaces="0"/>
+                        </p:column>
+                        
+                        <p:column headerText="" style="width:115px">
+                            <p:rating value="#{comentario.calificacion.puntaje}">
+                                <f:attribute name="com" value="#{comentario}" />
+                                <p:ajax event="rate" listener="#{verMarcadorC.onrate}" update="muestra_comentarios"/>
+                                <p:ajax event="cancel" listener="#{verMarcadorC.oncancel(comentario)}" update="muestra_comentarios" />
+                            </p:rating>
+                        </p:column>
+                        
+                        <p:column headerText="" style="width:35px">
+                            <p:commandButton icon="fa fa-fw fa-times" type="image" style="border: none; background: none" action="#{verMarcadorC.eliminarComentario(comentario)}" update="muestra_comentarios">
+                                <p:confirm header="Confirmación" message="¿Estás seguro? El comentario se eliminará junto con sus me gusta" icon="ui-icon-alert" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                                <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                                <p:commandButton value="Sí, eliminar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{comentarioBean.update}"/>
+                            </p:confirmDialog>
+                        </p:column>
+                        
+         
+                        <p:column style="width:35px">
+                            <p:rowEditor />
+                        </p:column>
+                     
+                    </p:dataTable>
+                </h:form>
+                
+                
+                
+            </body>
+            
+        </h:body>
+        
+    </f:view>
+
+</html>

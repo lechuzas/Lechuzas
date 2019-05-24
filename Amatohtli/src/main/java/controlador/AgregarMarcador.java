@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -50,6 +51,8 @@ public class AgregarMarcador implements Serializable {
     private Set comentarios = new HashSet(0);
     private Marker marcador;
     private MapModel simpleModel;
+    private List<Tema> lista_temas;
+    private ArrayList<String> temas;
     
     
     
@@ -62,6 +65,17 @@ public class AgregarMarcador implements Serializable {
         simpleModel.addOverlay(marcador);
         this.latitud = marcador.getLatlng().getLat();
         this.longitud = marcador.getLatlng().getLng();
+        TemaDAO tdao = new TemaDAO();
+        ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
+        lista_temas = tdao.findAll();
+        temas = new ArrayList<String>();
+        for(Tema t : lista_temas){
+            if(!t.getUsuario().getCorreo().equals(us.getCorreo())){
+                lista_temas.remove(t);
+            }else{
+                temas.add(t.getNombreTema());
+            }
+        }
         
         
     }
@@ -144,6 +158,25 @@ public class AgregarMarcador implements Serializable {
     public void setComentarios(Set comentarios) {
         this.comentarios = comentarios;
     }
+
+    public List<Tema> getLista_temas() {
+        return lista_temas;
+    }
+
+    public void setLista_temas(List<Tema> lista_temas) {
+        this.lista_temas = lista_temas;
+    }
+
+    public ArrayList<String> getTemas() {
+        return temas;
+    }
+
+    public void setTemas(ArrayList<String> temas) {
+        this.temas = temas;
+    }
+    
+    
+    
     
       public void onMarkerDrag(MarkerDragEvent event){
         marcador = event.getMarker();
@@ -170,19 +203,17 @@ public class AgregarMarcador implements Serializable {
     public void agregaMarcador(){
         Marcador m = new Marcador();
         MarcadorDAO mdao = new MarcadorDAO();
-        TemaDAO tdao = new TemaDAO();
-        ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
-        List<Tema> lista_temas = tdao.findAll();
         for(Tema t : lista_temas){
-            if(this.tema.equals(t.getNombreTema()) && t.getUsuario().getCorreo().equals(us.getCorreo())){
+            if(t.getNombreTema().equals(this.tema)){
                 this.temaByIdTema = t;
                 this.temaByIdColor = t;
+                this.idTema = t.getIdTema();
             }
         }
         
         if(this.temaByIdTema == null || this.temaByIdColor == null){
             Mensajes.error("El tema que usted escogió no existe, escriba otro");
-        }else if(this.temaByIdTema != null && this.temaByIdColor != null){
+        }else if(this.temaByIdTema != null && this.temaByIdColor != null ){
             m.setLatitud(latitud);
             m.setLongitud(longitud);
             m.setTemaByIdColor(temaByIdColor);
@@ -193,62 +224,23 @@ public class AgregarMarcador implements Serializable {
             Marcador marc = mdao.buscaMarcadorPorLatLng(latitud, longitud);
             
             if(marc != null){
-                Mensajes.error("El marcador no se pudo agregar correctamente. El marcador que desea agregar ya existe");
+                Mensajes.error("El marcador que desea agregar ya existe");
+                System.out.println("Error");
             }else{
                 mdao.save(m);
                 Mensajes.info("Se ha agregado correctamente su marcador");
             }
+            this.descripcion = "";
+            this.tema = "";
+            
+        }else if(this.descripcion.equals("")){
+            Mensajes.error("Favor de ingresar una decripción");
+            System.out.println("No hay descripción");
             
         }
         
         
     }
     
-     private void creaIcono(String color,int largo,int ancho){
-        String s = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
-        s+="<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n";
-			s+="<svg width=\""+largo+"\" height=\""+ancho+"\" version=\"1.1\" id=\"Capa_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" style=\"enable-background:new 0 0 512 512;\" xml:space=\"preserve\">\n<g>\n";
-        int x =largo/2;
-        int y = (ancho/3);
-        int radio = ((largo+ancho)/2)/4;
-
-        int[] p ={x-radio,y,x+radio,y,x,(y*3)};
-        s+= creaPoligono(p,"#"+color);
-        s+=creaCirculo(x,y,radio,"#"+color,true);
-        s+=creaCirculo(x,y,radio/2,"black",true);
-
-        s+="</g>\n"+"</svg>";
-        
-        try {
-             ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-            String destino = (servletContext.getRealPath("/"))+"resources/img/";
-            System.out.println(destino);
-            FileOutputStream fileOut = new FileOutputStream(new File(destino + color+".svg"));
-            OutputStreamWriter osOut = new OutputStreamWriter(fileOut);
-            BufferedWriter out = new BufferedWriter(osOut);
-            out.write(s);
-            out.close();
-        } catch (IOException ioe) {
-            System.out.println("No pude guardar en el archivo" );
-//            System.exit(1);
-        }
-
-
-    }
-
-    private String creaCirculo(int x ,int y , int r,String color,boolean stroke){
-        String s = stroke ? "<circle cx=\""+x+"\" cy=\"" +y+"\"  r=\"" + r + "\" stroke=\"white\" stroke-width=\"1\"  fill=\"" + color + "\" />\n" : "<circle cx=\""+x+"\" cy=\"" +y+"\"  r=\"" + r + "\" stroke=\"black\" stroke-width=\"0\"  fill=\"" + color + "\" />\n";
-        return  s;
-
-    }
-
-    private String creaPoligono(int[] puntos,String color){
-        String p = "";
-        if(puntos.length%2 != 0)
-          return "Los puntos estan mal";
-        for(int i=0;i<puntos.length;i+=2){
-          p+=puntos[i]+","+puntos[i+1]+" ";
-        }
-        return "<polygon points=\""+p+"\" \n style=\" fill:" +color+";stroke:black;stroke-width:1;\" /> \n";
-    }
+    
 }

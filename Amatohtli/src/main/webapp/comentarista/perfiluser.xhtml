@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -15,41 +10,51 @@ and open the template in the editor.
        
 	 <h:head>
           <title>Amatohtli</title>
-            <h:outputStylesheet name="css/estilos.css"/>
+            <h:outputStylesheet name="/css/perfiluser_comentarista.css"/>
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
         </h:head>
        
 	<h:body>
             
-             <header>
-
-                 
+             <header>             
                 <img id="fondo" src="../resources/img/base.jpg"/>
                 <img id="logo" src="../resources/img/logo.png"/>  
                 <p:link outcome="/index.xhtml" id="faq" value="FAQ"/>
                 <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/>
-                <p:commandLink id="cerrar_sesion" action="#{controladorSesion.logout()}">
-                        <h:outputText value="Cerrar Sesión" />
+                <h:form id="cerrar_sesion">
+                <p:commandLink action="#{controladorSesion.logout()}">
+                <h:outputText value="Cerrar Sesión" />
                 </p:commandLink>
-                
+               </h:form>
             </header>
             
-                    
-                    <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa2" model="#{verMarcadorC.simpleModel}"  draggable="true"  mapTypeControl="false">
-                        <p:ajax event="overlaySelect" listener="#{verMarcadorC.onMarkerSelect}" update="agrega_comentario"/>
-                        <p:gmapInfoWindow id="ventanaInfo">
-                             <p:outputPanel style="text-align: left; display: block; margin: auto">
-                                    <h:outputText value="#{verMarcadorC.marker.title}" />
-                                    <br/>
-                                    <h:outputText value="#{verMarcadorC.marker.data}"/>
-                            </p:outputPanel>
-                        </p:gmapInfoWindow>
-                    </p:gmap>
+            <aside>
+                <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa2" model="#{verMarcadorC.simpleModel}"  draggable="true"  mapTypeControl="false">
+                    <p:ajax event="overlaySelect" listener="#{verMarcadorC.onMarkerSelect}" update="agrega_comentario muestra_comentarios"/>
+                    <p:gmapInfoWindow id="ventanaInfo">
+                         <p:outputPanel style="text-align: left; display: block; margin: auto">
+                                <h:outputText value="#{verMarcadorC.marker.title}" />
+                                <br/>
+                                <h:outputText value="#{verMarcadorC.marker.data}"/>
+                        </p:outputPanel>
+                    </p:gmapInfoWindow>
+                </p:gmap>
+            </aside>
             
-             <aside>
+            <body>
                  
-                 <h:form id="agrega_comentario">
+                <h:form id="menu_comentarista" style="margin-top: 6.5%">
+                    <p:panelMenu>
+                        <p:submenu label="Comentarios">
+                            <p:menuitem value="Agregar" action="#{verMarcadorC.muestraVentanaAgregar()}" />
+                        </p:submenu>
+                    </p:panelMenu>
+                </h:form>
                  
+                <h:form id="agrega_comentario">
+                     <p:messages id="messages" showDetail="true" closable="true" >
+                         <p:autoUpdate />
+                     </p:messages>
                      <p:panelGrid columns="2" id="form_agrecoment" >
                      
                         <h:inputText value="Nombre marcador:" disabled="True"/>
@@ -60,29 +65,22 @@ and open the template in the editor.
                         
                         <h:outputText value="Longitud:" />
                         <h:outputText id="longitud" value="#{verMarcadorC.longitud}"/>
-                     
+                        
                      </p:panelGrid>
-                     
-                     <p:inputTextarea rows="5" value="#{verMarcadorC.descripcion}" cols="30" maxlength="200" autoResize="false" placeholder="#{verMarcadorC.select.descripcion}" />
-                     
-                 </h:form>
-                    
-                 <p:commandButton value="Agergar" id="boton_agregar_coment"  action="#{verMarcadorC.agregarComentario()}" update="agrega_comentario muestra_comentarios"/>
+                </h:form>
                  
-                 <h:form id="muestra_comentarios">
-                     <p:dataTable id="lista_comentarios" value="#{comentarioBean.lista}" var="comentario" scrollable="true" scrollHeight="150">
+                <h:form id="muestra_comentarios">
+                    <p:dataTable value="#{comentarioBean.lista}" var="comentario" scrollable="true" scrollHeight="140">
+                         <f:facet name="header">
+                            Comentarios
+                         </f:facet>
                          <p:column headerText="Descripcion" filterBy="#{comentario.descripcion}" filterMatchMode="contains">
                              <p:outputLabel value="#{comentario.descripcion}"/>
                          </p:column>
-                     
                      </p:dataTable>
-                     
-                 </h:form>
-                 
-                 
-                 
-            </aside>
-                   
+                </h:form>
+                
+            </body>
             
         </h:body>
         

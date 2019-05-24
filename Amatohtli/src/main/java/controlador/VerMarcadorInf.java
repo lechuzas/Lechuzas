@@ -43,6 +43,12 @@ public class VerMarcadorInf {
                         if(m.getTemaByIdTema().getIdTema() == t.getIdTema()){
                              LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
                              Marker marc = new Marker(cord,m.getDescripcion());
+                             String aux = "/resources/img/icono.svg";
+                             //System.out.println(aux);
+                             //if(aux != null){
+                               //marc.setIcon(aux);   
+                             //}
+                             //marc.setIcon(aux);
                              simpleModel.addOverlay(marc);
 
                         }
