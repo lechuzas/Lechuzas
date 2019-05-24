@@ -17,7 +17,6 @@ import modelo.UsuarioDAO;
  * @author fermat
  */
 @ManagedBean
-@RequestScoped
 public class AgregarInformador {
     private String correo;
     private String contrasenia;
@@ -84,18 +83,30 @@ public class AgregarInformador {
             usr.setNombre(nombre);
             usr.setRol(1);
             String subject="Bienvenido a Amatohlti "+nombre;
-            String mensaje= "Tu usuario es "+nombreUsuario + " y contrasenia es: "+nombreUsuario;
+            String mensaje= "Tu usuario es "+nombreUsuario  + " y contrasenia es: "+nombreUsuario;
             dao.save(usr);
             Mail.sendMail(subject, mensaje, correo);
-            Mensajes.info("Se ha agregado correctamente el informador");
-
-        
-      
-        
-    
+            Mensajes.info("Se ha agregado correctamente el informador");   
     }
-
-
     
-    
+    public void agregaComentarista(){
+            Usuario usr= new Usuario();
+            UsuarioDAO dao=new UsuarioDAO();
+            usr.setContrasenia(nombreUsuario);
+            usr.setPaterno(paterno);
+            usr.setNombreUsuario(nombreUsuario);
+            usr.setCorreo(correo);
+            usr.setNombre(nombre);
+            usr.setRol(2);
+            String subject="Bienvenido a Amatohlti "+nombre;
+            String mensaje= "Tu usuario es "+ nombreUsuario + " y contrasenia es: "+nombreUsuario;
+            if (dao.buscaPorCorreo(correo) == null){
+                dao.save(usr);
+                Mail.sendMail(subject, mensaje, correo);
+                Mensajes.info("Se ha agregado correctamente el comentarista");    
+            }else{
+                Mensajes.error("El correo ya esta registrado");
+            }
+            
+    }
 }
