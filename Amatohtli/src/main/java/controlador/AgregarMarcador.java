@@ -42,7 +42,7 @@ import org.primefaces.model.map.Marker;
 public class AgregarMarcador implements Serializable {
     private int idMarcador;
     private int idTema;
-    private String tema;
+    private Tema tema;
     private Tema temaByIdColor;
     private Tema temaByIdTema;
     private double latitud;
@@ -51,8 +51,7 @@ public class AgregarMarcador implements Serializable {
     private Set comentarios = new HashSet(0);
     private Marker marcador;
     private MapModel simpleModel;
-    private List<Tema> lista_temas;
-    private ArrayList<String> temas;
+    private List<Tema> temas;
     
     
     
@@ -67,24 +66,18 @@ public class AgregarMarcador implements Serializable {
         this.longitud = marcador.getLatlng().getLng();
         TemaDAO tdao = new TemaDAO();
         ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
-        lista_temas = tdao.findAll();
-        temas = new ArrayList<String>();
-        for(Tema t : lista_temas){
-            if(!t.getUsuario().getCorreo().equals(us.getCorreo())){
-                lista_temas.remove(t);
-            }else{
-                temas.add(t.getNombreTema());
-            }
-        }
+        temas = tdao.buscaPorInformador(us.getCorreo());
+        
+        
         
         
     }
 
-    public String getTema() {
+    public Tema getTema() {
         return tema;
     }
 
-    public void setTema(String tema) {
+    public void setTema(Tema tema) {
         this.tema = tema;
     }
     
@@ -159,25 +152,14 @@ public class AgregarMarcador implements Serializable {
         this.comentarios = comentarios;
     }
 
-    public List<Tema> getLista_temas() {
-        return lista_temas;
-    }
-
-    public void setLista_temas(List<Tema> lista_temas) {
-        this.lista_temas = lista_temas;
-    }
-
-    public ArrayList<String> getTemas() {
+    public List<Tema> getTemas() {
         return temas;
     }
 
-    public void setTemas(ArrayList<String> temas) {
+    public void setTemas(List<Tema> temas) {
         this.temas = temas;
     }
-    
-    
-    
-    
+
       public void onMarkerDrag(MarkerDragEvent event){
         marcador = event.getMarker();
         this.latitud = marcador.getLatlng().getLat();
@@ -201,41 +183,34 @@ public class AgregarMarcador implements Serializable {
 
     
     public void agregaMarcador(){
+        System.out.println(this.tema.getNombreTema());
         Marcador m = new Marcador();
         MarcadorDAO mdao = new MarcadorDAO();
-        for(Tema t : lista_temas){
-            if(t.getNombreTema().equals(this.tema)){
-                this.temaByIdTema = t;
-                this.temaByIdColor = t;
-                this.idTema = t.getIdTema();
-            }
-        }
-        
+        this.temaByIdTema = tema;
+        this.temaByIdColor = tema;
         if(this.temaByIdTema == null || this.temaByIdColor == null){
             Mensajes.error("El tema que usted escogió no existe, escriba otro");
         }else if(this.temaByIdTema != null && this.temaByIdColor != null ){
+            System.out.println("Detectó tema");
             m.setLatitud(latitud);
             m.setLongitud(longitud);
             m.setTemaByIdColor(temaByIdColor);
             m.setTemaByIdTema(temaByIdTema);
             m.setDescripcion(descripcion);
-            
-            
             Marcador marc = mdao.buscaMarcadorPorLatLng(latitud, longitud);
-            
             if(marc != null){
                 Mensajes.error("El marcador que desea agregar ya existe");
                 System.out.println("Error");
             }else{
+                System.out.println("Apunto de agregar");
                 mdao.save(m);
                 Mensajes.info("Se ha agregado correctamente su marcador");
             }
             this.descripcion = "";
-            this.tema = "";
+            this.tema = null;
             
         }else if(this.descripcion.equals("")){
             Mensajes.error("Favor de ingresar una decripción");
-            System.out.println("No hay descripción");
             
         }
         

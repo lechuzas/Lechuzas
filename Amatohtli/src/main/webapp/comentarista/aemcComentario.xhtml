@@ -11,7 +11,7 @@
 	 <h:head>
           <title>Amatohtli</title>
             <h:outputStylesheet name="/css/aemc_comentario.css"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_CV-ykq13siKc1d-UiPH4vmp0RjlNroA"></script>            
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
         </h:head>
        
 	<h:body>
@@ -67,9 +67,8 @@
                 
                  
                 <h:form id="muestra_comentarios">
-                    <p:messages id="mes" showDetail="true" closable="true" >
-                         <p:autoUpdate />
-                    </p:messages>
+                    <p:messages id="mes" showDetail="true" closable="true" />
+                         
 
                     <p:dataTable value="#{comentarioBean.lista}" var="comentario" scrollable="true" scrollHeight="140" editable="True">
                         <f:facet name="header">

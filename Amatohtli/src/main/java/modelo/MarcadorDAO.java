@@ -88,40 +88,6 @@ public class MarcadorDAO extends AbstractDAO<Marcador>{
         return m;
     
     }
-    public List<Marcador> buscaPorTema(String tema){
-        TemaDAO tdao = new TemaDAO();
-        List<Marcador> m = null;
-        ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
-        List<Tema> lista_temas = tdao.findAll();
-        Tema principal = null;
-        for(Tema t : lista_temas){
-            if(tema.equals(t.getNombreTema()) && t.getUsuario().getCorreo().equals(us.getCorreo())){
-                principal = t;
-            }
-               
-        }
-        int t_id = principal.getIdTema();
-        Session session = this.sessionFactory.openSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            String hql = "from Marcador m where m.temaByIdTema = :t_id";
-            Query query = session.createQuery(hql);
-            query.setParameter("temaByIdTema", t_id);
-            m = (List<Marcador>)query.list();
-            tx.commit();
-            
-        }catch(HibernateException e){
-            if(tx!=null){
-                tx.rollback();
-            }
-            e.printStackTrace();
-
-        }finally{
-            session.close();
-        }
-        return m;
-    }
      
      
 }

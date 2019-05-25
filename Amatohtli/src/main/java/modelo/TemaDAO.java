@@ -109,4 +109,27 @@ public class TemaDAO extends AbstractDAO<Tema>{
         return tema;
         
     }
+    
+    public List<Tema> buscaPorInformador(String correo){
+        List<Tema> temas = null;
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String hql = "from Tema where usuario.correo = :correo";
+            Query query = session.createQuery(hql);
+            query.setParameter("correo", correo);
+            temas = (List<Tema>)query.list();
+            tx.commit();
+        }catch(HibernateException e){
+            if(tx!=null){
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return temas;
+        
+    }
 }

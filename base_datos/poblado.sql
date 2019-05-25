@@ -15,7 +15,7 @@ insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) 
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('pletherburyd@eepurl.com', 'n8PpiHWE', 'pletherburyd', 'Phillis', 'Letherbury', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('daizikove@engadget.com', 'vdbf2ZJIF', 'daizikove', 'Domingo', 'Aizikov', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('luna@gmail.com', '123', 'luna97', 'Luna', 'Felipe', 2);
-insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('ailynrp@gmail.com', 'ailyn12051998', 'ailynrp12', 'Ailyn', 'Rebollar', 1);
+insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('ailyn@gmail.com', 'ailyn12051998', 'ailynrp12', 'Ailyn', 'Rebollar', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('fernando@vexi.mx', '16011601', 'fernando1601', 'Fernando', 'Bernal', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('fluna@gmail.com', 'aluna798', 'Aluna23', 'Felipe', 'Luna', 1);
 
