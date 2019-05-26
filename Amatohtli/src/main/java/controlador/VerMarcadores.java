@@ -45,14 +45,15 @@ public class VerMarcadores implements Serializable{
             temas.add(t.getNombreTema());
         }
         tema_elegido = "";
-        MarcadorDAO mdb = new MarcadorDAO();
-        List<Marcador> marcadores = mdb.findAll();
-        for(Marcador m :marcadores){
-            LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-            Marker marcador = new Marker(cord,m.getDescripcion());
-            simpleModel.addOverlay(marcador);
-           
+        for(Tema t : lista_temas){
+            for(Object o : t.getMarcadorsForIdTema()){
+                Marcador m = (Marcador)o;
+                LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
+                Marker marcador = new Marker(cord,m.getDescripcion());
+                simpleModel.addOverlay(marcador); 
+            }
         }
+        
     }
 
     public MapModel getSimpleModel() {
@@ -103,20 +104,15 @@ public class VerMarcadores implements Serializable{
     public void muestraMarcadores(){
         if(!this.tema_elegido.equals("")){
             simpleModel = new DefaultMapModel();
-            MarcadorDAO mdao = new MarcadorDAO();
-            List<Marcador> marcadores = mdao.findAll();
-            for (Tema tem : lista_temas){
-                if(this.tema_elegido.equals(tem.getNombreTema())){
-                    tema = tem;
-                }
-            }
-            for(Marcador m : marcadores){
-                if(tema.getIdTema() == m.getTemaByIdTema().getIdTema()){
-                    LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-                    Marker marc = new Marker(cord,m.getDescripcion());
-                    simpleModel.addOverlay(marc);
-                }    
-            }
+            TemaDAO tdao = new TemaDAO();
+            tema = tdao.buscaPorNombre(tema_elegido);
+            for (Object o : tema.getMarcadorsForIdTema()){
+                Marcador m = (Marcador)o;
+                LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
+                Marker marc = new Marker(cord,m.getDescripcion());
+                simpleModel.addOverlay(marc);
+            }    
+            
             this.tema_elegido = "";
         }else{
             Mensajes.error("No se ha elegido un tema, favor de seleccionar uno");

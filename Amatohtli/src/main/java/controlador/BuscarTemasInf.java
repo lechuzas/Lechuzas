@@ -31,7 +31,8 @@ public class BuscarTemasInf implements Serializable {
     private MapModel simpleModel;
     private List<Tema> temas;
     private Tema tema;
-    private Tema tema_elegido;
+    private String tema_elegido;
+    private ArrayList<String> lista_temas;
     
     @PostConstruct
     public void BuscarTemasInf(){
@@ -40,13 +41,19 @@ public class BuscarTemasInf implements Serializable {
         TemaDAO tdao = new TemaDAO();
         ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
         temas = tdao.buscaPorInformador(us.getCorreo());
-        tema_elegido = null;
+        lista_temas = new ArrayList<String>();
+        for(Tema t : temas){
+            lista_temas.add(t.getNombreTema());
+        }
+        tema_elegido = "";
     }
 
     
     
     public void muestraMarcadores(){
-        if(this.tema_elegido != null){
+        TemaDAO tdao = new TemaDAO();
+        tema = tdao.buscaPorNombre(tema_elegido);
+        if(!this.tema_elegido.equals("")){
              simpleModel = new DefaultMapModel();
              MarcadorDAO mdao = new MarcadorDAO();
              for(Object o : this.tema.getMarcadorsForIdTema()){
@@ -90,13 +97,22 @@ public class BuscarTemasInf implements Serializable {
 
     
 
-    public Tema getTema_elegido() {
+    public String getTema_elegido() {
         return tema_elegido;
     }
 
-    public void setTema_elegido(Tema tema_elegido) {
+    public void setTema_elegido(String tema_elegido) {
         this.tema_elegido = tema_elegido;
     }
+
+    public ArrayList<String> getLista_temas() {
+        return lista_temas;
+    }
+
+    public void setLista_temas(ArrayList<String> lista_temas) {
+        this.lista_temas = lista_temas;
+    }
+    
     
     
     public String muestraVentana(){

@@ -90,18 +90,14 @@ public class BuscarTemasC implements Serializable{
     public void muestraMarcadores(){
         if(!this.tema_elegido.equals("")){
             simpleModel = new DefaultMapModel();
-            MarcadorDAO mdao = new MarcadorDAO();
-            List<Marcador> marcadores = mdao.findAll();
-            for (Tema tem : lista_temas){
-                if(this.tema_elegido.equals(tem.getNombreTema()))
-                    tema = tem;
-            }
-            for(Marcador m : marcadores){
-                if(tema.getIdTema() == m.getTemaByIdTema().getIdTema()){
-                    LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-                    Marker marc = new Marker(cord,m.getDescripcion());
-                    simpleModel.addOverlay(marc);
-                }    
+            TemaDAO tdao = new TemaDAO();
+            tema = tdao.buscaPorNombre(tema_elegido);
+            for(Object o : tema.getMarcadorsForIdTema()){
+                Marcador m = (Marcador)o;
+                LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
+                Marker marc = new Marker(cord,m.getDescripcion());
+                simpleModel.addOverlay(marc);
+                   
             }
             this.tema_elegido = "";
         }else{

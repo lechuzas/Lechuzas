@@ -41,7 +41,7 @@ and open the template in the editor.
                          <p:autoUpdate />
                      </p:messages>
                      <p:selectOneMenu id="tema" value="#{agregarMarcador.tema}" effect="fold" editable="true" placeholder="Tema" required="true" requiredMessage="Favor de seleccionar un tema">
-                        <f:selectItems value="#{agregarMarcador.temas}"/>
+                         <f:selectItems value="#{agregarMarcador.lista_temas}"/>
                      </p:selectOneMenu> <br/>
                      <p:inputTextarea id="descripcion" placeholder="Descripcion" value="${agregarMarcador.descripcion}"  required="true" requiredMessage="Favor de ingresar una descripción del marcador"/> <br/>
                      <p:inputNumber  decimalPlaces="6" id="longitud" value="#{agregarMarcador.longitud}" placeholder="Longitud" required="true" disabled="true"/>

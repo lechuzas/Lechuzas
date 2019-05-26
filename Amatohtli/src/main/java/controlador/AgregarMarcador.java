@@ -5,11 +5,7 @@
  */
 package controlador;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,7 +15,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.Tema;
@@ -42,7 +37,7 @@ import org.primefaces.model.map.Marker;
 public class AgregarMarcador implements Serializable {
     private int idMarcador;
     private int idTema;
-    private Tema tema;
+    private String tema;
     private Tema temaByIdColor;
     private Tema temaByIdTema;
     private double latitud;
@@ -52,6 +47,7 @@ public class AgregarMarcador implements Serializable {
     private Marker marcador;
     private MapModel simpleModel;
     private List<Tema> temas;
+    private ArrayList<String> lista_temas;
     
     
     
@@ -67,17 +63,22 @@ public class AgregarMarcador implements Serializable {
         TemaDAO tdao = new TemaDAO();
         ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
         temas = tdao.buscaPorInformador(us.getCorreo());
+        lista_temas = new ArrayList<String>();
+        descripcion = "";
+        for(Tema t : temas){
+            lista_temas.add(t.getNombreTema());
+        }
         
         
         
         
     }
 
-    public Tema getTema() {
+    public String getTema() {
         return tema;
     }
 
-    public void setTema(Tema tema) {
+    public void setTema(String tema) {
         this.tema = tema;
     }
     
@@ -160,6 +161,16 @@ public class AgregarMarcador implements Serializable {
         this.temas = temas;
     }
 
+    public ArrayList<String> getLista_temas() {
+        return lista_temas;
+    }
+
+    public void setLista_temas(ArrayList<String> lista_temas) {
+        this.lista_temas = lista_temas;
+    }
+    
+    
+
       public void onMarkerDrag(MarkerDragEvent event){
         marcador = event.getMarker();
         this.latitud = marcador.getLatlng().getLat();
@@ -183,11 +194,12 @@ public class AgregarMarcador implements Serializable {
 
     
     public void agregaMarcador(){
-        System.out.println(this.tema.getNombreTema());
+        TemaDAO tdao = new TemaDAO();
+        Tema tema_elegido = tdao.buscaPorNombre(tema);
         Marcador m = new Marcador();
         MarcadorDAO mdao = new MarcadorDAO();
-        this.temaByIdTema = tema;
-        this.temaByIdColor = tema;
+        this.temaByIdTema = tema_elegido;
+        this.temaByIdColor = tema_elegido;
         if(this.temaByIdTema == null || this.temaByIdColor == null){
             Mensajes.error("El tema que usted escogió no existe, escriba otro");
         }else if(this.temaByIdTema != null && this.temaByIdColor != null ){
@@ -200,22 +212,17 @@ public class AgregarMarcador implements Serializable {
             Marcador marc = mdao.buscaMarcadorPorLatLng(latitud, longitud);
             if(marc != null){
                 Mensajes.error("El marcador que desea agregar ya existe");
-                System.out.println("Error");
-            }else{
-                System.out.println("Apunto de agregar");
+                
+            }else if(descripcion.equals("")){
+                Mensajes.error("Favor de ingresar una descripción");
+                System.out.println("No hay descripción");
+            }
+            else{
                 mdao.save(m);
                 Mensajes.info("Se ha agregado correctamente su marcador");
             }
             this.descripcion = "";
-            this.tema = null;
-            
-        }else if(this.descripcion.equals("")){
-            Mensajes.error("Favor de ingresar una decripción");
-            
+            this.tema = "";
         }
-        
-        
     }
-    
-    
 }
