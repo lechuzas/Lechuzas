@@ -1,0 +1,131 @@
+#fondo{
+    position: relative;
+    width: 110%;
+    height: 110%;  
+    margin-top: -100px;
+}
+
+#logo{
+    position: absolute;
+    margin-top: -1180px;
+    margin-left: 71px;
+    float: left;
+    width: 120px;
+    height: 120px;
+    
+}
+
+
+
+#iniciar_sesion{
+    position: relative;
+    margin-top: -1150px;
+    margin-right: 500px;
+    float: right;
+    color: #589DE1;
+    font-weight: bolder;
+}
+
+#faq{
+   position: relative;
+   margin-top: -1150px;
+   margin-right: 70px;
+   float: right;
+   color: #48C9B0;
+   font-weight: bolder;
+}
+
+#contacto{
+   position: relative;
+   margin-top: -1150px;
+   margin-right: 250px;
+   float: right;
+   color: #48C9B0;
+   font-weight: bolder;   
+}
+
+#boton_registrar{
+    position: relative;
+    height: 90px;  
+    width: 190px;
+    margin-left: 190px;
+    margin-top: -560px;
+    
+}
+
+#texto_nosotros{
+    position: absolute;
+    height: 220px;  
+    width: 390px;
+    margin-left: 150px;
+    margin-top: -380px;
+    
+}
+
+#f{
+    position: absolute;
+    margin-left: 880px;
+    margin-top: 120px;
+}
+
+
+
+#login_i{
+    position: relative;
+    height: 100px;  
+    width: 50%; 
+    margin-top: -800px;
+    margin-right: -50px;
+    float:right;
+}
+
+
+#form_agreinfo{
+    position: relative;
+    margin-top: 300px;
+    margin-right: -310px;
+    float:right;
+}
+
+
+#agrega_comentario{
+    position: relative;
+    margin-right: 15%;
+    margin-top: 10%;
+    float:right;
+}
+
+
+#cerrar_sesion{
+    position: relative;
+    margin-top: 60px;
+    margin-right: 50px;
+    float: right;
+    color: #589DE1;
+    font-weight: bolder;
+}
+
+#boton_agregar_coment{
+    position: relative;
+    margin-top: 0.5%;
+    margin-right: 15%;
+    float: right;
+    color: #589DE1;
+    
+}
+
+#muestra_comentarios{
+    position: relative;
+    margin-top: 0.10%;
+    margin-right: 15%;
+    float: right;
+    color: #589DE1;
+}
+
+#form{
+    position: relative;
+    margin-top: 300px;
+    margin-right: -100px;
+    float:right;
+    
+}

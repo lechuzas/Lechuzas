@@ -1,0 +1,90 @@
+#fondo{
+    position: relative;
+    width: 110%;
+    height: 110%;  
+    margin-top: -10px;
+}
+
+#mapa{
+    position: absolute;
+    height: 500px;  
+    width: 50%; 
+    margin-top: -1000px;
+    margin-left: 830px;
+    float: right;
+}
+
+#logo{
+    position: absolute;
+    margin-top: -1250px;
+    margin-left: 71px;
+    float: left;
+    width: 120px;
+    height: 120px;
+    
+}
+
+#iniciar_sesion{
+    position: absolute;
+    margin-top: -1210px;
+    margin-left: 1260px;
+    float: right;
+    color: #589DE1;
+    font-weight: bolder;
+}
+
+#faq{
+   position: absolute;
+   margin-top: -1210px;
+   margin-left: 1500px;
+   float: right;
+   color: #48C9B0;
+   font-weight: bolder;
+}
+
+#contacto{
+   position: absolute;
+   margin-top: -1210px;
+   margin-left: 1660px;
+   float: right;
+   color: #48C9B0;
+   font-weight: bolder;   
+}
+
+#boton_registrar{
+    position: relative;
+    height: 90px;  
+    width: 190px;
+    margin-left: 110px;
+    margin-top: 500px;
+    
+}
+
+#texto_nosotros{
+    position: absolute;
+    height: 220px;  
+    width: 390px;
+    margin-left: 110px;
+    margin-top: -890px;
+    
+}
+
+#f{
+    position: absolute;
+    margin-left: 830px;
+    margin-top: -1100px;
+}
+
+#buscar_btn{
+    position: absolute;
+    margin-left: 1130px;
+    margin-top: -1100px;
+}
+
+
+#boton_registrar{
+    position: absolute;
+    margin-left: 130px;
+    margin-top: -600px;
+}
+

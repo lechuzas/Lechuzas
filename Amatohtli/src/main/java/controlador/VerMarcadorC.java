@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import bean.ComentarioBean;
@@ -21,7 +16,6 @@ import modelo.MarcadorDAO;
 import modelo.TemaDAO;
 import modelo.Usuario;
 import modelo.UsuarioDAO;
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.RateEvent;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
@@ -153,21 +147,24 @@ public class VerMarcadorC implements Serializable{
         MarcadorDAO marcadorDAO = new MarcadorDAO();
         Marcador m = marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud);
         if(this.descripcion != null && m != null){
-            Usuario usuario = usuarioDAO.buscaPorCorreo(us.getCorreo());
-            CalificacionDAO udbc = new CalificacionDAO();
-            calificacion.setUsuario(usuario);
-            calificacion.setPuntaje(0);
-            udbc.save(calificacion);
-            comentario.setCalificacion(calificacion);
-            comentario.setMarcador(m);
-            comentario.setUsuario(usuario);
-            comentario.setDescripcion(descripcion); 
-            //comentario.setIdComentario(100);
-            ComentarioDAO udb = new ComentarioDAO();
-            udb.save(comentario);
-            this.descripcion="";
-            ComentarioBean.update();
-            Mensajes.info("Su comentario se agregó correctamente");
+            if(!this.descripcion.equals("")){
+                Usuario usuario = usuarioDAO.buscaPorCorreo(us.getCorreo());
+                CalificacionDAO udbc = new CalificacionDAO();
+                calificacion.setUsuario(usuario);
+                calificacion.setPuntaje(0);
+                udbc.save(calificacion);
+                comentario.setCalificacion(calificacion);
+                comentario.setMarcador(m);
+                comentario.setUsuario(usuario);
+                comentario.setDescripcion(descripcion); 
+                ComentarioDAO udb = new ComentarioDAO();
+                udb.save(comentario);
+                this.descripcion="";
+                ComentarioBean.update();
+                Mensajes.info("Su comentario se agregó correctamente");
+            }else{
+                Mensajes.error("Por favor escribe algún comentario");
+            }
         }else{
             Mensajes.error("Elija un marcador");
         }
@@ -205,7 +202,6 @@ public class VerMarcadorC implements Serializable{
     }
     
     public void oncancel(Comentario c) {
-            
             Calificacion calf = c.getCalificacion();
             calf.setPuntaje(0);
             c.setCalificacion(calf);
@@ -217,7 +213,6 @@ public class VerMarcadorC implements Serializable{
             this.descripcion="";
             ComentarioBean.update();
             Mensajes.info("Quitaste la calificaición del comentario");
-        
     }
     
     
