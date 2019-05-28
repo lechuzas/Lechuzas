@@ -61,6 +61,7 @@ public class EliminarMarcador {
     }
     
     public void eliminaMarcador(){
+        TemaDAO tdao = new TemaDAO();
         MarcadorDAO mdao = new MarcadorDAO();
         ComentarioDAO cdao = new ComentarioDAO();
         Marcador m = mdao.buscaMarcadorPorLatLng(lat, lng);
@@ -71,11 +72,19 @@ public class EliminarMarcador {
             }
             mdao.delete(m);
             Mensajes.info("Se ha eliminado correctamente el marcador");
+        }else if(comentarios.size() == 1){
+            for(Comentario c : comentarios){
+                cdao.delete(c);
+            }
+            Tema t = m.getTemaByIdTema();
+            mdao.delete(m);
+            tdao.delete(t);
+            Mensajes.info("Se ha eliminado correctamente el marcador");
+            
         }else{
             Mensajes.error("El marcador que desea eliminar no existe");
         }
         simpleModel = new DefaultMapModel();
-        TemaDAO tdao = new TemaDAO();
         ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
         List<Tema> lista_temas = tdao.buscaPorInformador(us.getCorreo());
         for(Tema t : lista_temas){
