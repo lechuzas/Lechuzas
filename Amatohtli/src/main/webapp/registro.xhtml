@@ -39,6 +39,8 @@
 
                         
                         
+                
+
                         <p:inputText class="texto" value="#{agregarInformador.nombreUsuario}" placeholder="Nombre Usuario" required="true" requiredMessage="Por favor ingresa tu Usuario" >
                         </p:inputText> <br/>
                         
@@ -48,10 +50,17 @@
                         <p:inputText class="texto" value="#{agregarInformador.paterno}" placeholder="Apellido" required="true" requiredMessage="Por favor ingresa tu apellido" >
                         </p:inputText> <br/>
                         
+                        <p:inputText class="texto" id="a" value="#{agregarInformador.nombreUsuario}" placeholder="Nombre Usuario" required="true" requiredMessage="Por favor ingresa tu Usuario" >
+                        </p:inputText> <br/>
+                        
+                        <p:password class="texto" id="d" value="#{agregarInformador.contrasenia}" placeholder="Contraseña" required="true" requiredMessage="Por favor ingresa tu contraseña" >
+                        </p:password> <br/>
+                        
+                        <p:password class="texto" id="f" value="#{agregarInformador.contraseniaConfirma}" placeholder="Confirma contraseña" required="true" requiredMessage="Por favor ingresa tu contraseña" >
+                        </p:password> <br/>
                         
                         
-                        
-                        <p:commandButton class="texto" action="#{agregarInformador.agregaComentarista()}" value="Regístrarme" ajax='false' />
+                        <p:commandButton class="texto" action="#{agregarInformador.confirmaContrenia()}" value="Regístrarme" ajax='false' />
                         
                     </h:form>
                    

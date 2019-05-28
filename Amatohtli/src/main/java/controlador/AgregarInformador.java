@@ -20,6 +20,7 @@ import modelo.UsuarioDAO;
 public class AgregarInformador {
     private String correo;
     private String contrasenia;
+    private String contraseniaConfirma;
     private String nombreUsuario;
     private String nombre;
     private String paterno;
@@ -39,6 +40,14 @@ public class AgregarInformador {
 
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
+    }
+
+    public String getContraseniaConfirma() {
+        return contraseniaConfirma;
+    }
+
+    public void setContraseniaConfirma(String contraseniaConfirma) {
+        this.contraseniaConfirma = contraseniaConfirma;
     }
 
     public String getNombreUsuario() {
@@ -105,11 +114,18 @@ public class AgregarInformador {
             }
 
     }
+    public void confirmaContrenia(){
+        if (contrasenia.equals(contraseniaConfirma)){
+            agregaComentarista();
+        }else{
+            Mensajes.error("La contraseña no coincide");
+        }
     
+    }
     public void agregaComentarista(){
             Usuario usr= new Usuario();
             UsuarioDAO dao=new UsuarioDAO();
-            usr.setContrasenia(nombreUsuario);
+            usr.setContrasenia(contrasenia);
             usr.setPaterno(paterno);
             usr.setNombreUsuario(nombreUsuario);
             usr.setCorreo(correo);
@@ -120,7 +136,7 @@ public class AgregarInformador {
                             + "Gracias por querer aportar tu granito de arena y hacer una comunidad más grande"+"\n"
                             + " a continuación se te otorgan tus datos para que puedas ingresar a tu cuenta: "+"\n\n"
                             +"Tu usuario es: "+nombreUsuario +"\n"
-                            +"Contrasenia: "+nombreUsuario +"\n\n"
+                            +"Contrasenia: "+contrasenia +"\n\n"
                             +"Recuerda actualizar tu contraseña cuando entres a tu cuenta!"+"\n\n"
                             +"Atte: Equipo Amatohtli";
             if (dao.buscaPorCorreo(correo) == null){
@@ -130,6 +146,8 @@ public class AgregarInformador {
                 this.correo="";
                 this.nombreUsuario="";
                 this.paterno="";
+                this.contrasenia="";
+                this.contraseniaConfirma="";
                 Mensajes.info("Se te ha enviado un correo, gracias :D ");    
             }else{
                 Mensajes.error("El correo ya esta registrado");
