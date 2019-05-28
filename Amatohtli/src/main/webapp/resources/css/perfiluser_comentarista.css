@@ -1,3 +1,8 @@
+body{
+    overflow-y:hidden;
+    overflow-x: hidden;
+}
+
 #fondo{
     position: absolute;
     width: 100%;
@@ -36,7 +41,7 @@
 #cerrar_sesion{
     position: relative;
     margin-top: 60px;
-    margin-right: 50px;
+    margin-right: 90px;
     float: right;
     color: #589DE1;
     font-weight: bolder;

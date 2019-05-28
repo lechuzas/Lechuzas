@@ -17,17 +17,17 @@
        
 	<h:body>
             
-             <header>                 
+            <header>                 
                 <img id="fondo" src="resources/img/base.jpg"/>
                 <img id="logo" src="resources/img/logo.png"/> 
-                
                 <h:form id="iniciar_sesion">
                 <p:link outcome="/login.xhtml" value="Iniciar Sesión"/>
                 </h:form>
                 <h:form id ="faq">
-                <p:link outcome="/index.xhtml" value="FAQ"/>
+                <p:link outcome="/preguntasFrecuentes.xhtml" value="FAQ"/>
                 </h:form>
                 <h:form id="contacto">
+
                 <p:link outcome="/index.xhtml" value="Contáctanos"/>
                 </h:form>
                 
@@ -44,9 +44,14 @@
                 </h:form>
                 
                 
+
+                <p:link outcome="/contacto.xhtml" value="Contáctanos"/>
+                </h:form>
             </header>
+                
             
-                    <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadores.simpleModel}"  draggable="true"  mapTypeControl="false">
+            <aside>
+                <p:gmap center="23.382390, -102.291477" zoom="5" type="roadmap" id="mapa" model="#{verMarcadores.simpleModel}"  draggable="true"  mapTypeControl="false">
                         <p:ajax event="overlaySelect" listener="#{verMarcadores.onMarkerSelect}"/>
                         <p:gmapInfoWindow id="ventanaInfo">
                              <p:outputPanel style="text-align: left; display: block; margin: auto">
@@ -56,19 +61,30 @@
                             </p:outputPanel>
                         </p:gmapInfoWindow>
                     </p:gmap> 
+            </aside>
+              
+            <body>
             
-                    <h:form id="boton_registrar">    
+                <h:form id="boton_registrar">    
                     <p:commandLink  action="/registro?faces-redirect=true">
                         <h:graphicImage value="resources/img/registrar_boton.png"/>
                     </p:commandLink>
-                    </h:form>
-                    
-            
-                    <h:form id="texto_nosotros">
+                </h:form>
+                
+               
+                
+                <h:form id="texto_nosotros">
                             <p:commandLink  action="#{mensajes.info()}">
                                 <h:graphicImage value="resources/img/nosotros.png"/>
                             </p:commandLink>
                     </h:form>
+                
+            </body>    
+            
+                    
+            <footer>
+                <img id="powered" src="resources/img/powered_by.png"/> 
+            </footer>
             
             
         </h:body>

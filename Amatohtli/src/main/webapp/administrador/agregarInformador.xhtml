@@ -9,7 +9,7 @@
    <f:view>
        
 	 <h:head>
-          <title>Eliminar Comentaristas</title>
+          <title>AgregarAdmin</title>
             <h:outputStylesheet name="/css/estilos.css"/>
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
         </h:head>
@@ -38,29 +38,30 @@
                     </p:gmap> 
                
                     <h:form id="form">
-                    <p:messages id="messages" showDetail="true" closable="true" >
+                        <p:messages id="messages" showDetail="true" closable="true" >
                              <p:autoUpdate />
                          </p:messages>
-                        <p:selectOneMenu id="correo" value="#{eliminarComentaristas.correo}" effect="fold" editable="true">
-                        <f:selectItem itemLabel="Selecciona el correo de un comentarista" itemValue="" />
-                        <f:selectItems value="#{eliminarComentaristas.lista_correos}"/>
-                    </p:selectOneMenu>
-                         <p:commandButton value="Eliminar"  action="#{eliminarComentaristas.eliminaComentarista()}">
-                             <p:confirm header="Confirmación" message="¿Estás seguro? El comentarista se eliminará junto con sus comentarios" icon="ui-icon-alert" />
+                        <p:inputText id="paterno" value="#{agregarInformador.paterno}" placeholder="Paterno" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
+                         </p:inputText> <br/>
+                        <p:inputText id="nombre" value="#{agregarInformador.nombre}" placeholder="Nombre" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
+                         </p:inputText> <br/>
+                        <p:inputText id="nombreU" value="#{agregarInformador.nombreUsuario}" placeholder="Usuario" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
+                         </p:inputText> <br/>
+                        <p:inputText id="correo" value="#{agregarInformador.correo}" placeholder="Correo" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
+                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                         </p:inputText> <br/>   
+                         <p:commandButton value="Agregar"  action="#{agregarInformador.agregaInfo()}" ajax='false'>
+                             <p:confirm header="Confirmación" message="¿Estás seguro? Se enviara correo" icon="ui-icon-alert" />
                          </p:commandButton>
                           <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
                              <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
-                             <p:commandButton value="Sí, eliminar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="messages" />
+                             <p:commandButton value="Sí, Enviar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="messages" />
                          </p:confirmDialog>
                          
                 </h:form>
-                
-            
-            
-             
-           
-         
-            
-        </h:body>
+
+       </h:body>
     </f:view>
 </html>
+
