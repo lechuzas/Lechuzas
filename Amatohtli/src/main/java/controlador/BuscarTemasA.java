@@ -12,7 +12,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import modelo.Marcador;
-import modelo.MarcadorDAO;
 import modelo.Tema;
 import modelo.TemaDAO;
 import org.primefaces.model.map.DefaultMapModel;
@@ -91,11 +90,13 @@ public class BuscarTemasA implements Serializable {
         if(!this.tema_elegido.equals("")){
             TemaDAO tdao = new TemaDAO();
             tema = tdao.buscaPorNombre(tema_elegido);
+            String color = "../" + tema.getCatColor().getImagen();
             simpleModel = new DefaultMapModel();
             for(Object o : tema.getMarcadorsForIdTema()){
                 Marcador m = (Marcador)o;
                 LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
                 Marker marc = new Marker(cord,m.getDescripcion());
+                marc.setIcon(color);
                 simpleModel.addOverlay(marc);
                  
             }

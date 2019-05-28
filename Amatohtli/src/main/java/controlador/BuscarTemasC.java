@@ -92,10 +92,12 @@ public class BuscarTemasC implements Serializable{
             simpleModel = new DefaultMapModel();
             TemaDAO tdao = new TemaDAO();
             tema = tdao.buscaPorNombre(tema_elegido);
+            String color = "../" + tema.getCatColor().getImagen();
             for(Object o : tema.getMarcadorsForIdTema()){
                 Marcador m = (Marcador)o;
                 LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
                 Marker marc = new Marker(cord,m.getDescripcion());
+                marc.setIcon(color);
                 simpleModel.addOverlay(marc);
                    
             }

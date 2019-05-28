@@ -46,10 +46,12 @@ public class VerMarcadores implements Serializable{
         }
         tema_elegido = "";
         for(Tema t : lista_temas){
+            String color = t.getCatColor().getImagen();
             for(Object o : t.getMarcadorsForIdTema()){
                 Marcador m = (Marcador)o;
                 LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
                 Marker marcador = new Marker(cord,m.getDescripcion());
+                marcador.setIcon(color);
                 simpleModel.addOverlay(marcador); 
             }
         }
@@ -110,13 +112,15 @@ public class VerMarcadores implements Serializable{
                 Marcador m = (Marcador)o;
                 LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
                 Marker marc = new Marker(cord,m.getDescripcion());
+                String color = tema.getCatColor().getImagen();
+                marc.setIcon(color);
                 simpleModel.addOverlay(marc);
             }    
             
-            this.tema_elegido = "";
         }else{
             Mensajes.error("No se ha elegido un tema, favor de seleccionar uno");
             
         }
+        this.tema_elegido = "";
     }
 }

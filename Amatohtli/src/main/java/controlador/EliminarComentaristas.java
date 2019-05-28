@@ -40,14 +40,13 @@ public class EliminarComentaristas {
     @PostConstruct
     public void EliminarComentaristas(){
         UsuarioDAO udao = new UsuarioDAO();
-        comentaristas = udao.findAll();
+        comentaristas = udao.buscaComentaristas();
         lista_correos = new ArrayList<String>();
-        this.correo = "";
-        for(Usuario u : udao.findAll()){
-            if(u.getRol() == 2)
-                lista_correos.add(u.getCorreo());
+        for(Usuario comentarista : comentaristas){
+            lista_correos.add(comentarista.getCorreo());
+ 
         }
-         
+        correo = "";
      }
 
     public String getCorreo() {
@@ -137,19 +136,14 @@ public class EliminarComentaristas {
     }
     
      public void eliminaComentarista(){
-         System.out.println(this.correo);
          UsuarioDAO udao = new UsuarioDAO();
          Usuario comentarista = udao.buscaPorCorreo(correo);
          ComentarioDAO c = new ComentarioDAO();
-         List<Comentario> lista_comentarios = c.finAll();
          if(comentarista != null){
-             ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("comentarista");
-             for(Comentario comentario : lista_comentarios){
-                 System.out.println(comentario.getUsuario().getCorreo());
-                 if(comentario.getUsuario().getCorreo().equals(us.getCorreo())){
-                     c.delete(comentario);
-                 }
-         }
+             for(Object o : comentarista.getComentarios()){
+                 Comentario comentario = (Comentario)o;
+                 c.delete(comentario);
+             }
              udao.delete(comentarista);
              Mensajes.info("Se ha eliminado correctamente el comentarista");
          }else if(comentarista != null && comentarista.getRol() != 1 || comentarista == null){

@@ -11,7 +11,7 @@
 	 <h:head>
           <title>Amatohtli</title>
             <h:outputStylesheet name="css/index.css"/>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF3f_PEYq7zDy-tePJAoFnx0qxWOS4wqU"></script>            
 
         </h:head>
        
@@ -33,14 +33,13 @@
                 
               
                 <h:form id="f">
-                    <p:messages id="messages" showDetail="true" closable="true" />
+                    <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                    </p:messages>
                     <p:selectOneMenu id="tema" value="#{verMarcadores.tema_elegido}" effect="fold" editable="true">
                         <f:selectItem itemLabel="Selecciona uno de tus temas" itemValue="" />
                         <f:selectItems value="#{verMarcadores.temas}"/>
                     </p:selectOneMenu>
-                </h:form>
-                
-                <h:form id="buscar_btn">
                     <p:commandButton action="#{verMarcadores.muestraMarcadores()}" value="Buscar" update="mapa" />
                 </h:form>
                 

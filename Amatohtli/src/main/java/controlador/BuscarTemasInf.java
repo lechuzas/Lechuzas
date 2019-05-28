@@ -56,10 +56,12 @@ public class BuscarTemasInf implements Serializable {
         if(!this.tema_elegido.equals("")){
              simpleModel = new DefaultMapModel();
              MarcadorDAO mdao = new MarcadorDAO();
+             String color = "../" + tema.getCatColor().getImagen();
              for(Object o : this.tema.getMarcadorsForIdTema()){
                  Marcador m = (Marcador)o;
                  LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
                  Marker marc = new Marker(cord,m.getDescripcion());
+                 marc.setIcon(color);
                  simpleModel.addOverlay(marc);      
              }
              this.tema_elegido = null;

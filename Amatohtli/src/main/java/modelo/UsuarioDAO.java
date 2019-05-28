@@ -86,5 +86,25 @@ public class UsuarioDAO extends AbstractDAO<Usuario>{
         }
         return u;
     }
-
+    
+    public List<Usuario> buscaComentaristas(){
+        List<Usuario> u = null;
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String hql = "from Usuario where rol = 1";
+            Query query = session.createQuery(hql);
+            u = (List<Usuario>)query.list();
+            tx.commit();
+        }catch(HibernateException e){
+            if(tx!=null){
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return u;
+    }
 }
