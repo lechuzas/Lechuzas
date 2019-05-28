@@ -39,13 +39,13 @@
 
                         
                         
-                        <p:inputText class="texto" id="a" value="#{agregarInformador.nombreUsuario}" placeholder="Nombre Usuario" required="true" requiredMessage="Por favor ingresa tu Usuario" >
+                        <p:inputText class="texto" value="#{agregarInformador.nombreUsuario}" placeholder="Nombre Usuario" required="true" requiredMessage="Por favor ingresa tu Usuario" >
                         </p:inputText> <br/>
                         
-                        <p:inputText class="texto" id="b" value="#{agregarInformador.nombre}" placeholder="Nombre" required="true" requiredMessage="Por favor ingresa tu nombre" >
+                        <p:inputText class="texto" value="#{agregarInformador.nombre}" placeholder="Nombre" required="true" requiredMessage="Por favor ingresa tu nombre" >
                         </p:inputText> <br/>
                         
-                        <p:inputText class="texto" id="c" value="#{agregarInformador.paterno}" placeholder="Apellido" required="true" requiredMessage="Por favor ingresa tu apellido" >
+                        <p:inputText class="texto" value="#{agregarInformador.paterno}" placeholder="Apellido" required="true" requiredMessage="Por favor ingresa tu apellido" >
                         </p:inputText> <br/>
                         
                         
@@ -54,15 +54,12 @@
                         <p:commandButton class="texto" action="#{agregarInformador.agregaComentarista()}" value="Regístrarme" ajax='false' />
                         
                     </h:form>
-            
-                    
-            
                    
-            <h:form id="texto_nosotros">
-                    <p:commandLink  action="#{mensajes.info()}">
-                        <h:graphicImage value="resources/img/nosotros.png"/>
-                    </p:commandLink>
-            </h:form>
+                    <h:form id="texto_nosotros">
+                            <p:commandLink  action="#{mensajes.info()}">
+                                <h:graphicImage value="resources/img/nosotros.png"/>
+                            </p:commandLink>
+                    </h:form>
             
         </h:body>
         
