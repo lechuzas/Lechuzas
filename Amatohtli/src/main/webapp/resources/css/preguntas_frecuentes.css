@@ -1,14 +1,13 @@
 body{
     overflow-y:hidden;
-    overflow-x: hidden;
 }
 
 #fondo{
     position: relative;
     width: 100%;
     height: 100%;  
-    margin-top: -3px;
-    margin-left: 45px;
+    margin-top: -5px;
+    margin-left: 5px; 
 }
 
 #logo{
@@ -24,19 +23,10 @@ body{
 #iniciar_sesion{
     position: absolute;
     margin-top: -1260px;
-    margin-left: 1450px;
+    margin-left: 1750px;
     float: right;
     color: #589DE1;
     font-weight: bolder;
-}
-
-#faq{
-   position: absolute;
-   margin-top: -1260px;
-   margin-left: 1840px;
-   float: right;
-   color: #48C9B0;
-   font-weight: bolder;
 }
 
 #contacto{
@@ -45,15 +35,7 @@ body{
    margin-left: 2000px;
    float: right;
    color: #48C9B0;
-   font-weight: bolder;     
-}
-
-#boton_registrar{
-    position: absolute;
-    height: 90px;  
-    width: 190px;
-    margin-left: 150px;
-    margin-top: -600px;
+   font-weight: bolder;   
 }
 
 #texto_nosotros{
@@ -61,21 +43,21 @@ body{
     height: 220px;  
     width: 390px;
     margin-left: 110px;
-    margin-top: -900px;
+    margin-top: -860px;
 }
 
-#f{
+#lista_preguntas{
     position: absolute;
-    margin-left: 830px;
-    margin-top: -980px;
+    height: 720px;  
+    width: 890px;
+    margin-left: 1110px;
+    margin-top: -900px;
 }
 
-
-#login_i{
-    position: relative;
-    height: 100px;  
-    width: 50%; 
-    margin-top: -900px;
-    margin-right: -150px;
-    float:right;
+#img_pregunta{
+    position: absolute;
+    height: 220px;  
+    width: 390px;
+    margin-left: 610px;
+    margin-top: -1000px;
 }

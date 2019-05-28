@@ -1,22 +1,27 @@
+body{
+    overflow-y:hidden;
+}
+
 #fondo{
     position: relative;
-    width: 110%;
-    height: 110%;  
-    margin-top: -10px;
+    width: 100%;
+    height: 100%;  
+    margin-top: -5px;
+    margin-left: 5px;
 }
 
 #mapa{
     position: absolute;
     height: 500px;  
     width: 50%; 
-    margin-top: -1000px;
-    margin-left: 830px;
+    margin-top: -1020px;
+    margin-left: 860px;
     float: right;
 }
 
 #logo{
     position: absolute;
-    margin-top: -1250px;
+    margin-top: -1300px;
     margin-left: 71px;
     float: left;
     width: 120px;
@@ -26,8 +31,8 @@
 
 #iniciar_sesion{
     position: absolute;
-    margin-top: -1210px;
-    margin-left: 1260px;
+    margin-top: -1260px;
+    margin-left: 1600px;
     float: right;
     color: #589DE1;
     font-weight: bolder;
@@ -35,8 +40,8 @@
 
 #faq{
    position: absolute;
-   margin-top: -1210px;
-   margin-left: 1500px;
+   margin-top: -1260px;
+   margin-left: 1840px;
    float: right;
    color: #48C9B0;
    font-weight: bolder;
@@ -44,20 +49,19 @@
 
 #contacto{
    position: absolute;
-   margin-top: -1210px;
-   margin-left: 1660px;
+   margin-top: -1260px;
+   margin-left: 2000px;
    float: right;
    color: #48C9B0;
    font-weight: bolder;   
 }
 
 #boton_registrar{
-    position: relative;
+    position: absolute;
     height: 90px;  
     width: 190px;
-    margin-left: 110px;
-    margin-top: 500px;
-    
+    margin-left: 170px;
+    margin-top: -200px;
 }
 
 #texto_nosotros{
@@ -65,20 +69,19 @@
     height: 220px;  
     width: 390px;
     margin-left: 110px;
-    margin-top: -890px;
-    
+    margin-top: -900px;
 }
 
 #f{
     position: absolute;
-    margin-left: 830px;
-    margin-top: -1100px;
+    margin-left: 860px;
+    margin-top: -1080px;
 }
 
 #buscar_btn{
     position: absolute;
-    margin-left: 1130px;
-    margin-top: -1100px;
+    margin-left: 1160px;
+    margin-top: -1082px;
 }
 
 
@@ -86,5 +89,13 @@
     position: absolute;
     margin-left: 130px;
     margin-top: -600px;
+}
+
+#powered{
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    margin-left: 2000px;
+    margin-top: -370px;
 }
 
