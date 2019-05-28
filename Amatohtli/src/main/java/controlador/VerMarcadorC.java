@@ -54,7 +54,7 @@ public class VerMarcadorC implements Serializable{
             LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
             Marker marcador = new Marker(cord,m.getDescripcion());
             String color = "../" + m.getTemaByIdTema().getCatColor().getImagen();
-            marcador.setIcon(color);
+            //marcador.setIcon(color);
             simpleModel.addOverlay(marcador);
             
         }
