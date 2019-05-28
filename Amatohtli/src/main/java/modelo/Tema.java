@@ -79,6 +79,10 @@ public class Tema  implements java.io.Serializable {
     }
 
 
+    @Override
+    public String toString(){
+        return this.nombreTema;
+    }
 
 
 }

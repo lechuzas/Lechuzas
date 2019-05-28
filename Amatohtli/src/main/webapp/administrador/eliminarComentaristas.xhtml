@@ -41,10 +41,10 @@
                     <p:messages id="messages" showDetail="true" closable="true" >
                              <p:autoUpdate />
                          </p:messages>
-                    <p:inputText id="correo" value="#{eliminarComentaristas.correo}" placeholder="Correo" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
-                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                        <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
-                         </p:inputText> <br/>
+                        <p:selectOneMenu id="correo" value="#{eliminarComentaristas.correo}" effect="fold" editable="true">
+                        <f:selectItem itemLabel="Selecciona el correo de un comentarista" itemValue="" />
+                        <f:selectItems value="#{eliminarComentaristas.lista_correos}"/>
+                    </p:selectOneMenu>
                          <p:commandButton value="Eliminar"  action="#{eliminarComentaristas.eliminaComentarista()}">
                              <p:confirm header="Confirmación" message="¿Estás seguro? El comentarista se eliminará junto con sus comentarios" icon="ui-icon-alert" />
                          </p:commandButton>

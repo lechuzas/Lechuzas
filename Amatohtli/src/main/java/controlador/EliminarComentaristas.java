@@ -5,10 +5,16 @@
  */
 package controlador;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import modelo.Comentario;
+import modelo.ComentarioDAO;
 import modelo.Usuario;
 import modelo.UsuarioDAO;
 
@@ -20,14 +26,28 @@ import modelo.UsuarioDAO;
 @ViewScoped
 public class EliminarComentaristas {
     private String correo;
-     private String contrasenia;
-     private String nombreUsuario;
-     private String nombre;
-     private String paterno;
-     private Integer rol;
-     private Set temas = new HashSet(0);
-     private Set comentarios = new HashSet(0);
-     private Set calificacions = new HashSet(0);
+    private String contrasenia;
+    private String nombreUsuario;
+    private String nombre;
+    private String paterno;
+    private Integer rol;
+    private Set temas = new HashSet(0);
+    private Set comentarios = new HashSet(0);
+    private Set calificacions = new HashSet(0);
+    private ArrayList<String> lista_correos;
+    private List<Usuario> comentaristas;
+    
+    @PostConstruct
+    public void EliminarComentaristas(){
+        UsuarioDAO udao = new UsuarioDAO();
+        comentaristas = udao.buscaComentaristas();
+        lista_correos = new ArrayList<String>();
+        for(Usuario comentarista : comentaristas){
+            lista_correos.add(comentarista.getCorreo());
+ 
+        }
+        correo = "";
+     }
 
     public String getCorreo() {
         return correo;
@@ -92,6 +112,24 @@ public class EliminarComentaristas {
     public void setCalificacions(Set calificacions) {
         this.calificacions = calificacions;
     }
+
+    public ArrayList<String> getLista_correos() {
+        return lista_correos;
+    }
+
+    public void setLista_correos(ArrayList<String> lista_correos) {
+        this.lista_correos = lista_correos;
+    }
+
+    public List<Usuario> getComentaristas() {
+        return comentaristas;
+    }
+
+    public void setComentaristas(List<Usuario> comentaristas) {
+        this.comentaristas = comentaristas;
+    }
+    
+    
     
     public String muestraVentana(){
         return "/administrador/eliminarComentaristas?faces-redirect=true";
@@ -100,8 +138,12 @@ public class EliminarComentaristas {
      public void eliminaComentarista(){
          UsuarioDAO udao = new UsuarioDAO();
          Usuario comentarista = udao.buscaPorCorreo(correo);
-         
-         if(comentarista != null && comentarista.getRol() == 2){
+         ComentarioDAO c = new ComentarioDAO();
+         if(comentarista != null){
+             for(Object o : comentarista.getComentarios()){
+                 Comentario comentario = (Comentario)o;
+                 c.delete(comentario);
+             }
              udao.delete(comentarista);
              Mensajes.info("Se ha eliminado correctamente el comentarista");
          }else if(comentarista != null && comentarista.getRol() != 1 || comentarista == null){

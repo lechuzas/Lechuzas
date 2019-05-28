@@ -27,6 +27,24 @@
                 <p:link outcome="/preguntasFrecuentes.xhtml" value="FAQ"/>
                 </h:form>
                 <h:form id="contacto">
+
+                <p:link outcome="/index.xhtml" value="Contáctanos"/>
+                </h:form>
+                
+              
+                <h:form id="f">
+                    <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                    </p:messages>
+                    <p:selectOneMenu id="tema" value="#{verMarcadores.tema_elegido}" effect="fold" editable="true">
+                        <f:selectItem itemLabel="Selecciona uno de tus temas" itemValue="" />
+                        <f:selectItems value="#{verMarcadores.temas}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton action="#{verMarcadores.muestraMarcadores()}" value="Buscar" update="mapa" />
+                </h:form>
+                
+                
+
                 <p:link outcome="/contacto.xhtml" value="Contáctanos"/>
                 </h:form>
             </header>
@@ -53,17 +71,7 @@
                     </p:commandLink>
                 </h:form>
                 
-                <h:form id="f">
-                    <p:messages id="messages" showDetail="true" closable="true" />
-                    <p:selectOneMenu id="tema" value="#{verMarcadores.tema_elegido}" effect="fold" editable="true">
-                        <f:selectItem itemLabel="Selecciona uno de tus temas" itemValue="" />
-                        <f:selectItems value="#{verMarcadores.temas}"/>
-                    </p:selectOneMenu>
-                </h:form>
-                
-                <h:form id="buscar_btn">
-                    <p:commandButton action="#{verMarcadores.muestraMarcadores()}" value="Buscar" update="mapa" />
-                </h:form>
+               
                 
                 <h:form id="texto_nosotros">
                             <p:commandLink  action="#{mensajes.info()}">

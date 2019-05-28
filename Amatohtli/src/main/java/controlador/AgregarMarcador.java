@@ -5,11 +5,7 @@
  */
 package controlador;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,7 +15,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.Tema;
@@ -51,8 +46,8 @@ public class AgregarMarcador implements Serializable {
     private Set comentarios = new HashSet(0);
     private Marker marcador;
     private MapModel simpleModel;
-    private List<Tema> lista_temas;
-    private ArrayList<String> temas;
+    private List<Tema> temas;
+    private ArrayList<String> lista_temas;
     
     
     
@@ -67,15 +62,14 @@ public class AgregarMarcador implements Serializable {
         this.longitud = marcador.getLatlng().getLng();
         TemaDAO tdao = new TemaDAO();
         ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
-        lista_temas = tdao.findAll();
-        temas = new ArrayList<String>();
-        for(Tema t : lista_temas){
-            if(!t.getUsuario().getCorreo().equals(us.getCorreo())){
-                lista_temas.remove(t);
-            }else{
-                temas.add(t.getNombreTema());
-            }
+        temas = tdao.buscaPorInformador(us.getCorreo());
+        lista_temas = new ArrayList<String>();
+        descripcion = "";
+        for(Tema t : temas){
+            lista_temas.add(t.getNombreTema());
         }
+        
+        
         
         
     }
@@ -159,25 +153,24 @@ public class AgregarMarcador implements Serializable {
         this.comentarios = comentarios;
     }
 
-    public List<Tema> getLista_temas() {
-        return lista_temas;
-    }
-
-    public void setLista_temas(List<Tema> lista_temas) {
-        this.lista_temas = lista_temas;
-    }
-
-    public ArrayList<String> getTemas() {
+    public List<Tema> getTemas() {
         return temas;
     }
 
-    public void setTemas(ArrayList<String> temas) {
+    public void setTemas(List<Tema> temas) {
         this.temas = temas;
+    }
+
+    public ArrayList<String> getLista_temas() {
+        return lista_temas;
+    }
+
+    public void setLista_temas(ArrayList<String> lista_temas) {
+        this.lista_temas = lista_temas;
     }
     
     
-    
-    
+
       public void onMarkerDrag(MarkerDragEvent event){
         marcador = event.getMarker();
         this.latitud = marcador.getLatlng().getLat();
@@ -201,46 +194,35 @@ public class AgregarMarcador implements Serializable {
 
     
     public void agregaMarcador(){
+        TemaDAO tdao = new TemaDAO();
+        Tema tema_elegido = tdao.buscaPorNombre(tema);
         Marcador m = new Marcador();
         MarcadorDAO mdao = new MarcadorDAO();
-        for(Tema t : lista_temas){
-            if(t.getNombreTema().equals(this.tema)){
-                this.temaByIdTema = t;
-                this.temaByIdColor = t;
-                this.idTema = t.getIdTema();
-            }
-        }
-        
+        this.temaByIdTema = tema_elegido;
+        this.temaByIdColor = tema_elegido;
         if(this.temaByIdTema == null || this.temaByIdColor == null){
             Mensajes.error("El tema que usted escogió no existe, escriba otro");
         }else if(this.temaByIdTema != null && this.temaByIdColor != null ){
+            System.out.println("Detectó tema");
             m.setLatitud(latitud);
             m.setLongitud(longitud);
             m.setTemaByIdColor(temaByIdColor);
             m.setTemaByIdTema(temaByIdTema);
             m.setDescripcion(descripcion);
-            
-            
             Marcador marc = mdao.buscaMarcadorPorLatLng(latitud, longitud);
-            
             if(marc != null){
                 Mensajes.error("El marcador que desea agregar ya existe");
-                System.out.println("Error");
-            }else{
+                
+            }else if(descripcion.equals("")){
+                Mensajes.error("Favor de ingresar una descripción");
+                System.out.println("No hay descripción");
+            }
+            else{
                 mdao.save(m);
                 Mensajes.info("Se ha agregado correctamente su marcador");
             }
             this.descripcion = "";
             this.tema = "";
-            
-        }else if(this.descripcion.equals("")){
-            Mensajes.error("Favor de ingresar una decripción");
-            System.out.println("No hay descripción");
-            
         }
-        
-        
     }
-    
-    
 }

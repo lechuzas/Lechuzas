@@ -6,10 +6,11 @@
 package controlador;
 
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import modelo.Comentario;
+import modelo.ComentarioDAO;
 import modelo.Marcador;
 import modelo.MarcadorDAO;
 import modelo.Tema;
@@ -60,37 +61,44 @@ public class EliminarMarcador {
     }
     
     public void eliminaMarcador(){
+        TemaDAO tdao = new TemaDAO();
         MarcadorDAO mdao = new MarcadorDAO();
-        EliminarComentario ec = new EliminarComentario();
-        
+        ComentarioDAO cdao = new ComentarioDAO();
         Marcador m = mdao.buscaMarcadorPorLatLng(lat, lng);
-        if(m != null){
+        List<Comentario> comentarios = cdao.buscaPorMarcador(m.getIdMarcador());
+        if(comentarios != null){
+            for(Comentario c : comentarios){
+                cdao.delete(c);
+            }
             mdao.delete(m);
             Mensajes.info("Se ha eliminado correctamente el marcador");
+        }else if(comentarios.size() == 1){
+            for(Comentario c : comentarios){
+                cdao.delete(c);
+            }
+            Tema t = m.getTemaByIdTema();
+            mdao.delete(m);
+            tdao.delete(t);
+            Mensajes.info("Se ha eliminado correctamente el marcador");
+            
         }else{
             Mensajes.error("El marcador que desea eliminar no existe");
         }
         simpleModel = new DefaultMapModel();
-        TemaDAO tdao = new TemaDAO();
-        List<Tema> lista_temas = tdao.findAll();
-        List<Marcador> marcadores = mdao.findAll();
-        if(lista_temas != null){
-            for(Tema t : lista_temas){
-                ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
-                if(t.getUsuario().getCorreo().equals(us.getCorreo())){
-                    for(Marcador mm : marcadores){
-                        if(mm.getTemaByIdTema().getIdTema() == t.getIdTema()){
-                             LatLng cord = new LatLng(mm.getLatitud(),mm.getLongitud());
-                             Marker marc = new Marker(cord,mm.getDescripcion());
-                             simpleModel.addOverlay(marc);
-
-                        }
-                          
-                    }
-                }
+        ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
+        List<Tema> lista_temas = tdao.buscaPorInformador(us.getCorreo());
+        for(Tema t : lista_temas){
+            String color = "../" + t.getCatColor().getImagen();
+            for(Object o : t.getMarcadorsForIdTema()){
+                Marcador mm = (Marcador)o; 
+                LatLng cord = new LatLng(mm.getLatitud(),mm.getLongitud());
+                Marker marc = new Marker(cord,mm.getDescripcion());
+                marc.setIcon(color);
+                simpleModel.addOverlay(marc);
             }
         }
     }
+           
     
     public String muestraVentana(){
         return "/informador/eliminaMarcador?faces-redirect=true";

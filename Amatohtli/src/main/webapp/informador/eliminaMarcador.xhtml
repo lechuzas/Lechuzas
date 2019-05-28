@@ -43,7 +43,7 @@ and open the template in the editor.
                             <p:inputNumber  decimalPlaces="6" id="longitud" value="#{eliminarMarcador.lng}" disabled="true"/> <br/>
                             <p:inputNumber id="latitud" decimalPlaces="6" value="#{eliminarMarcador.lat}" disabled="true"/><br/>
                             <p:commandButton id="eliminaMarcador" value="Eliminar" action="#{eliminarMarcador.eliminaMarcador()}" update="mapa2" >
-                                 <p:confirm header="Confirmación" message="¿Seguro que quieres eliminar el marcador" icon="ui-icon-alert" />
+                                 <p:confirm header="Confirmación" message="¿Seguro que quieres eliminar el marcador" icon="ui-icon-alert"  />
                             </p:commandButton>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
                              <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>

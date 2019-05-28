@@ -38,7 +38,8 @@ insert into cat_color (descripcion) values ('#6cf45f');
 insert into cat_color (descripcion) values ('#fa36bc');
 insert into cat_color (descripcion) values ('#4E5FCE');
 
-------------------------------------------------------- TEMA ------------------------------------------------------------
+------------------------------------------------------- TEMA -----------------------------------------------------------
+
 insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Villas Navideñas', 1);
 insert into tema (correo,nombre_tema,id_color) values('luna@gmail.com', 'Parques', 2);
 insert into tema (correo,nombre_tema,id_color) values('fernando@vexi.mx', 'Pueblos mágicos', 3);

@@ -5,15 +5,16 @@
  */
 package controlador;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import modelo.Marcador;
-import modelo.MarcadorDAO;
 import modelo.Tema;
 import modelo.TemaDAO;
+import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
@@ -25,36 +26,25 @@ import org.primefaces.model.map.Marker;
  */
 @ManagedBean
 @ViewScoped
-public class VerMarcadorInf {
+public class VerMarcadorInf implements Serializable{
     private MapModel simpleModel;
+    private Marker marker;
     
     @PostConstruct
     public void VerMarcadorInf(){
         simpleModel = new DefaultMapModel();
-        MarcadorDAO mdao = new MarcadorDAO();
         TemaDAO tdao = new TemaDAO();
-        List<Tema> lista_temas = tdao.findAll();
-        List<Marcador> marcadores = mdao.findAll();
-        if(lista_temas != null){
-            for(Tema t : lista_temas){
-                ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
-                if(t.getUsuario().getCorreo().equals(us.getCorreo())){
-                    for(Marcador m : marcadores){
-                        if(m.getTemaByIdTema().getIdTema() == t.getIdTema()){
-                             LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
-                             Marker marc = new Marker(cord,m.getDescripcion());
-                             String aux = "/resources/img/icono.svg";
-                             //System.out.println(aux);
-                             //if(aux != null){
-                               //marc.setIcon(aux);   
-                             //}
-                             //marc.setIcon(aux);
-                             simpleModel.addOverlay(marc);
-
-                        }
-                          
-                    }
-                }
+         ControladorSesion.UserLogged us = (ControladorSesion.UserLogged) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("informador");
+        List<Tema>lista_temas = tdao.buscaPorInformador(us.getCorreo());
+        //temas = new ArrayList();
+        for(Tema t : lista_temas){
+            String color = "../" + t.getCatColor().getImagen();
+            for(Object o : t.getMarcadorsForIdTema()){
+                Marcador m = (Marcador)o;
+                LatLng cord = new LatLng(m.getLatitud(),m.getLongitud());
+                Marker marcador = new Marker(cord,m.getDescripcion());
+                marcador.setIcon(color);
+                simpleModel.addOverlay(marcador); 
             }
         }
     }
@@ -63,5 +53,20 @@ public class VerMarcadorInf {
     public MapModel getSimpleModel() {
         return simpleModel;
     }
+    
+     public void onMarkerSelect(OverlaySelectEvent event) {
+       marker =(Marker) event.getOverlay();
+       
+    }
+
+    public Marker getMarker() {
+        return marker;
+    }
+
+    public void setMarker(Marker marker) {
+        this.marker = marker;
+    }
+     
+     
     
 }

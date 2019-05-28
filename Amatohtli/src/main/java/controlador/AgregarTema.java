@@ -115,6 +115,7 @@ public class AgregarTema implements Serializable {
     }
     
     private void agregarMarcador(){
+        TemaDAO tdao = new TemaDAO();
         Marcador m = new Marcador();
         MarcadorDAO mdao = new MarcadorDAO();
         m.setLatitud(latitud);
@@ -125,6 +126,7 @@ public class AgregarTema implements Serializable {
          
         Marcador marc = mdao.buscaMarcadorPorLatLng(latitud, longitud);
         if(marc != null){
+            tdao.delete(temaByIdTema);
             Mensajes.error("El marcador no se pudo agregar correctamente. El marcador que desea agregar ya existe");
         }else{
             mdao.save(m);
