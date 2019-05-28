@@ -15,7 +15,7 @@ and open the template in the editor.
        
 	 <h:head>
           <title>Amatohtli</title>
-            <h:outputStylesheet name="css/estilos.css"/>
+            <h:outputStylesheet name="css/perfiluser_informador.css"/>
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
         </h:head>
        
@@ -26,8 +26,9 @@ and open the template in the editor.
                  
                 <img id="fondo" src="../resources/img/base.jpg"/>
                 <img id="logo" src="../resources/img/logo.png"/>  
-                <p:link outcome="/index.xhtml" id="faq" value="FAQ"/>
-                <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/>
+                <p:link outcome="/preguntasFrecuentes.xhtml" id="faq" value="FAQ"/>
+                <p:link outcome="/contacto.xhtml" id="contacto" value="Contáctanos"/>
+                <p:link outcome="/index.xhtml" id="cerrar_sesion" value="Cerrar Sesión"/>
                 
             </header>
             
@@ -54,9 +55,6 @@ and open the template in the editor.
                             <p:menuitem value="Agregar" action="#{agregarTema.muestraVentana()}"/>
                             <p:menuitem  value="Buscar" action="#{buscarTemasInf.muestraVentana()}" />
                         </p:submenu>
-                        <p:submenu  label="Cerrar sesión" >
-                            <p:menuitem value="Cerrar sesión" action="#{controladorSesion.logout()}"/>
-                    </p:submenu>
                     </p:panelMenu>
                 </h:form>
             

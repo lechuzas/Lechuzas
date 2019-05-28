@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<f:view>
+       
+	 <h:head>
+          <title>Amatohtli</title>
+            <h:outputStylesheet name="css/preguntas_frecuentes.css"/>
+           
+        </h:head>
+
+       
+	<h:body>
+            
+             <header>
+                <img id="fondo" src="resources/img/base.jpg"/>
+                <img id="logo" src="resources/img/logo.png"/>   
+                
+                <p:link outcome="/login.xhtml" id="iniciar_sesion" value="Iniciar sesión"/>
+                <p:link outcome="/contacto.xhtml" id="contacto" value="Contáctanos"/>
+            </header>
+                   
+            
+            <h:form id="img_pregunta">
+                    <p:commandLink  action="#{mensajes.info()}">
+                        <h:graphicImage value="resources/img/question.png"/>
+                    </p:commandLink>
+            </h:form>
+            
+            <h:form id="texto_nosotros">
+                    <p:commandLink  action="#{mensajes.info()}">
+                        <h:graphicImage value="resources/img/nosotros.png"/>
+                    </p:commandLink>
+            </h:form>
+            
+            
+            <h:form id="lista_preguntas">
+                <p:dataScroller value="#{preguntasBean.generaLista()}" var="pregunta" chunkSize="30">
+                    <f:facet name="header">
+                        Preguntas frecuentes
+                    </f:facet>
+
+                    <h:panelGrid columns="2" style="width:100%">
+                        
+                        <p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="Pregunta:" />
+                                <h:outputText value="#{pregunta.pregunta}" style="font-weight: bold"/>
+
+                                <h:outputText value="Respuesta:" />
+                                <h:outputText value="#{pregunta.respuesta}" style="font-weight: bold"/>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </h:panelGrid>
+                </p:dataScroller>
+            </h:form>
+            
+            
+        </h:body>
+        
+    </f:view>
+
+</html>

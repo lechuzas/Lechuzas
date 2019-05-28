@@ -1,24 +1,13 @@
-#mapa2{
-    position: relative;
-    height: 450px;  
-    width: 50%; 
-    margin-top: 190px;
-     margin-left: 50px;
-    float: left;
+body{
+    overflow-y:hidden;
+    overflow-x: hidden;
 }
-#mapa{
-    position: relative;
-    height: 500px;  
-    width: 50%; 
-    margin-top: 200px;
-    margin-right: -410px;
-    float: right;
-}
+
 
 #logo{
     position: absolute;
-    margin-top: 20px;
-    margin-left: 71px;
+    margin-top: 60px;
+    margin-left: 90px;
     float: left;
     width: 120px;
     height: 120px;
@@ -34,8 +23,8 @@
 
 #iniciar_sesion{
     position: relative;
-    margin-top: 60px;
-    margin-right: 50px;
+    margin-top: 90px;
+    margin-right: 130px;
     float: right;
     color: #589DE1;
     font-weight: bolder;
@@ -43,8 +32,8 @@
 
 #faq{
    position: relative;
-   margin-top: 60px;
-   margin-right: 70px;
+   margin-top: 90px;
+   margin-right: 170px;
    float: right;
    color: #48C9B0;
    font-weight: bolder;
@@ -52,20 +41,11 @@
 
 #contacto{
    position: relative;
-   margin-top: 60px;
-   margin-right: 90px;
+   margin-top: 90px;
+   margin-right: 190px;
    float: right;
    color: #48C9B0;
    font-weight: bolder;   
-}
-
-#boton_registrar{
-    position: relative;
-    height: 90px;  
-    width: 190px;
-    margin-left: 110px;
-    margin-top: 500px;
-    
 }
 
 #texto_nosotros{
@@ -73,7 +53,7 @@
     height: 220px;  
     width: 390px;
     margin-left:180px;
-    margin-top: 190px;
+    margin-top: 400px;
     
 }
 
@@ -81,59 +61,9 @@
     position: relative;
     height: 100px;  
     width: 50%; 
-    margin-top: 200px;
-    margin-right: -610px;
+    margin-top: 400px;
+    margin-right: -910px;
     float:right;
 }
 
 
-#form_agreinfo{
-    position: relative;
-    margin-top: 300px;
-    margin-right: -310px;
-    float:right;
-}
-
-
-#agrega_comentario{
-    position: relative;
-    margin-right: 15%;
-    margin-top: 10%;
-    float:right;
-}
-
-
-#cerrar_sesion{
-    position: relative;
-    margin-top: 60px;
-    margin-right: 50px;
-    float: right;
-    color: #589DE1;
-    font-weight: bolder;
-}
-
-#boton_agregar_coment{
-    position: relative;
-    margin-top: 0.5%;
-    margin-right: 15%;
-    float: right;
-    color: #589DE1;
-    
-}
-
-#muestra_comentarios{
-    
-    position: relative;
-    margin-top: 0.10%;
-    margin-right: 15%;
-    float: right;
-    color: #589DE1;
-}
-
-#form{
-    position: relative;
-    margin-top: 300px;
-    margin-right: -100px;
-    float:right;
-    
-}
