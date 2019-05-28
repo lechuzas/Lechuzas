@@ -17,8 +17,7 @@
              <header>
                  
                 <img id="fondo" src="../resources/img/base.jpg"/>
-                <img id="logo" src="../resources/img/logo.png"/>   
-                <p:link outcome="/index.xhtml" id="iniciar_sesion" value="Continuar como invitado"/>
+                <img id="logo" src="../resources/img/logo.png"/>  
                 <p:link outcome="/index.xhtml" id="faq" value="FAQ"/>
                 <p:link outcome="/index.xhtml" id="contacto" value="Contáctanos"/>
                  <h:form id="logout" rendered="#{not empty user}">
@@ -37,28 +36,25 @@
                         </p:gmapInfoWindow>
                     </p:gmap> 
                
-                    <h:form id="form">
-                        <p:messages id="messages" showDetail="true" closable="true" >
-                             <p:autoUpdate />
-                         </p:messages>
-                        <p:inputText id="paterno" value="#{agregarInformador.paterno}" placeholder="Paterno" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
-                         </p:inputText> <br/>
-                        <p:inputText id="nombre" value="#{agregarInformador.nombre}" placeholder="Nombre" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
-                         </p:inputText> <br/>
-                        <p:inputText id="nombreU" value="#{agregarInformador.nombreUsuario}" placeholder="Usuario" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
-                         </p:inputText> <br/>
-                        <p:inputText id="correo" value="#{agregarInformador.correo}" placeholder="Correo" required ="true" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
-                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                        <p:keyFilter regEx="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
-                         </p:inputText> <br/>   
-                         <p:commandButton value="Agregar"  action="#{agregarInformador.agregaInfo()}" ajax='false'>
-                             <p:confirm header="Confirmación" message="¿Estás seguro? Se enviara correo" icon="ui-icon-alert" />
-                         </p:commandButton>
-                          <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                             <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
-                             <p:commandButton value="Sí, Enviar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="messages" />
-                         </p:confirmDialog>
-                         
+                 <h:form id="form">
+                    <p:panelMenu style="width:200px">
+                        <p:submenu label="Informadores">
+                            <p:menuitem value="Agregar"  action="/administrador/agregarInformador?faces-redirect=true" />
+                  
+                        </p:submenu>
+                        <p:submenu label="Comentarista">
+                            <p:menuitem value="Eliminar" action="/administrador/eliminarComentaristas?faces-redirect=true"/>
+        
+                        </p:submenu>
+                        <p:submenu label="Temas">
+                            <p:menuitem value="Buscar" action="/administrador/buscarTemasA?faces-redirect=true"/>
+        
+                        </p:submenu>
+                        
+                        <p:submenu  label="Cerrar sesión" >
+                            <p:menuitem value="Cerrar sesión" action="#{controladorSesion.logout()}"/>
+                    </p:submenu>
+                    </p:panelMenu>
                 </h:form>
 
        </h:body>
