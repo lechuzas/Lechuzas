@@ -135,14 +135,18 @@ public class editarDatosC {
                 usr.setContrasenia(contrasenia);
             }
             
-            usr.setPaterno(paterno);
+            
             if (!paternoN.equals("")){
                 usr.setPaterno(paternoN);
+            }else{
+                usr.setPaterno(paterno);
             }
             
-            usr.setPaterno(nombre);
+            
             if (!nombreN.equals("")){
                  usr.setNombre(nombreN);
+            }else{
+                usr.setNombre(nombre);
             }
             
             if (!nombreUsuarioN.equals("")){
@@ -168,4 +172,5 @@ public class editarDatosC {
 
     }
 
-  }
+    
+}

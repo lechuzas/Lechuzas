@@ -49,16 +49,16 @@
                         <p:inputText id="nombreU" value="#{editarDatosC.nombreUsuarioN}" placeholder="#{editarDatosC.nombreUsuario}"  validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
                          </p:inputText> <br/>
                          
-                        <p:inputText id="nombreU1" value="#{editarDatosC.nombreN}" placeholder="#{editarDatosC.nombre}"  validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
+                        <p:inputText  value="#{editarDatosC.nombreN}" placeholder="#{editarDatosC.nombre}"  validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
                          </p:inputText> <br/>
                         
-                         <p:inputText id="nombreU2" value="#{editarDatosC.paternoN}" placeholder="#{editarDatosC.paterno}" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
+                         <p:inputText  value="#{editarDatosC.paternoN}" placeholder="#{editarDatosC.paterno}" validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
                          </p:inputText> <br/>
                         
                         <p:password id="nombreU3" value="#{editarDatosC.contraseniaN}" placeholder="Nueva Contrasenia"  validatorMessage="Ingresa un correo válido" requiredMessage="Favor de ingresar el correo"> 
                          </p:password> <br/>
                          
-                         <p:commandButton class="texto" action="#{editarDatosC.EditarInfo()}" value="Actualizar" ajax="true" update='form' />
+                         <p:commandButton class="texto" action="#{editarDatosC.EditarInfo()}" value="Actualizar"  ajax="false"   />
                         
                     </h:form>
             </aside>
