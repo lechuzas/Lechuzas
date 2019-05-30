@@ -6,6 +6,9 @@
 package modelo;
 
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,6 +18,10 @@ import org.hibernate.Transaction;
  *
  * @author fermat
  */
+
+@ManagedBean
+@RequestScoped
+@ViewScoped
 public class ComentarioDAO extends AbstractDAO<Comentario>{
     public ComentarioDAO(){
         super();   

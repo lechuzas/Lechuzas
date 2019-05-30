@@ -9,7 +9,7 @@
    <f:view>
        
 	 <h:head>
-          <title>AgregarAdmin</title>
+          <title>Amatohtli</title>
             <h:outputStylesheet name="/css/estilos.css"/>
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>            
         </h:head>
@@ -21,8 +21,10 @@
                 <img id="logo" src="../resources/img/logo.png"/>  
                 <p:link outcome="/preguntasFrecuentes.xhtml" id="faq" value="FAQ"/>
                 <p:link outcome="/contacto.xhtml" id="contacto" value="Contáctanos"/>
-                 <h:form id="logout" rendered="#{not empty user}">
-                     <p:commandButton action="#{controladorSesion.logout()}" value="logout"/>
+                <h:form id="cerrar_sesion">
+                    <p:commandLink action="#{controladorSesion.logout()}">
+                        <h:outputText value="Cerrar Sesión" />
+                    </p:commandLink>
                 </h:form>
             </header>
             
@@ -52,9 +54,6 @@
         
                         </p:submenu>
                         
-                        <p:submenu  label="Cerrar sesión" >
-                            <p:menuitem value="Cerrar sesión" action="#{controladorSesion.logout()}"/>
-                    </p:submenu>
                     </p:panelMenu>
                 </h:form>
 

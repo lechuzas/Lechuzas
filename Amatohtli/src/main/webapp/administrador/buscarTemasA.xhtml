@@ -50,6 +50,18 @@ and open the template in the editor.
                 </h:form>
             
             
+                <h:form id="muestra_comentarios">
+                    <p:dataTable value="#{comentarioDAO.finAll()}" var="comentario" scrollable="true" scrollHeight="140">
+                         <f:facet name="header">
+                            Comentarios
+                         </f:facet>
+                         <p:column headerText="Descripcion" filterBy="#{comentario.descripcion}" filterMatchMode="contains">
+                             <p:outputLabel value="#{comentario.descripcion}"/>
+                         </p:column>
+                     </p:dataTable>
+                </h:form>
+            
+            
             
                    
             

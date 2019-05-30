@@ -146,3 +146,13 @@ and open the template in the editor.
     float:right;
     
 }
+
+
+#muestra_comentarios{
+    position: relative;
+    margin-top: 1.6%;
+    margin-right: 5%;
+    float: right;
+    height: 10% !important;
+    width: 40% !important;
+}
