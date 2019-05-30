@@ -11,6 +11,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import modelo.Comentario;
+import modelo.ComentarioDAO;
 import modelo.Marcador;
 import modelo.Tema;
 import modelo.TemaDAO;
@@ -31,7 +33,8 @@ public class BuscarTemasA implements Serializable {
     private ArrayList<String> temas;
     private Tema tema;
     private String tema_elegido;
-    
+    private String guarda_elegido = "";
+
     @PostConstruct
     public void BuscarTemasA(){
         simpleModel = new DefaultMapModel();
@@ -86,6 +89,33 @@ public class BuscarTemasA implements Serializable {
         this.tema_elegido = tema_elegido;
     }
     
+    public String getGuarda_elegido() {
+        return guarda_elegido;
+    }
+
+    public void setGuarda_elegido(String guarda_elegido) {
+        this.guarda_elegido = guarda_elegido;
+    }
+    
+    public List<Comentario> regresaListaComentarios(){
+        List<Comentario> lista_com;
+        List<Comentario> lista_completa = new ArrayList();
+        System.out.println(this.guarda_elegido);
+        if(!this.guarda_elegido.equals("")){
+            TemaDAO tdao = new TemaDAO();
+            ComentarioDAO cdao = new ComentarioDAO(); 
+            tema = tdao.buscaPorNombre(this.guarda_elegido);
+            for(Object o : tema.getMarcadorsForIdTema()){
+                Marcador m = (Marcador)o;
+                lista_com = cdao.buscaPorMarcador(m.getIdMarcador());
+                for(Comentario c : lista_com){
+                    lista_completa.add(c);
+                }
+            }
+        }
+        return lista_completa;
+    }
+    
     public void muestraMarcadores(){
         if(!this.tema_elegido.equals("")){
             TemaDAO tdao = new TemaDAO();
@@ -100,6 +130,7 @@ public class BuscarTemasA implements Serializable {
                 simpleModel.addOverlay(marc);
                  
             }
+            this.guarda_elegido = this.tema_elegido;
             this.tema_elegido = "";
         }else{
             Mensajes.error("No se ha elegido un tema, favor de seleccionar uno");

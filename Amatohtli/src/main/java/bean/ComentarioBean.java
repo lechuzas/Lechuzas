@@ -44,8 +44,10 @@ public class ComentarioBean implements Serializable {
     }
     
     public static void update(){
-        ComentarioDAO comentarioDAO = new ComentarioDAO();
-        ComentarioBean.lista = comentarioDAO.buscaPorMarcador(VerMarcadorC.select.getIdMarcador());
+        if (VerMarcadorC.select != null){
+            ComentarioDAO comentarioDAO = new ComentarioDAO();
+            ComentarioBean.lista = comentarioDAO.buscaPorMarcador(VerMarcadorC.select.getIdMarcador());
+        }
     }
     
     
