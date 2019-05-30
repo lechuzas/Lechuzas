@@ -135,14 +135,18 @@ public class editarDatosC {
                 usr.setContrasenia(contrasenia);
             }
             
-            usr.setPaterno(paterno);
+            
             if (!paternoN.equals("")){
                 usr.setPaterno(paternoN);
+            }else{
+                usr.setPaterno(paterno);
             }
             
-            usr.setPaterno(nombre);
+            
             if (!nombreN.equals("")){
                  usr.setNombre(nombreN);
+            }else{
+                usr.setNombre(nombre);
             }
             
             if (!nombreUsuarioN.equals("")){
@@ -159,7 +163,7 @@ public class editarDatosC {
                 dao.update(usr);
   
                 init();
-                Mensajes.info("Dato(s) actualizado(s)"); 
+                Mensajes.info("Dato(s) actualizado(s    )"); 
 
                 
             }else{
@@ -168,4 +172,36 @@ public class editarDatosC {
 
     }
 
-  }
+    public void agregaComentarista(){
+            Usuario usr= new Usuario();
+            UsuarioDAO dao=new UsuarioDAO();
+            usr.setContrasenia(contrasenia);
+            usr.setPaterno(paterno);
+            usr.setNombreUsuario(nombreUsuario);
+            usr.setCorreo(correo);
+            usr.setNombre(nombre);
+            usr.setRol(2);
+            String subject="Bienvenido a Amatohlti "+nombre;
+            String mensaje= "Hola, binvenido a Amatohlti " + nombre + " " + paterno +"\n"
+                            + "Gracias por querer aportar tu granito de arena y hacer una comunidad más grande"+"\n"
+                            + " a continuación se te otorgan tus datos para que puedas ingresar a tu cuenta: "+"\n\n"
+                            +"Tu usuario es: "+nombreUsuario +"\n"
+                            +"Contrasenia: "+contrasenia +"\n\n"
+                            +"Recuerda actualizar tu contraseña cuando entres a tu cuenta!"+"\n\n"
+                            +"Atte: Equipo Amatohtli";
+            if (dao.buscaPorCorreo(correo) == null){
+                dao.save(usr);
+                Mail.sendMail(subject, mensaje, correo);
+                this.nombre="";
+                this.correo="";
+                this.nombreUsuario="";
+                this.paterno="";
+                this.contrasenia="";
+            
+                Mensajes.info("Se te ha enviado un correo, gracias :D ");    
+            }else{
+                Mensajes.error("El correo ya esta registrado");
+            }
+            
+    }
+}

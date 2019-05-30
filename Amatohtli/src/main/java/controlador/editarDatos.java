@@ -146,7 +146,7 @@ public class editarDatos {
             if (!nombreN.equals("")){
                  usr.setNombre(nombreN);
             }else{
-                usr.setPaterno(nombre);
+                usr.setNombre(nombre);
             }
             
             if (!nombreUsuarioN.equals("")){
