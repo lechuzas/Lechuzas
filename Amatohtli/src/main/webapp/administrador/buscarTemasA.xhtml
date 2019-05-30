@@ -30,7 +30,11 @@ and open the template in the editor.
                 <p:link outcome="/administrador/perfiluser" id="iniciar_sesion" value="Perfil"/>
                 <p:link outcome="/preguntasFrecuentes.xhtml" id="faq" value="FAQ"/>
                 <p:link outcome="/contacto.xhtml" id="contacto" value="Contáctanos"/>
-                
+                <h:form id="cerrar_sesion">
+                    <p:commandLink action="#{controladorSesion.logout()}">
+                        <h:outputText value="Cerrar Sesión" />
+                    </p:commandLink>
+                </h:form>
             </header>
             
             
@@ -42,11 +46,23 @@ and open the template in the editor.
                      <p:messages id="messages" showDetail="true" closable="true" >
                          <p:autoUpdate />
                      </p:messages>
-                    <p:commandButton action="#{buscarTemasA.muestraMarcadores()}" value="Buscar" update="mapa2" />
+                    <p:commandButton action="#{buscarTemasA.muestraMarcadores()}" value="Buscar" update="mapa2 muestra_comentarios" />
                     <p:selectOneMenu id="tema" value="#{buscarTemasA.tema_elegido}" effect="fold" editable="true">
                         <f:selectItem itemLabel="Selecciona uno de tus temas" itemValue="" />
                         <f:selectItems value="#{buscarTemasA.temas}"/>
                     </p:selectOneMenu>
+                </h:form>
+            
+            
+                <h:form id="muestra_comentarios">
+                    <p:dataTable value="#{buscarTemasA.regresaListaComentarios()}" var="comentario" scrollable="true" scrollHeight="140">
+                         <f:facet name="header">
+                            Comentarios
+                         </f:facet>
+                         <p:column headerText="Descripcion" filterBy="#{comentario.descripcion}" filterMatchMode="contains">
+                             <p:outputLabel value="#{comentario.descripcion}"/>
+                         </p:column>
+                     </p:dataTable>
                 </h:form>
             
             

@@ -24,8 +24,10 @@ and open the template in the editor.
              <header>
                 <img id="fondo" src="../resources/img/base.jpg"/>
                 <img id="logo" src="../resources/img/logo.png"/>                  
-                <h:form id="iniciar_sesion">
-                    <p:link outcome="/login.xhtml" value="Iniciar Sesión"/>
+                <h:form id="cerrar_sesion">
+                    <p:commandLink action="#{controladorSesion.logout()}">
+                        <h:outputText value="Cerrar Sesión" />
+                    </p:commandLink>
                 </h:form>
                 
                 <h:form id ="faq">
