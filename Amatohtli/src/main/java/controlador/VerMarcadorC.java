@@ -149,7 +149,7 @@ public class VerMarcadorC implements Serializable{
         MarcadorDAO marcadorDAO = new MarcadorDAO();
         Marcador m = marcadorDAO.buscaMarcadorPorLatLng(latitud, longitud);
         if(this.descripcion != null && m != null){
-            if(!this.descripcion.equals("")){
+            if(!this.descripcion.trim().equals("")){
                 Usuario usuario = usuarioDAO.buscaPorCorreo(us.getCorreo());
                 CalificacionDAO udbc = new CalificacionDAO();
                 calificacion.setUsuario(usuario);
@@ -207,7 +207,11 @@ public class VerMarcadorC implements Serializable{
             Calificacion calf = c.getCalificacion();
             calf.setPuntaje(0);
             c.setCalificacion(calf);
-            c.setNumCalificaciones(c.getNumCalificaciones() - 1);
+            if (c.getNumCalificaciones() == 0){
+                c.setNumCalificaciones(0);
+            }else{
+                c.setNumCalificaciones(c.getNumCalificaciones() - 1);
+            }
             ComentarioDAO udb = new ComentarioDAO();
             udb.update(c);
             CalificacionDAO udbc = new CalificacionDAO();
