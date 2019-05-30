@@ -97,6 +97,57 @@ insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.1342154,-94.4980524,'Coatzacoalcos');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.2465024,-94.6472769,'Playa linda');
 
+------------------------------MARCADOR(2 iteracion (5-9))----------------------------------------------------------------
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (5,5,25.8590193566658,-105.98288325,'Tienda de la esquina')
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (5,5,25.859019,-104.840305,'Tienda de la esquina');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (5,5,23.463038,-104.137180,'Tienda de la esquina');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (5,5,28.671112,-105.103977,'Tienda de la esquina');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (5,5,29.592368,-107.477024,'Tienda de la esquina');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (5,5,28.709662,-107.213352,'Tienda de la esquina');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (5,5,27.313012,-102.730930,'Tienda de la esquina');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (5,5,25.343821,-105.675266,'Tienda de la esquina');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (5,5,23.220946,-105.675266,'Tienda de la esquina');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (5,5,18.319861,-100.859197,'Tienda de la esquina');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (6,6,16.979844,-93.564275,'Restaurante Japonés');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (6,6,17.902182,-91.806462,'Restaurante de Comida China');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (6,6,17.985797,-89.345525,'Restaurante Japonés');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (6,6,21.050423,-88.686345,'Restaurante Japonés');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (6,6,20.804144,-99.233220,'Restaurante Japonés');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (6,6,21.851091,-104.301975,'Restaurante de Comida China');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (6,6,24.716689,-107.334202,'Restaurante Japonés');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (6,6,25.049128,-105.169450,'Restaurante de Comida China');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (6,6,25.684455,-105.389176,'Restaurante de Comida China');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (6,6,26.079827,-104.334489,'Restaurante de Comida China');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (7,7,25.803206,-100.071794,'Plaza Hola');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (7,7,25.208272,-98.841325,'Plaza Cristal');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (7,7,25.248026,-98.313981,'Plaza Ondas');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (7,7,26.434525,-102.181169,'Plaza Tepeyac');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (7,7,26.079827,-102.972184,'Plaza Cereza');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (7,7,25.605222,-105.081559,'Plaza Sur');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (7,7,27.062404,-112.464372,'Plaza 99');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (7,7,20.6539376,-87.1419091,'Plaza 22');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (7,7,28.500896,-111.541520,'Plaza Yaay');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (7,7,30.317087,-112.596925,'Plaza Turística');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (8,8,31.448496,-115.167726,'El Sol');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (8,8,29.268343,-107.894777,'Bar XD');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (8,8,20.478269,-100.478733,'Discoteca Mely');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (8,8,20.509142,-97.545383,'Antro Cool');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (8,8,21.350570,-98.160618,'Disco Del Carmen');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (8,8,20.550296,-98.512180,'El caballito');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (8,8,18.812503,-99.457004,'KAOS');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (8,8,18.750095,-100.248020,'The Big City');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (8,8,18.041205,-98.468235,'80s');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (8,8,17.957616,-99.764622,'Juventud');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (9,9,19.393854,-103.434055,'Del Carmen');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (9,9,16.825357,-94.425266,'Centro Histórico');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (9,9,17.077573,-92.887180,'Centro Holis');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (9,9,17.434294,-91.942356,'Centro Dennis');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (9,9,16.467477,-91.195286,'Centro Flores');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (9,9,18.354310,-91.327122,'Centro Guadalupe');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (9,9,16.319922,-94.029758,'Centro Fall');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (9,9,16.319922,-98.402317,'Centro XD');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (9,9,17.539080,-98.292454,'Centro S');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (9,9,22.410819,-105.433567,'Centro Del Carmen');
 
 
 --------------------------------- MARCADOR(2 iteracion (16-20))------------------------------------
