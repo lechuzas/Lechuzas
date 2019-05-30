@@ -45,6 +45,26 @@ insert into tema (correo,nombre_tema,id_color) values('luna@gmail.com', 'Parques
 insert into tema (correo,nombre_tema,id_color) values('fernando@vexi.mx', 'Pueblos mágicos', 3);
 insert into tema (correo,nombre_tema,id_color) values('fluna@gmail.com', 'Playas mexicanas', 4);
 
+
+insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Tiendas', 5);
+insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Restaurantes', 6);
+insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Plazas', 7);
+insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Antros', 8);
+insert into tema (correo,nombre_tema,id_color) values('ailyn@gmail.com', 'Centros', 9);
+
+insert into tema (correo,nombre_tema,id_color) values('fluna@gmail.com', 'Lagunas', 10);
+insert into tema (correo,nombre_tema,id_color) values('fluna@gmail.com', 'Observatorio', 11);
+insert into tema (correo,nombre_tema,id_color) values('fluna@gmail.com', 'Selvas', 12);
+insert into tema (correo,nombre_tema,id_color) values('fluna@gmail.com', 'Carpinterias', 13);
+insert into tema (correo,nombre_tema,id_color) values('fluna@gmail.com', 'Cocinas', 15);
+
+insert into tema (correo,nombre_tema,id_color) values('fernando@vexi.mx', 'Evento cultural', 16);
+insert into tema (correo,nombre_tema,id_color) values('fernando@vexi.mx', 'Hotel', 17);
+insert into tema (correo,nombre_tema,id_color) values('fernando@vexi.mx', 'Casa Cultural', 18);
+insert into tema (correo,nombre_tema,id_color) values('fernando@vexi.mx', 'Fabricas', 19);
+insert into tema (correo,nombre_tema,id_color) values('fernando@vexi.mx', 'Universidades', 20);
+
+
 ------------------------------------------------------------- MARCADOR -----------------------------------------------------------------------
 
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (1,2,23.382390,-102.291477,'Villa iluminada de Atlixco, Puebla');
@@ -76,6 +96,66 @@ insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.6504452,-91.8335075,'Del C');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.1342154,-94.4980524,'Coatzacoalcos');
 insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (4,4,18.2465024,-94.6472769,'Playa linda');
+
+
+
+--------------------------------- MARCADOR(2 iteracion (16-20))------------------------------------
+
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (16,16,20.128943,-100.590984,'Festival primavera');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (16,16,20.1388152,-100.5834298,'Danza viejitos');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (16,16,20.1497122,-100.5599499,'Danza silla');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (16,16,20.2288781,-100.5754903,'Carnaval');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (16,16,20.2342031,-100.5630649,'Danza silla 2');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (16,16,20.4077361,-100.670144,'Danza cerro');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (16,16,20.5595332,-101.1366728,'Festival meyo');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (16,16,20.760044,-101.1578913,'Festival abril');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (16,16,20.9155546,-101.5127389,'Carnaval inter');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (16,16,20.9667267,-101.6764217,'Festival junio');
+
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (17,17,23.0949543,-100.9561556,'Hospedaje Tla');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (17,17,22.756183,-99.9928392,'Hospedaje Inn');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (17,17,23.0949543,-100.9561556,'Terminal 1');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (17,17,23.3753384,-103.2630529,'Hospedaje Inn junnior');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (17,17,23.4757514,-103.7147242,'5 estrellas');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (17,17,23.5299775,-103.8960595,'Costa');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (17,17,23.7342538,-104.0360184,'Aeropuerto 2');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (17,17,23.8492528,-104.5505233,'Costa Azul');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (17,17,24.139074,-105.0965512,'Familiar 1');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (17,17,24.3118247,-105.5070087,'Aeropuerto 1');
+
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (18,18,17.9320585,-94.965888,'Valle 1');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (18,18,17.823382,-95.0782531,'Laguna verde 2');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (18,18,17.8209613,-95.0699382,'Valle 2');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (18,18,17.7739131,-94.8661479,'Amatohtli');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (18,18,17.9130446,-96.4157342,'Fondo de cultura');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (18,18,17.8304886,-95.091663,'Ninos ');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (18,18,18.0462835,-95.5470643,'Fondo de cultura regional');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (18,18,18.0482421,-96.1005037,'Laguna verde');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (18,18,17.867957,-96.2564322,'Santa 2');
+
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (19,19,27.2867173,-102.9346474,'Ford');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (19,19,27.3617784,-103.2809094,'Christer');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (19,19,27.1746469,-103.2178895,'Pepsi');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (19,19,27.0630812,-103.4332628,'Coca');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (19,19,26.9995442,-103.5738437,'Sabritas');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (19,19,22.1880093,-100.8980015,'Duracell');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (19,19,22.1749265,-100.9708837,'Panasonic');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (19,19,22.1926244,-101.0525729,'Duramas');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (19,19,22.2843575,-101.0464532,'Galletas');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (19,19,22.3022125,-101.1038285,'Pepsi 2');
+
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (20,20,20.5120708,-99.7886306,'Unam');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (20,20,20.5736562,-99.7645163,'UAM 2');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (20,20,20.5929897,-100.1789323,'Unam 2');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (20,20,20.528535,-100.4005965,'UAM');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (20,20,20.4640532,-100.5114284,'iZTA');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (20,20,20.4550236,-100.736534,'Poli');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (20,20,20.4823191,-101.1708914,'Tec');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (20,20,20.4320106,-101.402881,'Poli 2');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (20,20,20.5614846,-101.5616148,'Tec');
+insert into marcador (id_tema,id_color,latitud,longitud,descripcion) values (20,20,20.7798289,-101.4081014,'Tec nacional');
+
+
 
 
 ------------------ CALIFICACION -------------------------
