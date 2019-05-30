@@ -1,7 +1,7 @@
 ----------------------------------------------------------------------------------------- USUARIO ------------------------------------------------------------------------------------------
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('pwharin0@nps.gov', 'SNbzVUJrUh2b', 'pwharin0', 'Pepi', 'Wharin', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('tpadginton1@foxnews.com', 'hEtuoSec5M', 'tpadginton1', 'Tedman', 'Padginton', 2);
-insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('nkerry2@princeton.edu', 'Aul8h0', 'nkerry2', 'Neila', 'Kerry', 1);
+insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('a@a.edu', '1234', 'nkerry2', 'Neila', 'Kerry', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('gwallington3@webmd.com', '7XWAUxgbK', 'gwallington3', 'Gerrilee', 'Wallington', 1);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('belwood4@ft.com', 'bYDsSxosWyOr', 'belwood4', 'Bondie', 'Elwood', 2);
 insert into usuario (correo, contrasenia, nombre_usuario, nombre, paterno, rol) values ('glemmens5@sourceforge.net', '0v3Xzsf1AC', 'glemmens5', 'Godiva', 'Lemmens', 2);
